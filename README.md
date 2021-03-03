@@ -8,4 +8,4 @@ Team Members:
 - Yunwei
 - Etta
 - Kenneth
-- Jeffery
+- Jeffrey
