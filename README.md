@@ -8,7 +8,7 @@ Team Members:
 - Yunwei
 - Etta
 - Kenneth
-- Jeffery
+- Jeffrey
 
 ## Getting Started with Create React App
 
