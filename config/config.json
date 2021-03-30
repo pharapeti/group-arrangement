@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "group_arrangement",
+    "password": "testpassword",
+    "database": "group_arrangement_development",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
+  }
+}
