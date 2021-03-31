@@ -13,7 +13,7 @@ Team Members:
 ## Setup and Configuration
 
 1) Pull repo and navigate to repo
-2) Ensure Yarn is installed by running `yarn --version` and then run `yarn` to install all missing packages
+2) Ensure Yarn is installed by running `yarn --version` and then run `yarn` and `yarn --dev` to install all missing packages
 3) Start a Postgres server on your machine, either throught brew or through the [Postgres app](https://postgresapp.com/)
 4) Create the database by installing Postgresql on [Linux](https://gist.github.com/dhbradshaw/e51107baa7d13522256a2d4afddcee92), [Mac](https://postgresapp.com/) or [Windows](https://www.postgresql.org/download/windows/)
 5) Run `cd script` then `chmod +x database_setup.sh` and then `./database_setup.sh`
