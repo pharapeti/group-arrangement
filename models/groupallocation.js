@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     group_id: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: { model: 'Groups', key: 'id' }
+      references: { model: 'groups', key: 'id' }
     },
     user_id: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: { model: 'Users', key: 'id' }
+      references: { model: 'users', key: 'id' }
     }
   }, {
     sequelize,
