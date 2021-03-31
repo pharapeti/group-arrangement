@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     group_number: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      autoIncrement: true
     },
     project_id: {
       allowNull: false,
