@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    tableName: 'preferences',
     modelName: 'Preference',
   });
   return Preference;

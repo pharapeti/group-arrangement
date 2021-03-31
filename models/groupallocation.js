@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    tableName: 'group_allocations',
     modelName: 'GroupAllocation',
   });
   return GroupAllocation;

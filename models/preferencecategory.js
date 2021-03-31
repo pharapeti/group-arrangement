@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    tableName: 'preference_categories',
     modelName: 'PreferenceCategory',
   });
   return PreferenceCategory;

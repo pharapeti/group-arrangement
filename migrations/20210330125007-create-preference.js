@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Preferences', {
+    await queryInterface.createTable('preferences', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,7 +19,7 @@ module.exports = {
       project_category_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'PreferenceCategories', key: 'id' }
+        references: { model: 'preference_categories', key: 'id' }
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +32,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Preferences');
+    await queryInterface.dropTable('preferences');
   }
 };
