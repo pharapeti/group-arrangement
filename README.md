@@ -15,7 +15,7 @@ Team Members:
 1) Pull repo and navigate to repo
 2) Ensure Yarn is installed by running `yarn --version` and then run `yarn` to install all missing packages
 3) Start a Postgres server on your machine, either throught brew or through the [Postgres app](https://postgresapp.com/)
-4) Create the database by running ./scripts/database_setup.sh
+4) Create the database by installing Postgresql on [Linux](https://gist.github.com/dhbradshaw/e51107baa7d13522256a2d4afddcee92), [Mac](https://postgresapp.com/) or [Windows](https://www.postgresql.org/download/windows/) and then running ./scripts/database_setup.sh
 5) Run `npx sequelize-cli db:migrate` to run all pending migrations. [Reference](https://sequelize.org/master/manual/migrations.html)
 
 ## Getting Started with Create React App
