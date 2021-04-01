@@ -1,11 +1,15 @@
 {
   "dev": {
-    "driver": "sqlite3",
-    "filename": "db/group_arrangement_development.db"
+    "driver": "pg"
   },
-
-  "test": {
-    "driver": "sqlite3",
-    "filename": ":memory:"
+  "pg": {
+    "driver": "pg",
+    "user": "group_arrangement",
+    "password": "testpassword",
+    "host": "localhost",
+    "database": "group_arrangement_development",
+    "port": "5432",
+    "ssl": "false",
+    "schema": "my_schema"
   }
 }

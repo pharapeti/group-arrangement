@@ -7,15 +7,16 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "cors": "^2.8.5",
-    "db-migrate-sqlite3": "^0.4.0",
+    "pg": "^8.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "sqlite3": "^5.0.2",
+    "sequelize": "^6.6.2",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "sequelize-cli": "^6.2.0"
   },
   "scripts": {
     "client": "cd client && yarn start",

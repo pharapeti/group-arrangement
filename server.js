@@ -1,5 +1,4 @@
 const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 
 const app = express();
@@ -9,37 +8,30 @@ app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded()); //Parse URL-encoded bodies
 app.use(cors()); // https://stackoverflow.com/a/63547498/8186540
 
-let db = new sqlite3.Database(db_path, sqlite3.OPEN_READWRITE, (err) => {
-  if (err) {
-    console.log('Unable to connect to the database');
-    throw new Error(err.message);
-  }
-  console.log('Connected to the group_arrangement_development database.');
-});
+// This behaviour to be moved into a route
+const { User } = require('./models')
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
-app.get('/api/hello', (req, res) => {
+app.get('/api/get_test', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
-app.post('/api/world', (req, res) => {
+
+app.post('/api/post_test', (req, res) => {
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );
 });
 
-// Test route which queries all users and returns all the data via JSON
+// Restful API to return all users (use this as a template for other routes requiring
+// a database query)
 app.get('/api/users', (req, res) => {
-  db.all(`select * from users`, (err, rows) => {
-    if (err) {
-      console.log(err.message);
-      res.send(err);
-    } else {
-      res.send(rows);
-    }
-  });
+  res.send(User.findAll());
 });
 
+// 404 Route
 app.get('*', (req, res) => {
-  res.send({ something: 'You hit the all other routes matcher' })
+  res.send(404, `The URL '${req.url}' is not defined`);
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
