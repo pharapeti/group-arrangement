@@ -1,7 +1,11 @@
 'use strict';
+
 const {
   Model
 } = require('sequelize');
+
+const PROTECTED_ATTRIBUTES = ['encrypted_password'];
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,6 +16,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Project, GroupAllocation }) {
       this.hasMany(Project);
       this.hasMany(GroupAllocation);
+    }
+
+    toJSON() {
+      // hide protected fields
+      const attributes = { ...this.get() };
+      // eslint-disable-next-line no-restricted-syntax
+      for (const a of PROTECTED_ATTRIBUTES) {
+        delete attributes[a];
+      }
+      return attributes;
     }
   };
   User.init({
@@ -37,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    tableName: 'users',
     modelName: 'User',
   });
   return User;
