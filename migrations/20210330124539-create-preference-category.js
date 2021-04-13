@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('PreferenceCategories', {
+    await queryInterface.createTable('preference_categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,17 +17,17 @@ module.exports = {
           is: ["[a-z]",'i']
         }
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('PreferenceCategories');
+    await queryInterface.dropTable('preference_categories');
   }
 };

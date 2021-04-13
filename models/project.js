@@ -35,10 +35,11 @@ module.exports = (sequelize, DataTypes) => {
     created_by: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: { model: 'Users', key: 'id' }
+      references: { model: 'users', key: 'id' }
     }
   }, {
     sequelize,
+    tableName: 'projects',
     modelName: 'Project',
   });
   return Project;

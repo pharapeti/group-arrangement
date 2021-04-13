@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('GroupAllocations', {
+    await queryInterface.createTable('group_allocations', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,24 +11,24 @@ module.exports = {
       group_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Groups', key: 'id' }
+        references: { model: 'groups', key: 'id' }
       },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Users', key: 'id' }
+        references: { model: 'users', key: 'id' }
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('GroupAllocations');
+    await queryInterface.dropTable('group_allocations');
   }
 };

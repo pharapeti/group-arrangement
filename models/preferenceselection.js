@@ -23,10 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     preference_id: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: { model: 'Preferences', key: 'id' }
+      references: { model: 'preferences', key: 'id' }
     }
   }, {
     sequelize,
+    tableName: 'preference_selections',
     modelName: 'PreferenceSelection',
   });
   return PreferenceSelection;
