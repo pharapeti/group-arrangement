@@ -29,6 +29,20 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     tableName: 'group_allocations',
     modelName: 'GroupAllocation',
+    validate: {
+      alreadyAllocatedToGroupInProject() {
+        const user = User.findOne({ id: this.user_id });
+
+        if(user == null){
+
+        } else {
+          
+        }
+        // if the user already exists in another group in the same project
+        // then...
+        // throw new Error('This user already exists in another group in the same project')
+      }
+    }
   });
   return GroupAllocation;
 };
