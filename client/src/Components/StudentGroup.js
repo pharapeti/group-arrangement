@@ -7,14 +7,14 @@ class StudentGroup extends Component{
     {
         super(props)
         this.state={
-            leavegroupbtn: true
+            btn_RequestForLeaveGroup: true
         }
     }
 
     handleleavegroup()
     {
         this.setState({
-            leavegroupbtn:!this.state.leavegroupbtn
+            btn_RequestForLeaveGroup:!this.state.btn_RequestForLeaveGroup
         })
         window.location.href="/student/project"
     }
@@ -23,20 +23,28 @@ class StudentGroup extends Component{
         return(
             <body>
                 <div>
-                    <h1 className={css.head}>Group Arrangement</h1>
-                    <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>
+                    <headers>
+                        <h1 className={css.head}>
+                             Group Arrangement
+                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                        </h1>          
+                    </headers>   
                 </div>
                 <div>
-                    <p className={css.sidebar}></p>
-                    <button className={css.sidebutton1} onClick={()=>{window.location.href="/student/home"}}>Menu</button>
-                    <line className={css.line1}/>
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/student/profile"}}>Profile</button>
-                    <line className={css.line2}/>
+                    <nav className={css.sidebar}>
+                    <button className={css.sidebutton1} onClick={()=>{window.location.href="/student/home"}}>Menu</button>                   
+                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/student/profile"}}>Profile</button>                 
                     <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notification"}}>Notification</button>
-                    <line className={css.line3}/>
-                </div>      
+                    
+                    <line className={css.line1}/>   
+                    <line className={css.line2}/>  
+                    <line className={css.line3}/>                 
+                    </nav>
+                </div>     
                 <div>
                     <h1 className={css.title}>Your Group</h1>
+                    {/* buttons' position is related to the title, which is fixed */}
+                    <button className={this.state.btn_RequestForLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
                     <br/>
                     <text className={css.subtitle}>Group Name:</text>
                     <br/><br/>
@@ -49,7 +57,7 @@ class StudentGroup extends Component{
                             <th className={css.groupth}>LastName</th>
                             <th className={css.groupth}>StudentId</th>
                         </tr>  
-                        {/* //example only */}
+                        {/* //example only, feel free to edit */}
                         <tr className={css.grouptr}>
                             <td className={css.grouptd}>1</td>
                             <td className={css.grouptd}>AAA</td>
@@ -63,8 +71,6 @@ class StudentGroup extends Component{
                             <td className={css.grouptd}>222222222</td>
                         </tr>
                     </table>
-                    
-                    <button className={this.state.leavegroupbtn?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
                 </div>   
             </body>
         )
