@@ -15,28 +15,34 @@ module.exports = {
       updatedAt: new Date(),
     });
 
-    await model.Project.create({
-      name: "Next Facebook",
-      max_group_size: 6,
-      created_by: project_owner.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Project.findOrCreate({
+      where: { name: "Next Facebook" },
+      defaults: {
+        max_group_size: 6,
+        created_by: project_owner.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Project.create({
-      name: "Next Amazon",
-      max_group_size: 6,
-      created_by: project_owner.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    model.Project.findOrCreate({
+      where: { name: "Next Amazon" },
+      defaults: {
+        max_group_size: 6,
+        created_by: project_owner.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Project.create({
-      name: "Next NASA",
-      max_group_size: 6,
-      created_by: project_owner.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    model.Project.findOrCreate({
+      where: { name: "Next NASA" },
+      defaults: {
+        max_group_size: 6,
+        created_by: project_owner.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
   },
 
