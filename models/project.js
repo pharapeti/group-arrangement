@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
     /**
@@ -12,33 +10,36 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  Project.init({
-    name: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING,
-      validate: {
-        max: 32,
-        is: ["[a-z]",'i']
-      }
+  }
+  Project.init(
+    {
+      name: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+        validate: {
+          max: 32,
+          is: ["[a-z]", "i"],
+        },
+      },
+      max_group_size: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        validate: {
+          max: 32,
+        },
+      },
+      created_by: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: { model: "users", key: "id" },
+      },
     },
-    max_group_size: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      validate: {
-        max: 32
-      }
-    },
-    created_by: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: { model: 'users', key: 'id' }
+    {
+      sequelize,
+      tableName: "projects",
+      modelName: "Project",
     }
-  }, {
-    sequelize,
-    tableName: 'projects',
-    modelName: 'Project',
-  });
+  );
   return Project;
 };
