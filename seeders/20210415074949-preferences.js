@@ -16,6 +16,10 @@ module.exports = {
       }
     );
 
+    const preference_category_soft = await model.PreferenceCategory.findOne({
+      where: { name: "soft skills" },
+    });
+
     await model.Preference.create({
       name: "Javascript",
       preference_category_id: preference_category_programming.id,
@@ -31,6 +35,13 @@ module.exports = {
     });
 
     await model.Preference.create({
+      name: "C",
+      preference_category_id: preference_category_programming.id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    await model.Preference.create({
       name: "React",
       preference_category_id: preference_category_framework.id,
       createdAt: new Date(),
@@ -40,6 +51,20 @@ module.exports = {
     await model.Preference.create({
       name: "Django",
       preference_category_id: preference_category_framework.id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    await model.Preference.create({
+      name: "Communication",
+      preference_category_id: preference_category_soft.id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    await model.Preference.create({
+      name: "Leadership",
+      preference_category_id: preference_category_soft.id,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
