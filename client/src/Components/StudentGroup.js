@@ -7,14 +7,14 @@ class StudentGroup extends Component{
     {
         super(props)
         this.state={
-            btn_RequestForLeaveGroup: true
+            ableToLeaveGroup: true
         }
     }
 
     handleleavegroup()
     {
         this.setState({
-            btn_RequestForLeaveGroup:!this.state.btn_RequestForLeaveGroup
+            ableToLeaveGroup:!this.state.ableToLeaveGroup
         })
         window.location.href="/student/project"
     }
@@ -44,7 +44,7 @@ class StudentGroup extends Component{
                 <div>
                     <h1 className={css.title}>Your Group</h1>
                     {/* buttons' position is related to the title, which is fixed */}
-                    <button className={this.state.btn_RequestForLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
+                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
                     <br/>
                     <text className={css.subtitle}>Group Name:</text>
                     <br/><br/>
