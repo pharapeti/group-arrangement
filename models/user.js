@@ -1,4 +1,5 @@
 'use strict';
+
 const {
   Model
 } = require('sequelize');
@@ -12,8 +13,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    static associate({ Project, GroupAllocation }) {
+      this.hasMany(Project);
+      this.hasMany(GroupAllocation);
+    }
 
-     toJSON() {
+    toJSON() {
       // hide protected fields
       const attributes = { ...this.get() };
       // eslint-disable-next-line no-restricted-syntax
@@ -21,10 +26,6 @@ module.exports = (sequelize, DataTypes) => {
         delete attributes[a];
       }
       return attributes;
-    }
-
-    static associate(models) {
-      // define association here
     }
   };
   User.init({

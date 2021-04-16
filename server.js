@@ -1,37 +1,36 @@
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
+var cookieParser = require('cookie-parser');
 
 const app = express();
 const port = process.env.PORT || 6060;
-const db_path = process.env.MYSQL_DB || './db/group_arrangement_development.db';
-app.use(express.json()); //Used to parse JSON bodies
-app.use(express.urlencoded()); //Parse URL-encoded bodies
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors()); // https://stackoverflow.com/a/63547498/8186540
+app.use(cookieParser());
+app.use(session({ secret: 'someSecret', saveUninitialized : true, resave : true }));
 
-// This behaviour to be moved into a route
-const { User } = require('./models')
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+// Route Configuration
+require('./routes/users/user.routes')(app);
+require('./routes/users/projects/project.routes')(app);
 
-app.get('/api/get_test', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
-
+// Application-wide routes
 app.post('/api/post_test', (req, res) => {
   res.send(
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );
 });
 
-// Restful API to return all users (use this as a template for other routes requiring
-// a database query)
-app.get('/api/users', (req, res) => {
-  res.send(User.findAll());
-});
+// Simple route for health-checking
+app.get('/ping', (_req, res) => {
+  res.status(200).send('PONG');
+})
 
 // 404 Route
 app.get('*', (req, res) => {
-  res.send(404, `The URL '${req.url}' is not defined`);
+  res.status(404).send({ message: `The URL '${req.url}' is not defined` });
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
