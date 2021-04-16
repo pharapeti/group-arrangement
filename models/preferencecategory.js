@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         validate: {
           max: 1000,
-          //isNumeric: false, // ask patrice why this validation is failing
           notEmpty: true,
         },
       },
