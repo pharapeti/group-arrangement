@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Preference extends Model {
     /**
@@ -13,25 +11,28 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(PreferenceCategory);
       this.hasMany(PreferenceSelection);
     }
-  };
-  Preference.init({
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        max: 32,
-        is: ["[a-z]",'i']
-      }
+  }
+  Preference.init(
+    {
+      name: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: {
+          max: 32,
+          is: ["[a-z]", "i"],
+        },
+      },
+      preference_category_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: { model: "preference_categories", key: "id" },
+      },
     },
-    project_category_id: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: { model: 'preference_categories', key: 'id' }
+    {
+      sequelize,
+      tableName: "preferences",
+      modelName: "Preference",
     }
-  }, {
-    sequelize,
-    tableName: 'preferences',
-    modelName: 'Preference',
-  });
+  );
   return Preference;
 };
