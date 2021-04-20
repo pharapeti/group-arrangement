@@ -52,7 +52,7 @@ class AdminCreateProject extends Component{
                     <br/><br/>
                     <textarea className={css.createprojectdescriptioninput}></textarea>
                     <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Cancel</button>
-                    <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Create</button>
+                    <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Create/Edit</button>
                     
                 </div>   
             </body>

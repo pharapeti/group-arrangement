@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
-
-class AdminMainMenu extends Component{
+class AdminCreateGroup extends Component{
     
     render() {
         return(
@@ -14,7 +13,6 @@ class AdminMainMenu extends Component{
                         </h1>          
                     </headers>   
                 </div>
-
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/admin/home"}}>Menu</button>                   
@@ -23,19 +21,25 @@ class AdminMainMenu extends Component{
                     <line className={css.line1}/>   
                     <line className={css.line2}/>                   
                     </nav>
-                </div> 
-                <div>
-                    <h1 className={css.title}>
-                        Projects
-                        <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create"}}>Create Project</button>
-                    </h1>
-                    {/* test only button, free to edit */}
-                    <button onClick={()=>{window.location.href="/admin/project"}}>to project page</button>
-                    
-                </div> 
+                </div>  
+
+                <div className={css.projectrightcotent}>
+                    <text className={css.subtitle}>
+                        <br/><br/>Groups: 
+                        <br/>                
+                        <button className={css.projecttwobutton} style={{marginTop: "503px"}} onClick={()=>{window.location.href="/admin/project"}}>Create</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "503px"}} onClick={()=>{window.location.href="/admin/project"}}>Cancel</button>
+                    </text>
+                </div>
+
+                <div >
+                    <h1 className={css.title}>Create Group</h1>
+                    <text className={css.subtitle}>Student to be Allocated</text>
+                </div>   
+                
             </body>
         )
     }
 }
 
-export default AdminMainMenu;
+export default AdminCreateGroup;
