@@ -139,17 +139,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 .createprojecttwobtn{
-    float: right;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 606px;
     width: 210px;
     height: 45px;
     font-size: 27px;
+    margin-left: 365px;
 
     color: white;  
     background-color: black;
 }
+
 .projectgraybutton{
     color:gray;
     font-size: 20px;
