@@ -22,7 +22,11 @@ class AdminCreateProject extends Component{
                     <line className={css.line1}/>   
                     <line className={css.line2}/>                   
                     </nav>
-                </div>        
+                </div>      
+                <div className={css.projectrightcotent}>
+                    <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Cancel</button>
+                    <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Create/Edit</button>
+                </div>
                 <div>
                     <h1 className={css.title}>Create/Edit Project</h1>
                     <br/>
@@ -51,8 +55,6 @@ class AdminCreateProject extends Component{
                     </text>
                     <br/><br/>
                     <textarea className={css.createprojectdescriptioninput}></textarea>
-                    <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Cancel</button>
-                    <button className={css.createprojecttwobtn} onClick={()=>window.location.href="/admin/home"}>Create/Edit</button>
                     
                 </div>   
             </body>
