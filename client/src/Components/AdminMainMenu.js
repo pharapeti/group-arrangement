@@ -24,14 +24,15 @@ class AdminMainMenu extends Component{
                     <line className={css.line2}/>                   
                     </nav>
                 </div> 
+                <div className={css.projectrightcotent}>
+                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create"}}>Create Project</button>
+                </div>
                 <div>
                     <h1 className={css.title}>
                         Projects
-                        <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create"}}>Create Project</button>
                     </h1>
                     {/* test only button, free to edit */}
-                    <button onClick={()=>{window.location.href="/admin/project"}}>to project page</button>
-                    
+                    <button onClick={()=>{window.location.href="/admin/project"}}>to project page</button>     
                 </div> 
             </body>
         )

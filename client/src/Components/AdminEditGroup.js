@@ -27,8 +27,8 @@ class AdminEditGroup extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>Groups: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "503px"}} onClick={()=>window.location.href="/admin/project"}>Cancel</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "503px"}} onClick={()=>window.location.href="/admin/project"}>Save</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>window.location.href="/admin/project"}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>window.location.href="/admin/project"}>Save</button>
                     </text>
                 </div>
 

@@ -34,8 +34,7 @@
 .sidebar{
     float: left;
     width: 260px;
-    min-height: 664px;
-    max-height: 1000px; 
+    height: 100vh;
     background: #ccc;
     margin-top: 0px;
     margin-inline-start: 0px;
@@ -114,7 +113,7 @@
 .createprojectbtn{
     float: right;
     margin-right: 10px;
-    margin-top: 597px;
+    margin-top: 698px;
     width: 210px;
     height: 45px;
     font-size: 27px;
@@ -143,7 +142,7 @@
     height: 45px;
     font-size: 27px;
     float: right;
-    margin-top: 553px;
+    margin-top: 644px;
     margin-right: 10px;
 
     color: white;  
@@ -173,8 +172,7 @@
     width:38%;
     display: inline;
     float: right;
-    min-height: 650px;
-    max-height: 1000px; 
+    height: 100vh; 
     margin-top: -400px;
     margin-inline-start: -400px;
     margin-block-start: 0px;
@@ -182,7 +180,7 @@
 }
 .addstudentbtn{
     float: right;
-    margin-top: 422px;
+    margin-top: 530px;
     margin-right: 290px;
     width: 160px;
     height: 40px;
@@ -194,7 +192,7 @@
     float: right;
     margin-right: 10px;
     margin-left: 10px;
-    margin-top: 76px;
+    margin-top: 60px;
     width: 210px;
     height: 45px;
     font-size: 27px;

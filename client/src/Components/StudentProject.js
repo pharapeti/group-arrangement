@@ -42,12 +42,16 @@ class StudentGroup extends Component{
                     <line className={css.line2}/>  
                     <line className={css.line3}/>                 
                     </nav>
-                </div>        
+                </div>      
+                <div className={css.projectrightcotent}>
+                    <button className={css.leaveprojectbtn}>
+                        Leave Project
+                        <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.handlebackbtncolor(this)}>Back</button> 
+                        </button>
+                    </div>  
                 <div>
                     <h1 className={css.title}>Project Name</h1>
                     {/* buttons' position is related to the title, which is fixed */}
-                    <button className={css.leaveprojectbtn}>Leave Project</button>
-                    <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.handlebackbtncolor(this)}>Back</button>
                     <br/>
                     <text className={css.subtitle}>Tutor:</text>
                     <br/><br/>
