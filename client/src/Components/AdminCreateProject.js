@@ -24,9 +24,11 @@ class AdminCreateProject extends Component{
                     </nav>
                 </div>      
                 <div className={css.projectrightcotent}>
-                    <button className={css.createprojecttwobtn} style={{marginTop:"546px"}} onClick={()=>window.location.href="/admin/home"}>Cancel</button>
-                    <br/>
-                    <button className={css.createprojecttwobtn} style={{marginTop:"15px"}} onClick={()=>window.location.href="/admin/home"}>Create/Edit</button>
+                    <button className={css.createprojectfirstbtn}   onClick={()=>window.location.href="/admin/home"}>
+                        Create/Edit
+                        <br/>
+                    <button className={css.createprojectsecondbtn}   onClick={()=>window.location.href="/admin/home"}>Cancel</button>
+                    </button>    
                 </div>
                 <div>
                     <h1 className={css.title}>Create/Edit Project</h1>
