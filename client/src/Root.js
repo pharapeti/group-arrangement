@@ -6,6 +6,7 @@ import StudentNotification from './Components/StudentNotification.js'
 import StudentProject from './Components/StudentProject.js'
 import StudentGroup from './Components/StudentGroup.js'
 import App from './App'
+import InputTag from './Components/InputTag.js'
 
 //here to set all the urls 
 //free to add and change
@@ -20,6 +21,7 @@ class UrlSet extends Component{
               <Route path="/student/notification" exact strict component={StudentNotification}/> 
               <Route path="/student/project" exact strict component={StudentProject}/>   
               <Route path="/student/project/group" exact strict component={StudentGroup}/>  
+              <Route path="/student/test" exact strict component={InputTag}/>
             </div>
           </Router>
         )
