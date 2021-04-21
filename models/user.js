@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ Project, GroupAllocation }) {
-      this.hasMany(Project);
+      this.hasMany(Project, { foreignKey: 'created_by' });
       this.hasMany(GroupAllocation);
     }
 
