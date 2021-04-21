@@ -13,6 +13,7 @@ import AdminCreateGroup from './Components/AdminCreateGroup.js'
 import AdminProjectAddStudents from './Components/AdminProjectAddStudents.js'
 import AdminEditGroup from './Components/AdminEditGroup.js'
 import App from './App'
+import InputTag from './Components/InputTag.js'
 
 //here to set all the urls 
 //free to add and change
@@ -34,6 +35,7 @@ class UrlSet extends Component{
               <Route path="/admin/project/group/create" exact strict component={AdminCreateGroup}/> 
               <Route path="/admin/project/add" exact strict component={AdminProjectAddStudents}/>
               <Route path="/admin/project/group/edit" exact strict component={AdminEditGroup}/>  
+
             </div>
           </Router>
         )

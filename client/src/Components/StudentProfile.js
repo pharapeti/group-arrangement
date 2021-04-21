@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import css from './Student.module.css'
+import InputTag from './InputTag.js'
 
 class StudentProfile extends Component{
-    
+
+
     render() {
         return(
             <body>
@@ -36,18 +38,15 @@ class StudentProfile extends Component{
                     <text className={css.subtitle}><strong>Preference:</strong></text>
                     <div>
                         <br/><br/><text className={css.textcontent}> • Skills:</text>
-                        <select className={css.profileselect}>
-                            <option value="C++">C++</option>
-                            <option value="Java">Java</option>
-                            <option value="JavaScript">JavaScript</option>
-                        </select>
+                    </div>
+                    <div style={{marginLeft:350}}>
+                        <InputTag />
                     </div>
                     <div>
                         <br/><br/><text className={css.textcontent}> • Interest:</text>
-                        <select className={css.profileselect}>
-                            <option value="Games">Games</option>
-                            <option value="Sports">Sports</option>
-                        </select>
+                    </div>
+                    <div style={{marginLeft:350}}>
+                        <InputTag />
                     </div>
                 </div>   
             </body>
