@@ -18,6 +18,7 @@ Team Members:
 4) Create the database by installing Postgresql on [Linux](https://gist.github.com/dhbradshaw/e51107baa7d13522256a2d4afddcee92), [Mac](https://postgresapp.com/) or [Windows](https://www.postgresql.org/download/windows/)
 5) Run `cd script` then `chmod +x database_setup.sh` and then `./database_setup.sh`
 6) Run `npx sequelize-cli db:migrate` to run all pending migrations. [Reference](https://sequelize.org/master/manual/migrations.html)
+7) Run `npx sequelize-cli db:seed:all` to run all pending seeders. [Reference](https://sequelize.org/master/manual/migrations.html)
 
 ## Getting Started with Create React App
 

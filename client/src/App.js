@@ -33,7 +33,7 @@ render() {
           <input className={css.input}></input>
 
           <p className={css.usernameandpassword}><br/>Password: </p>
-          <input className={css.input}></input>
+          <input className={css.input} type="password"></input>
           <button className={css.signinbtn}>Sign in</button>
         </div>
         {/*I just do not change your code so make it as commit

@@ -3,7 +3,22 @@ import css from './Student.module.css'
 import InputTag from './InputTag.js'
 
 class StudentProfile extends Component{
+    
+    state = {
+        response: '',
+        post: '',
+        responseToPost: '',
+        id:"",
+        name:'',
+        student:''
+      };
 
+    async componentDidMount() {
+         const url = 'http://localhost:6060/api/users';
+         const response = await fetch(url);
+         const data = await response.json();
+         this.setState({student: data.users[1]});
+         }
 
     render() {
         return(
@@ -31,7 +46,7 @@ class StudentProfile extends Component{
                 <div>
                     <h1 className={css.title}>Profile</h1>
                     <br/>
-                    <text className={css.subtitle}>Student id:</text>
+                    <text className={css.subtitle}>Student id:   {this.state.student}  </text>
                     <br/><br/>
                     <text className={css.subtitle}>Student name:</text>
                     <br/><br/><br/>
