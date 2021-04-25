@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ PreferenceCategory, PreferenceSelection }) {
-      this.belongsTo(PreferenceCategory);
-      this.hasMany(PreferenceSelection);
+      this.belongsTo(PreferenceCategory, { foreignKey: 'preference_category_id' });
+      this.hasMany(PreferenceSelection, { foreignKey: 'preference_id' });
     }
   }
   Preference.init(

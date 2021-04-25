@@ -1,4 +1,5 @@
 const model = require('../../models/index');
+const bcrypt = require('bcryptjs');
 
 exports.findAll = (req, res) => {
   model.User.findAll()
@@ -28,18 +29,21 @@ exports.findOne = (req, res) => {
 }
 
 exports.login = (request, response) => {
-	var external_id = request.body.external_id;
-	var password = request.body.encrypted_password;
+	let { external_id, password } =  request.body;
+  let hash = bcrypt.hashSync(password, 14);
 
 	if (external_id && password) {
-    model.User.findOne({ where: { external_id: external_id,  encrypted_password: password } })
-      .then(_user => {
-        request.session.signed_in = true;
-        request.session.external_id = external_id;
-        response.status(200).send({ message: 'Logged in' })
-      })
-      .catch(_err => {
-        response.send('Incorrect ID and/or Password!');
+    model.User.findOne({ where: { external_id: external_id } })
+      .then(user => {
+        console.log(password)
+        console.log(user.encrypted_password)
+        console.log(hash)
+        if (user && bcrypt.compareSync(user.encrypted_password, hash)) {
+          request.session.signed_in = true;
+          request.session.external_id = external_id;
+        } else {
+          response.send('Incorrect ID and/or Password!');
+        }
       })
   } else {
     response.status(400).send({ message: 'External user id and password was not provided' })

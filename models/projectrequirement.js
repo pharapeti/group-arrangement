@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class ProjectRequirement extends Model {
     /**
@@ -10,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ Project, PreferenceCategory }) {
-      this.belongsTo(Project);
-      this.belongsTo(PreferenceCategory);
+      this.belongsTo(Project, { foreignKey: 'project_id' });
+      this.belongsTo(PreferenceCategory, { foreignKey: 'preference_category_id' });
     }
   };
   ProjectRequirement.init({
