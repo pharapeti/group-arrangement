@@ -13,6 +13,7 @@ app.use(cookieParser());
 app.use(session({ secret: 'someSecret', saveUninitialized : true, resave : true }));
 
 // Route Configuration
+require('./routes/projects/project.routes')(app);
 require('./routes/users/user.routes')(app);
 require('./routes/users/projects/project.routes')(app);
 

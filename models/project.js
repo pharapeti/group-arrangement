@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Group, User, ProjectRequirement }) {
       this.belongsTo(User, { foreignKey: 'created_by' });
-      this.hasMany(Group);
-      this.hasMany(ProjectRequirement);
+      this.hasMany(Group, { foreignKey: 'project_id' });
+      this.hasMany(ProjectRequirement, { foreignKey: 'project_id' });
     }
   }
   Project.init(

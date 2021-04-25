@@ -1,5 +1,5 @@
 module.exports = app => {
-  const projects = require('../../../controllers/users/projects/projects.controller')
+  const projects = require('../../../controllers/projects/projects.controller')
   var router = require('express').Router({ mergeParams: true });
 
   // Ensure user is logged in for all requests handled by this router
@@ -12,5 +12,5 @@ module.exports = app => {
   router.get('/:id', auth, projects.findOne);
 
   // Tell express to route all requests directed to /api/users/projects to the router defined in this file
-  app.use('/api/users/projects', router);
+  app.use('/api/projects', router);
 }
