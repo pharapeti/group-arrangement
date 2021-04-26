@@ -11,6 +11,6 @@ exports.profileData = (req, res) => {
    }).then(user => {
      res.send(user);
    }).catch(err => {
-     res.send({ message: err.message || 'Something went wrong' })
+     res.status(500).send({ message: err.message || 'Something went wrong' })
    })
 }

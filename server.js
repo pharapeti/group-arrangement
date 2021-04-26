@@ -39,23 +39,10 @@ require('./routes/groups/groups.routes')(app);
 require('./routes/profile/profile.routes')(app);
 require('./routes/projects/projects.routes')(app);
 
-// Application-wide routes
-app.post('/api/post_test', (req, res) => {
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
-});
-
 // Simple route for health-checking
 app.get('/ping', (_req, res) => {
   res.status(200).send('PONG');
 })
-
-app.get("/get-all-routes", (req, res) => {
-  let get = app._router.stack.filter(r => r.route && r.route.methods.get).map(r => r.route.path);
-  let post = app._router.stack.filter(r => r.route && r.route.methods.post).map(r => r.route.path);
-  res.send({ get: get, post: post });
-});
 
 // 404 Route
 app.get('*', (req, res) => {
