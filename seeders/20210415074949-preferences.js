@@ -18,53 +18,69 @@ module.exports = {
       where: { name: "soft skills" },
     });
 
-    await model.Preference.create({
-      name: "Javascript",
-      preference_category_id: preference_category_programming.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: {
+        name: "Javascript",
+        preference_category_id: preference_category_programming.id,
+      },
+      defults: {
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Preference.create({
-      name: "Python",
-      preference_category_id: preference_category_programming.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: { name: "Python" },
+      defaults: {
+        preference_category_id: preference_category_programming.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Preference.create({
-      name: "C",
-      preference_category_id: preference_category_programming.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: { name: "C" },
+      defaults: {
+        preference_category_id: preference_category_programming.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Preference.create({
-      name: "React",
-      preference_category_id: preference_category_framework.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: { name: "React" },
+      defaults: {
+        preference_category_id: preference_category_framework.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Preference.create({
-      name: "Django",
-      preference_category_id: preference_category_framework.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: { name: "Django" },
+      defaults: {
+        preference_category_id: preference_category_framework.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Preference.create({
-      name: "Communication",
-      preference_category_id: preference_category_soft.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: { name: "Communication" },
+      defaults: {
+        preference_category_id: preference_category_soft.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
 
-    await model.Preference.create({
-      name: "Leadership",
-      preference_category_id: preference_category_soft.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    await model.Preference.findOrCreate({
+      where: { name: "Leadership" },
+      defaults: {
+        preference_category_id: preference_category_soft.id,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     });
   },
 

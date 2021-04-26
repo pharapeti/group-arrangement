@@ -7,13 +7,17 @@ module.exports = {
     const projects = await model.Project.findAll();
 
     for (var i = 0; i < projects.length; i++) {
-      await model.Group.create({
-        group_number: 1,
-        project_id: projects[Object.keys(projects)[i]].id,
+      await model.Group.findOrCreate({
+        where: {
+          group_number: 1,
+          project_id: projects[Object.keys(projects)[i]].id,
+        },
       });
-      await model.Group.create({
-        group_number: 2,
-        project_id: projects[Object.keys(projects)[i]].id,
+      await model.Group.findOrCreate({
+        where: {
+          group_number: 2,
+          project_id: projects[Object.keys(projects)[i]].id,
+        },
       });
     }
   },
