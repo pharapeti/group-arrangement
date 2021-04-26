@@ -1,4 +1,4 @@
-const model = require('../../models/index')
+const model = require('../../../models/index')
 
 // Return all groups associated to the logged in user
 exports.findAll = (req, res) => {

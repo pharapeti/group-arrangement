@@ -1,9 +1,9 @@
 module.exports = app => {
-  const groupsController = require('../../controllers/groups/groups.controller')
+  const groupsController = require('../../../controllers/student/groups/groups.controller')
   const groupRouter = require('express').Router({ mergeParams: true });
 
   // Ensure user is logged in for all requests handled by this router
-  const auth = require('../../middleware/auth');
+  const auth = require('../../../middleware/auth');
 
   // Get profile data
   groupRouter.get('/', auth, groupsController.findAll)
@@ -12,5 +12,5 @@ module.exports = app => {
   groupRouter.get('/:id', auth, groupsController.findOne);
 
   // Tell express to route all requests directed to /api/projects to the router defined in this file
-  app.use('/api/groups', groupRouter);
+  app.use('/api/student/groups', groupRouter);
 }

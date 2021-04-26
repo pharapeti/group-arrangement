@@ -1,4 +1,4 @@
-const model = require('../../models/index');
+const model = require('../../../models/index');
 
 // Return information information about the logged in user
 exports.profileData = (req, res) => {

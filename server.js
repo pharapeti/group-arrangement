@@ -28,16 +28,19 @@ app.use(session({
 // Keep session store up to date
 store.sync();
 
+
+// Auth routes
+require('./routes/auth/auth.routes')(app);
+
 // Admin routes
 require('./routes/admin/groups/groups.routes')(app);
 require('./routes/admin/projects/projects.routes')(app);
 require('./routes/admin/users/users.routes')(app);
 
-// Signed in user routes
-require('./routes/auth/auth.routes')(app);
-require('./routes/groups/groups.routes')(app);
-require('./routes/profile/profile.routes')(app);
-require('./routes/projects/projects.routes')(app);
+// Student Routes
+require('./routes/student/groups/groups.routes')(app);
+require('./routes/student/profile/profile.routes')(app);
+require('./routes/student/projects/projects.routes')(app);
 
 // Simple route for health-checking
 app.get('/ping', (_req, res) => {
