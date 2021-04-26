@@ -1,16 +1,16 @@
-module.exports = app => {
-  const projects = require('../../../controllers/projects/projects.controller')
-  var router = require('express').Router({ mergeParams: true });
+const projects = require('express').Router();
+const projectsController = require('../../../controllers/users/projects/projects.controller')
 
-  // Ensure user is logged in for all requests handled by this router
-  const auth = require('../../../middleware/auth');
+// Ensure user is logged in for all requests handled by this router
+const auth = require('../../../middleware/auth');
 
-  // Get all projects for the logged in user
-  router.get('/', auth, projects.findAll)
+// Get all projects for the logged in user
+projects.get('/', auth, projectsController.findAll)
 
-  // Retrieve a single project with id
-  router.get('/:id', auth, projects.findOne);
+// Retrieve a single project with id
+projects.get('/:id', auth, projectsController.findOne);
 
-  // Tell express to route all requests directed to /api/users/projects to the router defined in this file
-  app.use('/api/users/projects', router);
-}
+// // Tell express to route all requests directed to /api/users/projects to the router defined in this file
+// projects.use('/projects', router);
+
+module.exports = projects;

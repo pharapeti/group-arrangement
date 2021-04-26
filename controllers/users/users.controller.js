@@ -24,7 +24,7 @@ exports.findOne = (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).send({ message: 'Server crapped itself' });
+      res.status(500).send({ message: err.message || 'Something went wrong' });
     })
 }
 

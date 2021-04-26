@@ -15,7 +15,7 @@ app.use(session({ secret: 'someSecret', saveUninitialized : true, resave : true 
 // Route Configuration
 require('./routes/projects/project.routes')(app);
 require('./routes/users/user.routes')(app);
-require('./routes/users/projects/project.routes')(app);
+// require('./routes/users/projects/project.routes')(app);
 
 // Application-wide routes
 app.post('/api/post_test', (req, res) => {
@@ -28,6 +28,12 @@ app.post('/api/post_test', (req, res) => {
 app.get('/ping', (_req, res) => {
   res.status(200).send('PONG');
 })
+
+app.get("/get-all-routes", (req, res) => {
+  let get = app._router.stack.filter(r => r.route && r.route.methods.get).map(r => r.route.path);
+  let post = app._router.stack.filter(r => r.route && r.route.methods.post).map(r => r.route.path);
+  res.send({ get: get, post: post });
+});
 
 // 404 Route
 app.get('*', (req, res) => {
