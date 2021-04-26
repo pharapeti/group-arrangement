@@ -1,30 +1,37 @@
 const model = require('../../models/index');
 
-// Return all projects
+// Return all projects of logged in user
 exports.findAll = (req, res) => {
-  model.Project.findAll()
-    .then(projects => {
-      res.send(projects);
+  model.User.findOne({ where: { external_id: req.session.external_id } })
+    .then(user => {
+      const userID = user.id;
+
+      model.GroupAllocation.findAll({ where: { user_id: userID } })
+        .then(group_allocations => {
+          const projectIds = group_allocations.map(group_alloc => {
+            return group_alloc.id;
+          })
+
+          model.Project.findAll({ where: { id:  projectIds }})
+            .then(projects => {
+              res.send(projects)
+            })
+            .catch(err => {
+              console.log(err)
+              res.status(500).send({ message: err.message || "Some error occurred while retrieving projects." });
+            })
+        })
+        .catch(err => {
+          console.log(err)
+          res.status(500).send({ message: err.message || "Some error occurred while retrieving projects." });
+        });
     })
     .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving projects."
-      });
+      res.status(500).send({ message: err.message || "Some error occurred while retrieving projects." });
     });
 }
 
 // Return information about a single project
 exports.findOne = (req, res) => {
-  model.Project.findByPk(req.params.id)
-  .then(project => {
-    if (project == null) {
-      res.status(404).send({ message: `Project with id: ${req.params.id} does not exist` });
-    } else {
-      res.send(project);
-    }
-  })
-  .catch(err => {
-    res.status(500).send({ message: err.message || 'Something went wrong' });
-  })
+  res.send([]);
 }

@@ -12,10 +12,13 @@ app.use(cors()); // https://stackoverflow.com/a/63547498/8186540
 app.use(cookieParser());
 app.use(session({ secret: 'someSecret', saveUninitialized : true, resave : true }));
 
-// Route Configuration
-require('./routes/projects/project.routes')(app);
-require('./routes/users/user.routes')(app);
-// require('./routes/users/projects/project.routes')(app);
+// Admin routes
+require('./routes/admin/projects/projects.routes')(app);
+require('./routes/admin/users/users.routes')(app);
+
+// Signed in user routes
+require('./routes/auth/auth.routes')(app);
+require('./routes/projects/projects.routes')(app);
 
 // Application-wide routes
 app.post('/api/post_test', (req, res) => {
