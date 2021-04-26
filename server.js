@@ -28,7 +28,6 @@ app.use(session({
 // Keep session store up to date
 store.sync();
 
-
 // Auth routes
 require('./routes/auth/auth.routes')(app);
 
