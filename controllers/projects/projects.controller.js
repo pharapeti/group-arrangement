@@ -17,12 +17,10 @@ exports.findAll = (req, res) => {
               res.send(projects)
             })
             .catch(err => {
-              console.log(err)
               res.status(500).send({ message: err.message || "Some error occurred while retrieving projects." });
             })
         })
         .catch(err => {
-          console.log(err)
           res.status(500).send({ message: err.message || "Some error occurred while retrieving projects." });
         });
     })

@@ -4,11 +4,9 @@ const cors = require('cors');
 var cookieParser = require('cookie-parser');
 
 // Sequelize ORM
-console.log(process.env.development);
-const Sequelize = require("sequelize");
-
 // Typically would be pulled from environment variables
 // Harcoding this connection string this will only be used for local demo's
+const Sequelize = require("sequelize");
 const sequelize = new Sequelize('postgres://group_arrangement:testpassword@localhost:5432/group_arrangement_development');
 var SequelizeStore = require("connect-session-sequelize")(session.Store);
 const store = new SequelizeStore({ db: sequelize });
@@ -31,11 +29,14 @@ app.use(session({
 store.sync();
 
 // Admin routes
+require('./routes/admin/groups/groups.routes')(app);
 require('./routes/admin/projects/projects.routes')(app);
 require('./routes/admin/users/users.routes')(app);
 
 // Signed in user routes
 require('./routes/auth/auth.routes')(app);
+require('./routes/groups/groups.routes')(app);
+require('./routes/profile/profile.routes')(app);
 require('./routes/projects/projects.routes')(app);
 
 // Application-wide routes
