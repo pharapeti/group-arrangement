@@ -35,8 +35,7 @@
 .sidebar{
     float: left;
     width: 260px;
-    min-height: 664px;
-    max-height: 1000px; 
+    height: 100vh; 
     background: #ccc;
     margin-top: 0px;
     margin-inline-start: 0px;
@@ -67,10 +66,8 @@
     
 }
 .profileselect{
-    height: 30px;
-    width: 200px;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 50px;
 }
 .sidebutton1{
     margin-left: 80px;
@@ -144,7 +141,7 @@
 .leaveprojectbtn{
     float: right;
     margin-right: 10px;
-    margin-top: 480px;
+    margin-top: 640px;
     width: 210px;
     height: 45px;
     font-size: 27px;
@@ -155,7 +152,7 @@
 .leavegroupbtn_black{
     float: right;
     margin-right: 10px;
-    margin-top: 540px;
+    margin-top: 695px;
     width: 210px;
     height: 45px;
     font-size: 27px;
@@ -166,7 +163,7 @@
 .leavegroupbtn_white{
     float: right;
     margin-right: 10px;
-    margin-top: 540px;
+    margin-top: 695px;
     width: 210px;
     height: 45px;
     font-size: 27px;
@@ -178,8 +175,9 @@
     width: 210px;
     height: 45px;
     float: right;
-    margin-right: -210px;
-    margin-top: 540px;
+    
+    margin-top: 20px;
+    margin-right: -8px;
     font-size: 27px;
 
     color: white;  
@@ -189,8 +187,8 @@
     width: 210px;
     height: 45px;
     float:right;
-    margin-right: -210px;
-    margin-top: 540px;
+    margin-right: -8px;
+    margin-top: 20px;
     font-size: 27px;
 
     color: black;  
@@ -223,4 +221,75 @@
     color: black;
     padding: 5px;
     text-align: left;    
+}
+.input-tag {
+    background: white;
+    border: 5px solid #d6d6d6;
+    border-radius: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 5px 0;
+  }
+  
+  .input_tag input {
+    border: none;
+    width: 100%;
+    
+  }
+  
+  .input_tag__tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .input_tag__tags li {
+    align-items: center;
+    background: #000000;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-weight: 300;
+    list-style: none;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .input_tag__tags li button {
+    align-items: center;
+    appearance: none;
+    background: #333333;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 12px;
+    height: 15px;
+    justify-content: center;
+    line-height: 0;
+    margin-left: 8px;
+    padding: 0;
+    transform: rotate(45deg);
+    width: 15px;
+  }
+  
+  .input_tag__tags li.input-tag__tags__input {
+    background: none;
+    flex-grow: 1;
+    padding: 0;
+  }
+  .projectrightcotent{
+    width:38%;
+    display: inline;
+    float: right;
+    min-height: 100vh; 
+    margin-top: -400px;
+    margin-inline-start: -400px;
+    margin-block-start: 0px;
+    margin-bottom: 0px;
 }

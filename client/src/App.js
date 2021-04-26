@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import css from "./Login.module.css"
 
 class App extends Component {
   state = {
@@ -19,28 +20,30 @@ class App extends Component {
 
 render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to the Group Arrangement project!
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <body>
         <div>
+          <headers>
+            <h1 className={css.head}>Group Arrangement</h1>               
+          </headers>   
+        </div>   
+
+        <div>
+          <p className={css.subtitle}>Sign in</p>
+          <p className={css.usernameandpassword}><br/>Staff or Student number: </p>
+          <input className={css.input}></input>
+
+          <p className={css.usernameandpassword}><br/>Password: </p>
+          <input className={css.input} type="password"></input>
+          <button className={css.signinbtn}>Sign in</button>
+        </div>
+        {/*I just do not change your code so make it as commit
+         <div>
           {this.state.userList.map((user, index) => (
             <p key={index}>{user}</p>
           ))}
         </div>
-        <p>Number of users: {this.state.userList.length}</p>
-      </div>
+        <p>Number of users: {this.state.userList.length}</p>*/} 
+        </body>   
     );
   }
 }

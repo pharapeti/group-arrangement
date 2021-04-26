@@ -41,11 +41,13 @@ class StudentGroup extends Component{
                     <line className={css.line3}/>                 
                     </nav>
                 </div>     
+                <div className={css.projectrightcotent}>
+                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
+                </div>
                 <div>
                     <h1 className={css.title}>Your Group</h1>
                     {/* buttons' position is related to the title, which is fixed */}
-                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
-                    <br/>
+                   <br/>
                     <text className={css.subtitle}>Group Name:</text>
                     <br/><br/>
                     <text className={css.subtitle}>Group Leader:</text>
