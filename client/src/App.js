@@ -42,7 +42,7 @@ render() {
             <p key={index}>{user}</p>
           ))}
         </div>
-        <p>Number of users: {this.state.userList.length}</p> */}  
+        <p>Number of users: {this.state.userList.length}</p>*/} 
         </body>   
     );
   }
