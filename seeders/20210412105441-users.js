@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-let encrypted_password = bcrypt.hashSync("$321!pass!123$", 14);
+let encrypted_password = bcrypt.hashSync("somePassword", 10);
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {

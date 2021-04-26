@@ -1,5 +1,3 @@
-"use strict";
-
 const model = require("../models/index");
 
 var randomProperty = function (obj) {
@@ -12,9 +10,6 @@ module.exports = {
     const students = await model.User.findAll({
       where: { user_type: 1 },
     });
-
-    // console.log(students);
-    // console.log(students[Object.keys(students)[1]]);
 
     const langauges = await model.PreferenceCategory.findOne({
       where: { name: "programming languages" },

@@ -2,14 +2,14 @@ const model = require('../../../models/index');
 
 // Return all projects of logged in user
 exports.findAll = (req, res) => {
-  // model.User.findAll()
-  //   .then(users => {
-  //     res.send(users);
+  // model.Project.findAll()
+  //   .then(projects => {
+  //     res.send(projects);
   //   })
   //   .catch(err => {
   //     res.status(500).send({
   //       message:
-  //         err.message || "Some error occurred while retrieving users."
+  //         err.message || "Some error occurred while retrieving projects."
   //     });
   //   });
   res.send([]);
@@ -17,5 +17,15 @@ exports.findAll = (req, res) => {
 
 // Return information about a single project
 exports.findOne = (req, res) => {
-  res.send([]);
+  model.Project.findByPk(req.params.id)
+    .then(project => {
+      if (project == null) {
+        res.status(404).send({ message: `Project with id: ${req.params.id} does not exist` });
+      } else {
+        res.send(project);
+      }
+    })
+    .catch(err => {
+      res.status(500).send({ message: 'Server crapped itself' });
+    })
 }

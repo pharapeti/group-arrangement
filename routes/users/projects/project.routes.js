@@ -12,5 +12,5 @@ module.exports = app => {
   router.get('/:id', auth, projects.findOne);
 
   // Tell express to route all requests directed to /api/users/projects to the router defined in this file
-  app.use('/api/projects', router);
+  app.use('/api/users/projects', router);
 }
