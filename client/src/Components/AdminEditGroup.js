@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import DragNDrop from './DragNDrop Components/DragNDrop.js';
+
 class AdminEditGroup extends Component{
-    
     render() {
         return(
             <body>
@@ -25,17 +26,17 @@ class AdminEditGroup extends Component{
 
                 <div className={css.projectrightcotent}>
                     <text className={css.subtitle}>
-                        <br/><br/>Groups: 
+                        <br/><br/>
                         <br/>                
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>window.location.href="/admin/project"}>Cancel</button>
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>window.location.href="/admin/project"}>Save</button>
                     </text>
                 </div>
-
+                
                 <div >
                     <h1 className={css.title}>Add/Remove from a group</h1>
-                    <text className={css.subtitle}>Student to be Allocated</text>
                 </div>   
+                <DragNDrop />
                 
             </body>
         )
