@@ -11,6 +11,9 @@ module.exports = app => {
   // Retrieve a single project with id
   adminProjectRouter.get('/:id', admin_auth, adminProjectsController.findOne);
 
+   // Create a single project
+   adminProjectRouter.post('/', admin_auth, adminProjectsController.createOne);
+
   // Tell express to route all requests directed to /api/admin/users to the router defined in this file
   app.use('/api/admin/projects', adminProjectRouter);
 }

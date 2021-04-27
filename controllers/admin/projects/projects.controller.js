@@ -28,3 +28,22 @@ exports.findOne = (req, res) => {
     res.status(500).send({ message: err.message || 'Something went wrong' });
   })
 }
+
+// Create Project
+exports.createOne = (req, res) => {
+  if (req.body.name && req.body.max_group_size) {
+    model.User.findOne({ external_user_id: req.session.external_user_id }).then(user => {
+      model.Project.create({
+        name: req.body.name,
+        max_group_size: req.body.max_group_size,
+        created_by: user.id,
+      }).then(project => {
+        res.status(200).send(project);
+      }).catch(err => {
+        res.status(500).send({ message: err.message || 'Cannot create Project' })
+      })
+    })
+  } else {
+    res.status(400).send({ message: 'The request does not contain the necessary parameters' });
+  }
+}

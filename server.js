@@ -15,7 +15,7 @@ const app = express();
 const port = process.env.PORT || 6060;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cors()); // https://stackoverflow.com/a/63547498/8186540
 app.use(cookieParser());
 app.use(session({
