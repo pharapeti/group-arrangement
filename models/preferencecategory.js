@@ -1,5 +1,5 @@
-"use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class PreferenceCategory extends Model {
     /**
@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ Preference }) {
-      this.hasMany(Preference);
+      this.hasMany(Preference, { foreignKey: 'preference_category_id' });
     }
   }
   PreferenceCategory.init(

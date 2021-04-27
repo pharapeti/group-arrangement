@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class GroupAllocation extends Model {
     /**
@@ -10,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ Group, User }) {
-      this.belongsTo(Group);
-      this.belongsTo(User);
+      this.belongsTo(Group, { foreignKey: 'group_id' });
+      this.belongsTo(User, { foreignKey: 'user_id' });
     }
   };
   GroupAllocation.init({

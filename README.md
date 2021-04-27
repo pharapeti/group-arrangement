@@ -28,6 +28,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `DEBUG=express:* node server.js`
+To run the backend express API server in debug mode - great for debugging!
+
 ### `yarn dev`
 
 Runs the app in the development mode.\

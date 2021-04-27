@@ -1,5 +1,3 @@
-'use strict';
-
 const {
   Model
 } = require('sequelize');
@@ -13,9 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Project, GroupAllocation }) {
-      this.hasMany(Project);
-      this.hasMany(GroupAllocation);
+    static associate({ Project, GroupAllocation, PreferenceSelection }) {
+      this.hasMany(Project, { foreignKey: 'created_by' });
+      this.hasMany(GroupAllocation, { foreignKey: 'user_id' });
+      this.hasMany(PreferenceSelection, { foreignKey: 'user_id' });
     }
 
     toJSON() {
