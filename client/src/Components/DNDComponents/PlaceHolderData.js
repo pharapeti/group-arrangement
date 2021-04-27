@@ -1,4 +1,4 @@
-const tempData = {
+const PlaceHolderData = {
     students: {
         'student-1': {id: 'student-1', content: 'Bob Smith' },
         'student-2': {id: 'student-2', content: 'Alex Coleman'},
@@ -20,4 +20,4 @@ const tempData = {
 
 };
 
-export default tempData;
+export default PlaceHolderData;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
-import DragNDrop from './DragNDrop Components/DragNDrop.js';
+import DragNDrop from './DNDComponents/DragNDrop.js';
 
 class AdminEditGroup extends Component{
     render() {

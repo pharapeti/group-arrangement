@@ -1,12 +1,12 @@
 import React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import tempData from './tempData';
+import PlaceHolderData from './PlaceHolderData';
 import Column from './column';
 import css from './dnd.module.css';
 
 class DragNDrop extends React.Component {
     
-    state = tempData;
+    state = PlaceHolderData;
     onDragEnd= result => {
         const { destination, source, draggableId } = result;
 
