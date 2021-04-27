@@ -13,7 +13,7 @@ module.exports = (request, response, next) => {
       }
     })
     .catch(err => {
-      response.status(500).send({ message: 'Server crapped itself' });
+      response.status(500).send({ message: err.message || 'Something went wrong' });
     })
   } else {
     response.status(401).send({ message: 'You are not logged in' });

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Project, GroupAllocation }) {
       this.belongsTo(Project, { foreignKey: 'project_id' });
-      this.hasMany(GroupAllocation);
+      this.hasMany(GroupAllocation, { foreignKey: 'group_id' });
     }
   };
   Group.init({
