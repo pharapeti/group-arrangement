@@ -8,9 +8,7 @@ exports.findAll = (req, res) => {
 
       model.GroupAllocation.findAll({ where: { user_id: userID } })
         .then(group_allocations => {
-          const projectIds = group_allocations.map(group_alloc => {
-            return group_alloc.id;
-          })
+          const projectIds = group_allocations.map(group_alloc => { return group_alloc.id; });
 
           model.Project.findAll({ where: { id:  projectIds }})
             .then(projects => {
