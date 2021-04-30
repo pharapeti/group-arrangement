@@ -37,7 +37,7 @@ class AdminProject extends Component{
 
                 <div >
                     <h1 className={css.title}>
-                        Project X
+                        Project {this.props.match.params.id}
                         <button className={css.projectgraybutton} onClick={()=>{window.location.href="/admin/project/create"}}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 

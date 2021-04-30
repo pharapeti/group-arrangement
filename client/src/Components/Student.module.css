@@ -293,3 +293,14 @@
     margin-block-start: 0px;
     margin-bottom: 0px;
 }
+.toprojectorgroupbtn{
+    width: 190px;
+    height: 190px;
+    margin-left: 50px;
+    border: hidden;
+}
+.toprojectorgroupbtntext{
+    margin-top: 50px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}

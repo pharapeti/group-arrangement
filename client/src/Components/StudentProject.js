@@ -7,7 +7,18 @@ class StudentGroup extends Component{
     {
         super(props)
         this.state={
-            btn_BackToStudentHome: true
+            btn_BackToStudentHome: true,
+            groupcolor: [
+                'lightcoral',
+                'lightsalmon',
+                'lightpink',
+                'lightgreen',
+                'violet'
+            ],
+            selectedcolor: '',
+            //I just test it using 1 as param
+            groupid: '1',
+            projectid: this.props.match.params.id,
         }
     }
 
@@ -17,6 +28,26 @@ class StudentGroup extends Component{
             btn_BackToStudentHome:!this.state.btn_BackToStudentHome
         })
         window.location.href="/student/home"
+    }
+
+    componentDidMount(){
+        this._getrandomcolor();
+    }
+
+    _getrandomcolor(){
+        var item = this.state.groupcolor[Math.floor(Math.random()*this.state.groupcolor.length)];
+        this.setState({
+            selectedcolor: item,
+        })
+    }
+    
+    tonewpage()
+    {
+        var gi=this.state.groupid;
+        var pi=this.state.projectid;
+        this.props.history.push(
+            '/student/project/'+pi+'/group/'+ gi
+            )
     }
     
     render() {
@@ -50,7 +81,7 @@ class StudentGroup extends Component{
                         </button>
                     </div>  
                 <div>
-                    <h1 className={css.title}>Project Name</h1>
+                    <h1 className={css.title}>Project {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                     <br/>
                     <text className={css.subtitle}>Tutor:</text>
@@ -59,7 +90,10 @@ class StudentGroup extends Component{
                     <br/><br/><br/>
                     <text className={css.subtitle}><strong>Your Group:</strong></text>
                     <br/><br/>
-                    <button onClick={()=>{window.location.href="/student/project/group"}}>to groups(for test only)</button>
+                    <button onClick={()=>this.tonewpage()} className={css.toprojectorgroupbtn}
+                    style={{backgroundColor: this.state.selectedcolor}}>
+                        <text className={css.toprojectorgroupbtntext}><br/><br/><br/><br/><br/><br/>Group{this.state.groupid}</text>
+                    </button>
                 </div>   
             </body>
         )
