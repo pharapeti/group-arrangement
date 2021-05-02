@@ -17,7 +17,7 @@ class StudentProfile extends Component{
          const url = 'http://localhost:6060/api/users';
          const response = await fetch(url);
          const data = await response.json();
-         this.setState({student: data.users[1]});
+         // this.setState({student: data.users[1]});
          }
 
     render() {
