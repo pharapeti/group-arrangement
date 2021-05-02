@@ -78,3 +78,22 @@ exports.findOne = (req, res) => {
     res.status(500).send({ message: err.message || "Some error occurred while retrieving User." });
   })
 }
+
+// Delete a single preference selection that is associated to the logged in user
+exports.deleteOne = (req, res) => {
+  model.User.findOne({ where: { external_id: req.session.external_id } })
+  .then(user => {
+    model.PreferenceSelection.findOne({ where: { user_id: user.id, id: req.params.id } })
+      .then(preference_selection => {
+        preference_selection.destroy();
+        res.status(200).send('Deleted!');
+      })
+      .catch(err => {
+        res.status(500).send({ message: err.message || "Some error occurred while retrieving Preference Selection." });
+      })
+  })
+  .catch(err => {
+    res.status(500).send({ message: err.message || "Some error occurred while retrieving User." });
+  })
+}
+

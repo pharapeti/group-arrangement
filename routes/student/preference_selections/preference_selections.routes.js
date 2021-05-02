@@ -11,8 +11,12 @@ module.exports = app => {
   // Create preference selectiom
   preferenceSelectionRouter.post('/', auth, preferenceSelectionController.createOne)
 
-  // Retrieve a single group with id associated to the logged in user
+  // Retrieve a single preference selection with id associated to the logged in user
   preferenceSelectionRouter.get('/:id', auth, preferenceSelectionController.findOne);
+
+  // Delete a single preference selection by id associated to the logged in user
+  preferenceSelectionRouter.delete('/:id', auth, preferenceSelectionController.deleteOne);
+
 
   // Tell express to route all requests directed to /api/projects to the router defined in this file
   app.use('/api/student/preference_selections', preferenceSelectionRouter);
