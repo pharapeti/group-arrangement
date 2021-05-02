@@ -12,10 +12,18 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch('http://localhost:6060/api/users')
-      .then(response =>
-        response.json()
-          .then((j) => this.setState({ userList: j.map(user => user['first_name']) })))
+    const jsonString = JSON.stringify({ external_id: 'something1', password: 'somePassword' });
+
+    fetch('http://localhost:6060/api/users/auth', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: jsonString
+    })
+      .then(response => response.json())
+      .then(j => {
+        console.log(j)
+        // this.setState({ userList: j.map(user => user['first_name']) })
+      })
   }
 
 render() {

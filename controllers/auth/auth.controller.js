@@ -8,10 +8,8 @@ exports.login = (request, response) => {
     model.User.findOne({ where: { external_id: external_id } }).then((user) => {
       // If the user with the same external_id is found, check that they password matches
       if (user && bcrypt.compareSync(password, user.encrypted_password)) {
-        request.session.signed_in = true;
         request.session.external_id = external_id;
-
-        response.status(200).send({ message: "Signed in!" });
+        response.status(200).send({ message: "Signed in!", user_type: user.user_type });
       } else {
         response.send("Incorrect ID and/or Password!");
       }
