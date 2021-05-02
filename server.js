@@ -34,6 +34,7 @@ require('./routes/auth/auth.routes')(app);
 // Admin routes
 require('./routes/admin/groups/groups.routes')(app);
 require('./routes/admin/projects/projects.routes')(app);
+require('./routes/admin/projects/project_allocations/project_allocations.routes')(app);
 require('./routes/admin/users/users.routes')(app);
 
 // Student Routes
