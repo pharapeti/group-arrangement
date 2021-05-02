@@ -1,6 +1,6 @@
 const model = require('../../../models/index')
 
-// Return all preference selections associated to the logged in user
+// Return all Preference Selections associated to the logged in user
 exports.findAll = (req, res) => {
   model.User.findOne({ where: { external_id: req.session.external_id } })
     .then(user => {
@@ -54,7 +54,7 @@ exports.createOne = (req, res) => {
   }
 }
 
-// Return information about a single preference selection that is associated to the logged in user
+// Return information about a single Preference Selection that is associated to the logged in user
 exports.findOne = (req, res) => {
   model.User.findOne({ where: { external_id: req.session.external_id } })
   .then(user => {
@@ -79,7 +79,7 @@ exports.findOne = (req, res) => {
   })
 }
 
-// Delete a single preference selection that is associated to the logged in user
+// Delete a single Preference Selection that is associated to the logged in user
 exports.deleteOne = (req, res) => {
   model.User.findOne({ where: { external_id: req.session.external_id } })
   .then(user => {
