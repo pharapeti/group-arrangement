@@ -13,7 +13,6 @@ import AdminCreateGroup from './Components/AdminCreateGroup.js'
 import AdminProjectAddStudents from './Components/AdminProjectAddStudents.js'
 import AdminEditGroup from './Components/AdminEditGroup.js'
 import App from './App'
-import InputTag from './Components/InputTag.js'
 
 //here to set all the urls 
 //free to add and change
