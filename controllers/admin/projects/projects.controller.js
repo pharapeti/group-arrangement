@@ -29,10 +29,10 @@ exports.findOne = (req, res) => {
   })
 }
 
-// Create Project
+// Create Project associated to the admin creating it
 exports.createOne = (req, res) => {
   if (req.body.name && req.body.max_group_size) {
-    model.User.findOne({ external_user_id: req.session.external_user_id }).then(user => {
+    model.User.findOne({ where: { external_id: req.session.external_id }}).then(user => {
       model.Project.create({
         name: req.body.name,
         max_group_size: req.body.max_group_size,

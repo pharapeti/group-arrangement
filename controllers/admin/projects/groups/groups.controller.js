@@ -1,8 +1,8 @@
-const model = require('../../../models/index')
+const model = require('../../../../models/index')
 
-// Return all groups
+// Return all Groups associated to this Project
 exports.findAll = (req, res) => {
-  model.Group.findAll()
+  model.Group.findAll({ where: { project_id: req.params.project_id }})
     .then(groups => {
       res.send(groups);
     })
@@ -14,12 +14,12 @@ exports.findAll = (req, res) => {
     });
 }
 
-// Return information about a single group
+// Return a single Group
 exports.findOne = (req, res) => {
-  model.Group.findByPk(req.params.id)
+  model.Group.findOne({ where: { project_id: req.params.project_id, id: req.params.id }})
   .then(group => {
     if (group == null) {
-      res.status(404).send({ message: `Group with id: ${req.params.id} does not exist` });
+      res.status(404).send({ message: `Group ${req.params.id} is not associated to Project ${req.params.project_id}` });
     } else {
       res.send(group);
     }
