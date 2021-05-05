@@ -66,7 +66,7 @@ class AdminMainMenu extends Component{
                     </nav>
                 </div> 
                 <div className={css.projectrightcotent}>
-                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create"}}>Create Project</button>
+                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create/new"}}>Create Project</button>
                 </div>
                 <div>
                     <h1 className={css.title}>

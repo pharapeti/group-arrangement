@@ -3,6 +3,13 @@ import css from './Admin.module.css'
 import DragNDrop from './DNDComponents/DragNDrop.js';
 
 class AdminEditGroup extends Component{
+
+    backtoproject()
+    {
+        var i=this.props.match.params.id    
+        this.props.history.goBack();
+    }
+
     render() {
         return(
             <body>
@@ -28,8 +35,8 @@ class AdminEditGroup extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>window.location.href="/admin/project"}>Cancel</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>window.location.href="/admin/project"}>Save</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.backtoproject()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}}>Save</button>
                     </text>
                 </div>
                 
@@ -37,6 +44,7 @@ class AdminEditGroup extends Component{
                     <h1 className={css.title}>Add/Remove from a group</h1>
                 </div>   
                 <DragNDrop />
+
                 
             </body>
         )

@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import css from './Admin.module.css'
 
 class AdminCreateProject extends Component{
+
+    cancel()
+    {
+        this.props.history.goBack();
+    }
     
     render() {
         return(
@@ -24,14 +29,14 @@ class AdminCreateProject extends Component{
                     </nav>
                 </div>      
                 <div className={css.projectrightcotent}>
-                    <button className={css.createprojectfirstbtn}   onClick={()=>window.location.href="/admin/home"}>
-                        Create
+                    <button className={css.createprojectfirstbtn}>
+                        Edit
                         <br/>
-                    <button className={css.createprojectsecondbtn}   onClick={()=>window.location.href="/admin/home"}>Cancel</button>
+                    <button className={css.createprojectsecondbtn}   onClick={()=>this.cancel()}>Cancel</button>
                     </button>    
                 </div>
                 <div>
-                    <h1 className={css.title}>Create Project</h1>
+                    <h1 className={css.title}>Edit Project {this.props.match.params.id}</h1>
                     <br/>
                     <text className={css.subtitle}>
                         Project Name: 

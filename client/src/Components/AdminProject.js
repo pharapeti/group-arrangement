@@ -20,6 +20,23 @@ class AdminProject extends Component{
             )
 
     }
+
+    toeditgrouppage()
+    {
+        var i=this.props.match.params.id    
+        this.props.history.push(
+            '/admin/project/'+ i +'/group/edit'
+            )
+
+    }
+
+    tosettings()
+    {
+        var i=this.props.match.params.id    
+        this.props.history.push(
+            '/admin/project/'+ i +'/edit'
+            )
+    }
     
     render() {
         return(
@@ -48,14 +65,14 @@ class AdminProject extends Component{
                         Student List:                 
                         <button className={css.addstudentbtn} onClick={()=>this.toaddstudentpage()}>Add Student</button> 
                         <button className={css.projecttwobutton} onClick={()=>this.tocreategrouppage()}>Create Groups</button>
-                        <button className={css.projecttwobutton} onClick={()=>{window.location.href="/admin/project/group/edit"}}>Edit Groups</button>
+                        <button className={css.projecttwobutton} onClick={()=>this.toeditgrouppage()}>Edit Groups</button>
                     </text>
                 </div>
 
                 <div >
                     <h1 className={css.title}>
                         Project {this.props.match.params.id}
-                        <button className={css.projectgraybutton} onClick={()=>{window.location.href="/admin/project/create"}}>Edit Setting</button>
+                        <button className={css.projectgraybutton} onClick={()=>this.tosettings()}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 
                     <text className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description:</text>
