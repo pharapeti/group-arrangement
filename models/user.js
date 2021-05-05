@@ -6,16 +6,12 @@ const PROTECTED_ATTRIBUTES = ['encrypted_password'];
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate({ Project, GroupAllocation, PreferenceSelection, ProjectAllocation }) {
+    static associate({ Project, GroupAllocation, PreferenceSelection, Notification }) {
       this.hasMany(Project, { foreignKey: 'created_by' });
       this.hasMany(GroupAllocation, { foreignKey: 'user_id' });
       this.hasMany(PreferenceSelection, { foreignKey: 'user_id' });
-      this.hasMany(ProjectAllocation, { foreignKey: 'user_id' });
+      this.hasMany(Notification, { foreignKey: 'to' });
+      this.hasMany(Notification, { foreignKey: 'from' });
     }
 
     toJSON() {
@@ -28,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       return attributes;
     }
   };
+
   User.init({
     user_type: {
       allowNull: false,
