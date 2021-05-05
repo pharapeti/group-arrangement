@@ -34,10 +34,12 @@ require('./routes/auth/auth.routes')(app);
 // Admin routes
 require('./routes/admin/groups/groups.routes')(app);
 require('./routes/admin/projects/projects.routes')(app);
+require('./routes/admin/projects/project_allocations/project_allocations.routes')(app);
 require('./routes/admin/users/users.routes')(app);
 
 // Student Routes
 require('./routes/student/groups/groups.routes')(app);
+require('./routes/student/notifications/notifications.routes')(app);
 require('./routes/student/profile/profile.routes')(app);
 require('./routes/student/projects/projects.routes')(app);
 

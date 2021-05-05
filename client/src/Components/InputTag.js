@@ -6,7 +6,7 @@ class InputTag extends Component {
         super(props);
 
         this.state = {
-            tags: []
+            tags: [...this.props.existingTags]
         };
     }
 

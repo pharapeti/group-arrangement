@@ -1,21 +1,29 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('group_allocations', {
+    await queryInterface.createTable('notifications', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      group_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'groups', key: 'id' }
-      },
-      user_id: {
+      to: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' }
+      },
+      from: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' }
+      },
+      message: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      read: {
+        type: Sequelize.BOOLEAN,
+        default: false
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +36,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('group_allocations');
+    await queryInterface.dropTable('notifications');
   }
 };

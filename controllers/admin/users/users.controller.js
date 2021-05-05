@@ -1,7 +1,17 @@
 const model = require('../../../models/index');
+const Sequelize = require('sequelize')
 
 exports.findAll = (req, res) => {
-  model.User.findAll()
+  console.log(req.query);
+
+  let queryObject = {};
+
+  // Search for User by external_id if provided
+  if(req.query['external_id']) {
+    queryObject = { where: { external_id: { [Sequelize.Op.like]: req.query['external_id'] + '%' } } }
+  }
+
+  model.User.findAll(queryObject)
     .then(users => {
       res.send(users);
     })

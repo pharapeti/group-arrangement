@@ -3,21 +3,27 @@ import css from './Student.module.css'
 import InputTag from './InputTag.js'
 
 class StudentProfile extends Component{
-    
+
     state = {
         response: '',
         post: '',
         responseToPost: '',
         id:"",
-        name:'',
-        student:''
+        name:'Bob Higgins',
+        student:'12345678',
+        skills: [
+            "Java", "C++", "Python"
+        ],
+        interests: [
+            'AI'
+        ]
       };
 
     async componentDidMount() {
          const url = 'http://localhost:6060/api/users';
          const response = await fetch(url);
          const data = await response.json();
-         this.setState({student: data.users[1]});
+         // this.setState({student: data.users[1]});
          }
 
     render() {
@@ -46,22 +52,22 @@ class StudentProfile extends Component{
                 <div>
                     <h1 className={css.title}>Profile</h1>
                     <br/>
-                    <text className={css.subtitle}>Student id:   {this.state.student}  </text>
+                    <text className={css.subtitle}>Student id:  {this.state.student}  </text>
                     <br/><br/>
-                    <text className={css.subtitle}>Student name:</text>
+                    <text className={css.subtitle}>Student name: {this.state.name}</text>
                     <br/><br/><br/>
                     <text className={css.subtitle}><strong>Preference:</strong></text>
                     <div>
                         <br/><br/><text className={css.textcontent}> • Skills:</text>
                     </div>
                     <div style={{marginLeft:350}}>
-                        <InputTag />
+                        <InputTag existingTags={this.state.skills} />
                     </div>
                     <div>
                         <br/><br/><text className={css.textcontent}> • Interest:</text>
                     </div>
                     <div style={{marginLeft:350}}>
-                        <InputTag />
+                        <InputTag existingTags={this.state.interests} />
                     </div>
                 </div>   
             </body>
