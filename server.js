@@ -35,10 +35,13 @@ require('./routes/auth/auth.routes')(app);
 require('./routes/admin/projects/projects.routes')(app);
 require('./routes/admin/projects/groups/groups.routes')(app);
 require('./routes/admin/projects/group_allocations/group_allocations.routes')(app);
+require('./routes/admin/projects/project_allocations/project_allocations.routes')(app);
 require('./routes/admin/users/users.routes')(app);
 
 // Student Routes
 require('./routes/student/groups/groups.routes')(app);
+require('./routes/student/notifications/notifications.routes')(app);
+require('./routes/student/preference_selections/preference_selections.routes')(app);
 require('./routes/student/profile/profile.routes')(app);
 require('./routes/student/projects/projects.routes')(app);
 
