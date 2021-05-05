@@ -3,6 +3,23 @@ import css from './Admin.module.css'
 // this page is like a sample for all the admin project pageXOffset, each project
 // has one project page and also the url should change  e.g. /admin/home/project 1
 class AdminProject extends Component{
+
+    toaddstudentpage()
+    {
+        var i=this.props.match.params.id    
+        this.props.history.push(
+            '/admin/project/'+ i +'/add'
+            )
+    }
+
+    tocreategrouppage()
+    {
+        var i=this.props.match.params.id    
+        this.props.history.push(
+            '/admin/project/'+ i +'/group/create'
+            )
+
+    }
     
     render() {
         return(
@@ -29,8 +46,8 @@ class AdminProject extends Component{
                     <text className={css.subtitle}>
                         <br/>
                         Student List:                 
-                        <button className={css.addstudentbtn} onClick={()=>{window.location.href="/admin/project/add"}}>Add Student</button> 
-                        <button className={css.projecttwobutton} onClick={()=>{window.location.href="/admin/project/group/create"}}>Create Groups</button>
+                        <button className={css.addstudentbtn} onClick={()=>this.toaddstudentpage()}>Add Student</button> 
+                        <button className={css.projecttwobutton} onClick={()=>this.tocreategrouppage()}>Create Groups</button>
                         <button className={css.projecttwobutton} onClick={()=>{window.location.href="/admin/project/group/edit"}}>Edit Groups</button>
                     </text>
                 </div>

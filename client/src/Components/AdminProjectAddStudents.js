@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
 class AdminProjectAddStudents extends Component{
+
+    backtopage()
+    {
+        var i=this.props.match.params.id    
+        this.props.history.goBack();
+    }
     
     render() {
         return(
@@ -23,21 +29,21 @@ class AdminProjectAddStudents extends Component{
                     </nav>
                 </div>  
 
-                <div className={css.projectrightcotent}>
+                 <div className={css.projectrightcotent}>
                     <text className={css.subtitle}>
                         <br/><br/>Student in the project: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>{window.location.href="/admin/project"}}>Cancel</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>{window.location.href="/admin/project"}}>Save</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.backtopage()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.backtopage()}>Save</button>
                     </text>
                 </div>
 
                 <div >
-                    <h1 className={css.title}>Project X</h1>
+                    <h1 className={css.title}>Project {this.props.match.params.id}</h1>
                     <text className={css.subtitle}>All students:</text>
-                </div>   
+                </div> 
                 
-            </body>
+            </body> 
         )
     }
 }

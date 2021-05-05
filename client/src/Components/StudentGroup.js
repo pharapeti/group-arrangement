@@ -13,10 +13,12 @@ class StudentGroup extends Component{
 
     handleleavegroup()
     {
+        var i=this.props.match.params.id;
         this.setState({
             ableToLeaveGroup:!this.state.ableToLeaveGroup
         })
-        window.location.href="/student/project"
+        this.props.history.goBack();
+        
     }
     
     render() {
