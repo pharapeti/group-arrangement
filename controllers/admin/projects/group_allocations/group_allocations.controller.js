@@ -28,9 +28,22 @@ exports.createOne = (req, res) => {
     model.User.findOne({ where: { external_id: req.body.external_id }}).then(user => {
       model.Group.findOne({ where: { id: req.body.group_id }})
         .then(group => {
-          model.GroupAllocation.create({ user_id: user.id, group_id: group.id})
-            .then(group_allocation => res.send(group_allocation))
-            .catch(err => res.status(500).send({ message: err.message || 'Cannot create Group Allocation' }))
+          model.Project.findOne({ where: { id: group.project_id } }).then(project => {
+            model.GroupAllocation.create({ user_id: user.id, group_id: group.id})
+              .then(group_allocation => {
+                model.User.findOne({ where: { external_id: req.session.external_id }}).then(admin_user => {
+                  // Create notification to notify user about being added to the group
+                  model.Notification.create({ 
+                    to: user.id, 
+                    from: admin_user.id,
+                    message: `You have been added to Group ${group.group_number} in Project: ${project.name}.`
+                  }).then(_notification => {
+                    res.send(group_allocation)
+                  })
+                })
+              })
+              .catch(err => res.status(500).send({ message: err.message || 'Cannot create Group Allocation' }))
+          })
         })
         .catch(err => {
           res.status(500).send({ message: err.message || 'Cannot find Group' });
