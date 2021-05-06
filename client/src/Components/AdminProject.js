@@ -4,7 +4,7 @@ import css from './Admin.module.css'
 // has one project page and also the url should change  e.g. /admin/home/project 1
 class AdminProject extends Component{
 
-    toaddstudentpage()
+    ToAddStudentPage()
     {
         var i=this.props.match.params.id    
         this.props.history.push(
@@ -12,7 +12,7 @@ class AdminProject extends Component{
             )
     }
 
-    tocreategrouppage()
+    toCreateGroupPage()
     {
         var i=this.props.match.params.id    
         this.props.history.push(
@@ -21,7 +21,7 @@ class AdminProject extends Component{
 
     }
 
-    toeditgrouppage()
+    ToEditGroupPage()
     {
         var i=this.props.match.params.id    
         this.props.history.push(
@@ -30,7 +30,7 @@ class AdminProject extends Component{
 
     }
 
-    tosettings()
+    ToSettingPage()
     {
         var i=this.props.match.params.id    
         this.props.history.push(
@@ -63,16 +63,16 @@ class AdminProject extends Component{
                     <text className={css.subtitle}>
                         <br/>
                         Student List:                 
-                        <button className={css.addstudentbtn} onClick={()=>this.toaddstudentpage()}>Add Student</button> 
-                        <button className={css.projecttwobutton} onClick={()=>this.tocreategrouppage()}>Create Groups</button>
-                        <button className={css.projecttwobutton} onClick={()=>this.toeditgrouppage()}>Edit Groups</button>
+                        <button className={css.addstudentbtn} onClick={()=>this.ToAddStudentPage()}>Add Student</button> 
+                        <button className={css.projecttwobutton} onClick={()=>this.toCreateGroupPage()}>Create Groups</button>
+                        <button className={css.projecttwobutton} onClick={()=>this.ToEditGroupPage()}>Edit Groups</button>
                     </text>
                 </div>
 
                 <div >
                     <h1 className={css.title}>
                         Project {this.props.match.params.id}
-                        <button className={css.projectgraybutton} onClick={()=>this.tosettings()}>Edit Setting</button>
+                        <button className={css.projectgraybutton} onClick={()=>this.ToSettingPage()}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 
                     <text className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description:</text>

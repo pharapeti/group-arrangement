@@ -3,7 +3,7 @@ import css from './Admin.module.css'
 
 class AdminCreateProject extends Component{
 
-    cancel()
+    HandleCencelBtn()
     {
         this.props.history.goBack();
     }
@@ -32,7 +32,7 @@ class AdminCreateProject extends Component{
                     <button className={css.createprojectfirstbtn}>
                         Edit
                         <br/>
-                    <button className={css.createprojectsecondbtn}   onClick={()=>this.cancel()}>Cancel</button>
+                    <button className={css.createprojectsecondbtn}   onClick={()=>this.HandleCencelBtn()}>Cancel</button>
                     </button>    
                 </div>
                 <div>

@@ -22,7 +22,7 @@ class StudentGroup extends Component{
         }
     }
 
-    handlebackbtncolor(btn)
+    HandleBackBtn(btn)
     {
         this.setState({
             btn_BackToStudentHome:!this.state.btn_BackToStudentHome
@@ -41,7 +41,7 @@ class StudentGroup extends Component{
         })
     }
     
-    tonewpage()
+    ToGroupPage()
     {
         var gi=this.state.groupid;
         var pi=this.state.projectid;
@@ -77,7 +77,7 @@ class StudentGroup extends Component{
                 <div className={css.projectrightcotent}>
                     <button className={css.leaveprojectbtn}>
                         Leave Project
-                        <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.handlebackbtncolor(this)}>Back</button> 
+                        <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.HandleBackBtn(this)}>Back</button> 
                         </button>
                     </div>  
                 <div>
@@ -90,7 +90,7 @@ class StudentGroup extends Component{
                     <br/><br/><br/>
                     <text className={css.subtitle}><strong>Your Group:</strong></text>
                     <br/><br/>
-                    <button onClick={()=>this.tonewpage()} className={css.toprojectorgroupbtn}
+                    <button onClick={()=>this.ToGroupPage()} className={css.toprojectorgroupbtn}
                     style={{backgroundColor: this.state.selectedcolor}}>
                         <text className={css.toprojectorgroupbtntext}><br/><br/><br/><br/><br/><br/>Group{this.state.groupid}</text>
                     </button>

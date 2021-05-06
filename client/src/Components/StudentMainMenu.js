@@ -37,7 +37,7 @@ class StudentMainMenu extends Component{
         })
     }
 
-    tonewpage(itemid)
+    ToProjectPage(itemid)
     {
         var i=itemid;
         this.props.history.push(
@@ -74,7 +74,7 @@ class StudentMainMenu extends Component{
                     <br/><br/>
                     {/* //button for test only */}
                     {this.state.projects.map(item =>(
-                        <button key={item.id} onClick={()=>this.tonewpage(item.id)} className={css.toprojectorgroupbtn}
+                        <button key={item.id} onClick={()=>this.ToProjectPage(item.id)} className={css.toprojectorgroupbtn}
                         style={{backgroundColor: this.state.selectedcolor}} >
                             <text className={css.toprojectorgroupbtntext} key={item.id}><br/><br/><br/><br/><br/><br/>Project&nbsp;{item.id}</text>
                        </button>

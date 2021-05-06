@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import css from './Admin.module.css'
 class AdminCreateGroup extends Component{
 
-    backtopage()
+    BackToLastPage()
     {
         var i=this.props.match.params.id    
         this.props.history.goBack();
@@ -33,8 +33,8 @@ class AdminCreateGroup extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>Groups: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.backtopage()}>Create</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.backtopage()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Create</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
                     </text>
                 </div>
 

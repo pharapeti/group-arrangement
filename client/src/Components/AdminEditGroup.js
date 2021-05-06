@@ -4,7 +4,7 @@ import DragNDrop from './DNDComponents/DragNDrop.js';
 
 class AdminEditGroup extends Component{
 
-    backtoproject()
+    BackToLastPage()
     {
         var i=this.props.match.params.id    
         this.props.history.goBack();
@@ -35,7 +35,7 @@ class AdminEditGroup extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.backtoproject()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}}>Save</button>
                     </text>
                 </div>
