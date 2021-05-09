@@ -61,10 +61,20 @@ exports.arrange = (req, res) => {
       let student_ids = project_allocations.map(project_allocation => project_allocation['User']['id']);
       student_ids = student_ids.sort(() => Math.random() - 0.5);
 
+      const no_student_in_each_group = () => {
+        /* We would prefer students to be arranged into groups such that the number in each group
+        and equal. The following operation arranges the students into group of a size less the max group size
+        if the average number of student per group does not exceed the max group size
+
+        For example, if we have 11 students and the max group size is 4, then we can have groups of 3.
+        */
+        return Math.min(Math.ceil(student_ids.length / project.max_group_size), project.max_group_size);
+      }
+
       // Creates groups of student ids
       const grouped_student_ids = [];
       while (student_ids.length) {
-        const chunk = student_ids.splice(0, project.max_group_size);
+        const chunk = student_ids.splice(0, no_student_in_each_group());
         grouped_student_ids.push(chunk);
       }
 
