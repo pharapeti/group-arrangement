@@ -40,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     external_id: {
       allowNull: false,
+      unique: true,
       type: DataTypes.INTEGER
     },
     encrypted_password: {

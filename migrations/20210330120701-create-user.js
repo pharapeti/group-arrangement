@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('users', {
@@ -31,6 +30,7 @@ module.exports = {
       external_id: {
         allowNull: false,
         type: Sequelize.STRING,
+        unique: true,
         validate: {
           max: 32,
           is: ["[0-9]",'i']
