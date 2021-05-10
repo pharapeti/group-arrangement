@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     tableName: 'group_allocations',
     modelName: 'GroupAllocation',
+    indexes: [{
+      name: 'unique_index_group_allocation',
+      unique: true,
+      fields: ['group_id', 'user_id']
+    }]
   });
   return GroupAllocation;
 };
