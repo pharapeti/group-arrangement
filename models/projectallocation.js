@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     tableName: "project_allocations",
     modelName: 'ProjectAllocation',
+    indexes: [{
+      name: 'unique_index_project_allocation',
+      unique: true,
+      fields: ['project_id', 'user_id']
+    }]
   });
   return ProjectAllocation;
 };
