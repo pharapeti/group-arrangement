@@ -9,7 +9,13 @@ exports.login = (request, response) => {
       // If the user with the same external_id is found, check that they password matches
       if (user && bcrypt.compareSync(password, user.encrypted_password)) {
         request.session.external_id = external_id;
-        response.status(200).send({ message: "Signed in!", user_type: user.user_type });
+        request.session.save((err) => {
+          console.log('On authentication');
+	        console.log(request.session.id);
+          console.log(err || request.session);
+
+          response.status(200).send({ message: "Signed in!", user_type: user.user_type });
+        });
       } else {
         response.send({ message: "Incorrect ID and/or Password!" });
       }

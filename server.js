@@ -1,7 +1,6 @@
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
-var cookieParser = require('cookie-parser');
 
 // Sequelize ORM
 // Typically would be pulled from environment variables
@@ -14,15 +13,20 @@ const store = new SequelizeStore({ db: sequelize });
 const app = express();
 const port = process.env.PORT || 6060;
 
+app.enable('trust proxy')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors()); // https://stackoverflow.com/a/63547498/8186540
-app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:3000", preflightContinue: false, credentials: true })); // https://stackoverflow.com/a/63547498/8186540
 app.use(session({
   secret: 'someSecret',
   store,
-  saveUninitialized : true,
-  resave : true
+  saveUninitialized : false,
+  resave : false,
+  cookie: {
+    secure: false,
+    maxAge: null,
+    sameSite: "none"
+  }
 }));
 
 // Keep session store up to date

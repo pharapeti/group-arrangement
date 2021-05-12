@@ -32,7 +32,16 @@ class App extends Component {
       .then(response => response.json())
       .then(j => {
         console.log(j)
-        this.redirect(j.user_type)
+        // this.redirect(j.user_type)
+
+        // fetch('http://localhost:6060/api/student/projects', {
+        //   credentials: 'include',
+        //   headers: { 'Content-Type': 'application/json' }
+        // })
+        //   .then(response => response.json())
+        //   .then(j => {
+        //       console.log(j)
+        //   })
       })
   }
 
