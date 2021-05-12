@@ -20,9 +20,10 @@ class StudentProfile extends Component{
       };
 
     async componentDidMount() {
-         const url = 'http://localhost:6060/api/users';
+         const url = 'http://localhost:6060/api/student/profile';
          const response = await fetch(url);
          const data = await response.json();
+         console.log(data);
          // this.setState({student: data.users[1]});
          }
 

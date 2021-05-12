@@ -22,8 +22,7 @@ class App extends Component {
 
   HandleLogin()
   {
-    console.log("hi");
-    const jsonString = JSON.stringify({ external_id: 'something5', password: 'somePassword' });
+    const jsonString = JSON.stringify({ external_id: 'something', password: 'somePassword' });
 
     fetch('http://localhost:6060/api/users/auth', {
       method: 'post',

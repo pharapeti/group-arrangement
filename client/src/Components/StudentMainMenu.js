@@ -28,6 +28,12 @@ class StudentMainMenu extends Component{
 
     componentDidMount(){
         this._getrandomcolor();
+
+        fetch('http://localhost:6060/api/student/projects')
+            .then(response => response.json())
+            .then(j => {
+                console.log(j)
+            })   
     }
 
     _getrandomcolor(){

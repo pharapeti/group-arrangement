@@ -11,11 +11,7 @@ exports.login = (request, response) => {
         request.session.external_id = external_id;
         response.status(200).send({ message: "Signed in!", user_type: user.user_type });
       } else {
-<<<<<<< HEAD
-        response.send({message: "Incorrect ID and/or Password!"});
-=======
         response.send({ message: "Incorrect ID and/or Password!" });
->>>>>>> master
       }
     });
   } else {
