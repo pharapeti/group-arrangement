@@ -11,8 +11,19 @@ class App extends Component {
     userList: []
   };
 
-  componentDidMount() {
-    const jsonString = JSON.stringify({ external_id: 'something1', password: 'somePassword' });
+  redirect(user_type) {
+    if(user_type == 1) {
+      window.location.href="/student/home"
+    }
+    else if(user_type == 2) {
+      window.location.href="/admin/home"
+    }
+  }
+
+  HandleLogin()
+  {
+    console.log("hi");
+    const jsonString = JSON.stringify({ external_id: 'something5', password: 'somePassword' });
 
     fetch('http://localhost:6060/api/users/auth', {
       method: 'post',
@@ -22,7 +33,7 @@ class App extends Component {
       .then(response => response.json())
       .then(j => {
         console.log(j)
-        // this.setState({ userList: j.map(user => user['first_name']) })
+        this.redirect(j.user_type)
       })
   }
 
@@ -42,7 +53,7 @@ render() {
 
           <p className={css.usernameandpassword}><br/>Password: </p>
           <input className={css.input} type="password"></input>
-          <button className={css.signinbtn}>Sign in</button>
+          <button className={css.signinbtn} onClick={()=>this.HandleLogin()}>Sign in</button>
         </div>
         {/*I just do not change your code so make it as commit
          <div>
