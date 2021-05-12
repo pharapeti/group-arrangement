@@ -8,6 +8,7 @@ import StudentGroup from './Components/StudentGroup.js'
 import AdminMainMenu from './Components/AdminMainMenu'
 import AdminNotification from './Components/AdminNotification.js'
 import AdminCreateProject from './Components/AdminCreateProject.js'
+import AdminEditProject from './Components/AdminEditProject.js'
 import AdminProject from './Components/AdminProject.js'
 import AdminCreateGroup from './Components/AdminCreateGroup.js'
 import AdminProjectAddStudents from './Components/AdminProjectAddStudents.js'
@@ -25,16 +26,16 @@ class UrlSet extends Component{
               <Route path="/student/home" exact strict component={StudentMainMenu}/>     
               <Route path="/student/profile" exact strict component={StudentProfile}/>   
               <Route path="/student/notification" exact strict component={StudentNotification}/> 
-              <Route path="/student/project" exact strict component={StudentProject}/>   
-              <Route path="/student/project/group" exact strict component={StudentGroup}/>  
+              <Route path="/student/project/:id" exact strict component={StudentProject}/>   
+              <Route path="/student/project/:id/group/:id" exact strict component={StudentGroup}/>  
               <Route path="/admin/home" exact strict component={AdminMainMenu}/>  
               <Route path="/admin/notification" exact strict component={AdminNotification}/> 
-              <Route path="/admin/project/create" exact strict component={AdminCreateProject}/> 
-              <Route path="/admin/project" exact strict component={AdminProject}/> 
-              <Route path="/admin/project/group/create" exact strict component={AdminCreateGroup}/> 
-              <Route path="/admin/project/add" exact strict component={AdminProjectAddStudents}/>
-              <Route path="/admin/project/group/edit" exact strict component={AdminEditGroup}/>  
-
+              <Route path="/admin/project/create/new" exact strict component={AdminCreateProject}/> 
+              <Route path="/admin/project/:id" exact strict component={AdminProject}/> 
+              <Route path="/admin/project/:id/group/create" exact strict component={AdminCreateGroup}/> 
+              <Route path="/admin/project/:id/add" exact strict component={AdminProjectAddStudents}/>
+              <Route path="/admin/project/:id/group/edit" exact strict component={AdminEditGroup}/>  
+              <Route path="/admin/project/:id/edit" exact strict component={AdminEditProject}/> 
             </div>
           </Router>
         )

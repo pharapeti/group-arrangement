@@ -2,6 +2,48 @@ import React, {Component} from 'react';
 import css from './Student.module.css'
 
 class StudentMainMenu extends Component{
+
+    constructor(props){
+        super(props)
+
+        //for test only 
+        this.state={
+        groupcolor: [
+            'lightcoral',
+            'lightsalmon',
+            'lightpink',
+            'lightgreen',
+            'violet'
+        ],
+        selectedcolor: '',
+        //for test only
+        projects :[    
+                {id:1, name: "first"},
+                {id:2, name: "second"},
+                {id:3, name: "third"},
+        ]
+    }
+    }
+    
+
+    componentDidMount(){
+        this._getrandomcolor();
+    }
+
+    _getrandomcolor(){
+        var item = this.state.groupcolor[Math.floor(Math.random()*this.state.groupcolor.length)];
+        this.setState({
+            selectedcolor: item,
+        })
+    }
+
+    ToProjectPage(itemid)
+    {
+        var ItemId=itemid;
+        this.props.history.push(
+            '/student/project/'+ ItemId
+            )
+    }
     
     render() {
         return(
@@ -31,7 +73,13 @@ class StudentMainMenu extends Component{
                     <text className={css.subtitle}>Your Project(s):</text>
                     <br/><br/>
                     {/* //button for test only */}
-                    <button onClick={()=>{window.location.href="/student/project"}}>to Project1(for test)</button>
+                    {this.state.projects.map(item =>(
+                        <button key={item.id} onClick={()=>this.ToProjectPage(item.id)} className={css.toprojectorgroupbtn}
+                        style={{backgroundColor: this.state.selectedcolor}} >
+                            <text className={css.toprojectorgroupbtntext} key={item.id}><br/><br/><br/><br/><br/><br/>Project&nbsp;{item.id}</text>
+                       </button>
+                    ))}
+                    
                 </div>   
             </body>
         )

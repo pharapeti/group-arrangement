@@ -7,16 +7,47 @@ class StudentGroup extends Component{
     {
         super(props)
         this.state={
-            btn_BackToStudentHome: true
+            btn_BackToStudentHome: true,
+            groupcolor: [
+                'lightcoral',
+                'lightsalmon',
+                'lightpink',
+                'lightgreen',
+                'violet'
+            ],
+            selectedcolor: '',
+            //I just test it using 1 as param
+            groupid: '1',
+            projectid: this.props.match.params.id,
         }
     }
 
-    handlebackbtncolor(btn)
+    HandleBackBtn(btn)
     {
         this.setState({
             btn_BackToStudentHome:!this.state.btn_BackToStudentHome
         })
         window.location.href="/student/home"
+    }
+
+    componentDidMount(){
+        this._getrandomcolor();
+    }
+
+    _getrandomcolor(){
+        var item = this.state.groupcolor[Math.floor(Math.random()*this.state.groupcolor.length)];
+        this.setState({
+            selectedcolor: item,
+        })
+    }
+    
+    ToGroupPage()
+    {
+        var GroupId=this.state.groupid;
+        var ProjectId=this.state.projectid;
+        this.props.history.push(
+            '/student/project/'+ProjectId+'/group/'+ GroupId
+            )
     }
     
     render() {
@@ -43,14 +74,14 @@ class StudentGroup extends Component{
                     <line className={css.line3}/>                 
                     </nav>
                 </div>      
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <button className={css.leaveprojectbtn}>
                         Leave Project
-                        <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.handlebackbtncolor(this)}>Back</button> 
+                        <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.HandleBackBtn(this)}>Back</button> 
                         </button>
                     </div>  
                 <div>
-                    <h1 className={css.title}>Project Name</h1>
+                    <h1 className={css.title}>Project {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                     <br/>
                     <text className={css.subtitle}>Tutor:</text>
@@ -59,7 +90,10 @@ class StudentGroup extends Component{
                     <br/><br/><br/>
                     <text className={css.subtitle}><strong>Your Group:</strong></text>
                     <br/><br/>
-                    <button onClick={()=>{window.location.href="/student/project/group"}}>to groups(for test only)</button>
+                    <button onClick={()=>this.ToGroupPage()} className={css.toprojectorgroupbtn}
+                    style={{backgroundColor: this.state.selectedcolor}}>
+                        <text className={css.toprojectorgroupbtntext}><br/><br/><br/><br/><br/><br/>Group{this.state.groupid}</text>
+                    </button>
                 </div>   
             </body>
         )

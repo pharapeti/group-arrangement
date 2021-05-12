@@ -19,7 +19,8 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "sequelize": "^6.6.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "webpack-dev-server": "3.11.0"
   },
   "devDependencies": {
     "concurrently": "^4.0.1",

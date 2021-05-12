@@ -11,12 +11,14 @@ class StudentGroup extends Component{
         }
     }
 
-    handleleavegroup()
+    HandleLeaveGroup()
     {
+        //var i=this.props.match.params.id;
         this.setState({
             ableToLeaveGroup:!this.state.ableToLeaveGroup
         })
-        window.location.href="/student/project"
+        this.props.history.goBack();
+        
     }
     
     render() {
@@ -41,11 +43,11 @@ class StudentGroup extends Component{
                     <line className={css.line3}/>                 
                     </nav>
                 </div>     
-                <div className={css.projectrightcotent}>
-                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.handleleavegroup(this)}>Leave Group</button>
+                <div className={css.projectrightcontent}>
+                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.HandleLeaveGroup(this)}>Leave Group</button>
                 </div>
                 <div>
-                    <h1 className={css.title}>Your Group</h1>
+                    <h1 className={css.title}>Your Group {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                    <br/>
                     <text className={css.subtitle}>Group Name:</text>

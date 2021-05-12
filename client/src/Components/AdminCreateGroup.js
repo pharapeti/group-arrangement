@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
 class AdminCreateGroup extends Component{
+
+    BackToLastPage()
+    {
+        //var i=this.props.match.params.id    
+        this.props.history.goBack();
+    }
     
     render() {
         return(
@@ -23,12 +29,12 @@ class AdminCreateGroup extends Component{
                     </nav>
                 </div>  
 
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <text className={css.subtitle}>
                         <br/><br/>Groups: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>{window.location.href="/admin/project"}}>Create</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>{window.location.href="/admin/project"}}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Create</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
                     </text>
                 </div>
 
