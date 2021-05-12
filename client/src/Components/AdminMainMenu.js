@@ -38,9 +38,9 @@ class AdminMainMenu extends Component{
 
     ToProjectPage(itemid)
     {
-        var i=itemid;
+        var Id=itemid;
         this.props.history.push(
-            '/admin/project/'+ i
+            '/admin/project/'+ Id
             )
     }
 
@@ -65,7 +65,7 @@ class AdminMainMenu extends Component{
                     <line className={css.line2}/>                   
                     </nav>
                 </div> 
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create/new"}}>Create Project</button>
                 </div>
                 <div>

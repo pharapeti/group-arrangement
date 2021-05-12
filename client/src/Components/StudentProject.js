@@ -43,10 +43,10 @@ class StudentGroup extends Component{
     
     ToGroupPage()
     {
-        var gi=this.state.groupid;
-        var pi=this.state.projectid;
+        var GroupId=this.state.groupid;
+        var ProjectId=this.state.projectid;
         this.props.history.push(
-            '/student/project/'+pi+'/group/'+ gi
+            '/student/project/'+ProjectId+'/group/'+ GroupId
             )
     }
     
@@ -74,7 +74,7 @@ class StudentGroup extends Component{
                     <line className={css.line3}/>                 
                     </nav>
                 </div>      
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <button className={css.leaveprojectbtn}>
                         Leave Project
                         <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.HandleBackBtn(this)}>Back</button> 

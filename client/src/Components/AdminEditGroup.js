@@ -6,7 +6,7 @@ class AdminEditGroup extends Component{
 
     BackToLastPage()
     {
-        var i=this.props.match.params.id    
+        //var i=this.props.match.params.id    
         this.props.history.goBack();
     }
 
@@ -31,7 +31,7 @@ class AdminEditGroup extends Component{
                     </nav>
                 </div>  
 
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <text className={css.subtitle}>
                         <br/><br/>
                         <br/>                

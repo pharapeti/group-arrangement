@@ -39,9 +39,9 @@ class StudentMainMenu extends Component{
 
     ToProjectPage(itemid)
     {
-        var i=itemid;
+        var ItemId=itemid;
         this.props.history.push(
-            '/student/project/'+ i
+            '/student/project/'+ ItemId
             )
     }
     

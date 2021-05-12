@@ -13,7 +13,7 @@ class StudentGroup extends Component{
 
     HandleLeaveGroup()
     {
-        var i=this.props.match.params.id;
+        //var i=this.props.match.params.id;
         this.setState({
             ableToLeaveGroup:!this.state.ableToLeaveGroup
         })
@@ -43,7 +43,7 @@ class StudentGroup extends Component{
                     <line className={css.line3}/>                 
                     </nav>
                 </div>     
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.HandleLeaveGroup(this)}>Leave Group</button>
                 </div>
                 <div>

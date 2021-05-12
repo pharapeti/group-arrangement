@@ -4,7 +4,7 @@ class AdminProjectAddStudents extends Component{
 
     BackToLastPage()
     {
-        var i=this.props.match.params.id    
+        //var i=this.props.match.params.id    
         this.props.history.goBack();
     }
     
@@ -29,7 +29,7 @@ class AdminProjectAddStudents extends Component{
                     </nav>
                 </div>  
 
-                 <div className={css.projectrightcotent}>
+                 <div className={css.projectrightcontent}>
                     <text className={css.subtitle}>
                         <br/><br/>Student in the project: 
                         <br/>                

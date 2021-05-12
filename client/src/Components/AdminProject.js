@@ -6,35 +6,35 @@ class AdminProject extends Component{
 
     ToAddStudentPage()
     {
-        var i=this.props.match.params.id    
+        var Id=this.props.match.params.id    
         this.props.history.push(
-            '/admin/project/'+ i +'/add'
+            '/admin/project/'+ Id +'/add'
             )
     }
 
     toCreateGroupPage()
     {
-        var i=this.props.match.params.id    
+        var Id=this.props.match.params.id    
         this.props.history.push(
-            '/admin/project/'+ i +'/group/create'
+            '/admin/project/'+ Id +'/group/create'
             )
 
     }
 
     ToEditGroupPage()
     {
-        var i=this.props.match.params.id    
+        var Id=this.props.match.params.id    
         this.props.history.push(
-            '/admin/project/'+ i +'/group/edit'
+            '/admin/project/'+ Id +'/group/edit'
             )
 
     }
 
     ToSettingPage()
     {
-        var i=this.props.match.params.id    
+        var Id=this.props.match.params.id    
         this.props.history.push(
-            '/admin/project/'+ i +'/edit'
+            '/admin/project/'+ Id +'/edit'
             )
     }
     
@@ -59,7 +59,7 @@ class AdminProject extends Component{
                     </nav>
                 </div>  
 
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <text className={css.subtitle}>
                         <br/>
                         Student List:                 

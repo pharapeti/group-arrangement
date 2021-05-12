@@ -23,7 +23,7 @@ class AdminCreateProject extends Component{
                     <line className={css.line2}/>                   
                     </nav>
                 </div>      
-                <div className={css.projectrightcotent}>
+                <div className={css.projectrightcontent}>
                     <button className={css.createprojectfirstbtn}   onClick={()=>window.location.href="/admin/home"}>
                         Create
                         <br/>
