@@ -5,10 +5,8 @@ import css from "./Login.module.css"
 
 class App extends Component {
   state = {
-    response: '',
-    post: '',
-    responseToPost: '',
-    userList: []
+    ext_id: '',
+    pw: ''
   };
 
   redirect(user_type) {
@@ -23,7 +21,9 @@ class App extends Component {
   HandleLogin()
   {
     console.log("hi");
-    const jsonString = JSON.stringify({ external_id: 'something5', password: 'somePassword' });
+    const jsonString = JSON.stringify({ external_id: this.state.ext_id, password: this.state.pw});
+    
+
 
     fetch('http://localhost:6060/api/users/auth', {
       method: 'post',
@@ -48,11 +48,11 @@ render() {
 
         <div>
           <p className={css.subtitle}>Sign in</p>
-          <p className={css.usernameandpassword}><br/>Staff or Student number: </p>
-          <input className={css.input}></input>
+          <p className={css.usernameandpassword} ><br/>Staff or Student number: </p>
+          <input className={css.input} onChange={e => this.setState({ext_id: e.target.value})}></input>
 
           <p className={css.usernameandpassword}><br/>Password: </p>
-          <input className={css.input} type="password"></input>
+          <input className={css.input} type="password" onChange={e => this.setState({pw: e.target.value})}></input>
           <button className={css.signinbtn} onClick={()=>this.HandleLogin()}>Sign in</button>
         </div>
         {/*I just do not change your code so make it as commit
