@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import css from "./Login.module.css"
 
@@ -12,10 +12,10 @@ class App extends Component {
   };
 
   redirect(user_type) {
-    if(user_type == 1) {
+    if(user_type === 1) {
       window.location.href="/student/home"
     }
-    else if(user_type == 2) {
+    else if(user_type === 2) {
       window.location.href="/admin/home"
     }
   }
@@ -27,32 +27,34 @@ class App extends Component {
     fetch('http://localhost:6060/api/users/auth', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: jsonString
     })
       .then(response => response.json())
       .then(j => {
         console.log(j)
         // this.redirect(j.user_type)
-
-        // fetch('http://localhost:6060/api/student/projects', {
-        //   credentials: 'include',
-        //   headers: { 'Content-Type': 'application/json' }
-        // })
-        //   .then(response => response.json())
-        //   .then(j => {
-        //       console.log(j)
-        //   })
       })
+  }
+
+  HandleProjectFetch()
+  {
+    fetch('http://localhost:6060/api/student/projects', {
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' }
+        })
+          .then(response => response.json())
+          .then(j => {
+              console.log(j)
+          })
   }
 
 render() {
     return (
-      <body>
+      <React.Fragment>
         <div>
-          <headers>
-            <h1 className={css.head}>Group Arrangement</h1>               
-          </headers>   
-        </div>   
+          <h1 className={css.head}>Group Arrangement</h1>
+        </div>
 
         <div>
           <p className={css.subtitle}>Sign in</p>
@@ -62,6 +64,7 @@ render() {
           <p className={css.usernameandpassword}><br/>Password: </p>
           <input className={css.input} type="password"></input>
           <button className={css.signinbtn} onClick={()=>this.HandleLogin()}>Sign in</button>
+          <button className={css.signinbtn} onClick={()=>this.HandleProjectFetch()}>Get Projects</button>
         </div>
         {/*I just do not change your code so make it as commit
          <div>
@@ -70,7 +73,7 @@ render() {
           ))}
         </div>
         <p>Number of users: {this.state.userList.length}</p>*/} 
-        </body>   
+      </React.Fragment>
     );
   }
 }
