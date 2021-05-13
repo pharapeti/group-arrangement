@@ -20,12 +20,16 @@ class StudentProfile extends Component{
       };
 
     async componentDidMount() {
-         const url = 'http://localhost:6060/api/student/profile';
-         const response = await fetch(url);
-         const data = await response.json();
-         console.log(data);
-         // this.setState({student: data.users[1]});
-         }
+        fetch('http://localhost:6060/api/student/profile', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(response => response.json())
+            .then(j => {
+                console.log(j)
+                // this.setState({student: data.users[1]});
+            })
+    }
 
     render() {
         return(
