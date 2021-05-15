@@ -4,6 +4,6 @@ module.exports = (request, response, next) => {
   if (request.session.external_id) {
 		next();
 	} else {
-		response.status(401).send('Sorry, you do not have the permission to do that');
+		response.status(401).send({ message: 'Sorry, you do not have the permission to do that' });
 	}
 };

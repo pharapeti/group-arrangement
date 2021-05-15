@@ -24,7 +24,7 @@ class DragNDrop extends React.Component {
         const start = this.state.columns[source.droppableId];
         const finish = this.state.columns[destination.droppableId];
 
-        if(start == finish) {
+        if(start === finish) {
             const newStudentIds = Array.from(start.studentIds);
             newStudentIds.splice(source.index, 1);
             newStudentIds.splice(destination.index, 0, draggableId);

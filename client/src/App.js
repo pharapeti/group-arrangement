@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg'; // commented out because it's not being used
 import './App.css';
 import css from "./Login.module.css"
 
@@ -12,22 +12,22 @@ class App extends Component {
   };
 
   redirect(user_type) {
-    if(user_type == 1) {
+    if(user_type === 1) {
       window.location.href="/student/home"
     }
-    else if(user_type == 2) {
+    else if(user_type === 2) {
       window.location.href="/admin/home"
     }
   }
 
-  HandleLogin()
-  {
-    console.log("hi");
-    const jsonString = JSON.stringify({ external_id: 'something5', password: 'somePassword' });
+  handleLogin() {
+    // external_id and password should be pulled from the input fields
+    const jsonString = JSON.stringify({ external_id: 'something', password: 'somePassword' });
 
     fetch('http://localhost:6060/api/users/auth', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: jsonString
     })
       .then(response => response.json())
@@ -39,12 +39,10 @@ class App extends Component {
 
 render() {
     return (
-      <body>
+      <React.Fragment>
         <div>
-          <headers>
-            <h1 className={css.head}>Group Arrangement</h1>               
-          </headers>   
-        </div>   
+          <h1 className={css.head}>Group Arrangement</h1>
+        </div>
 
         <div>
           <p className={css.subtitle}>Sign in</p>
@@ -53,7 +51,7 @@ render() {
 
           <p className={css.usernameandpassword}><br/>Password: </p>
           <input className={css.input} type="password"></input>
-          <button className={css.signinbtn} onClick={()=>this.HandleLogin()}>Sign in</button>
+          <button className={css.signinbtn} onClick={()=>this.handleLogin()}>Sign in</button>
         </div>
         {/*I just do not change your code so make it as commit
          <div>
@@ -62,7 +60,7 @@ render() {
           ))}
         </div>
         <p>Number of users: {this.state.userList.length}</p>*/} 
-        </body>   
+      </React.Fragment>
     );
   }
 }
