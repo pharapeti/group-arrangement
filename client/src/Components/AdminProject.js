@@ -6,6 +6,39 @@ import { signout } from './AuthenticationHelper'
 // has one project page and also the url should change  e.g. /admin/home/project 1
 class AdminProject extends Component{
 
+    constructor(props){
+        super(props)
+        this.state={
+            name:'',
+            id:'',
+            group_size:'',
+
+        }
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:6060/api/admin/projects', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => response.json())
+        .then(j => {
+            for(var i=0; i<j.length;i++)
+            {
+                if(j[i].id==this.props.match.params.id)
+                {
+                  console.log(j[i]);
+                  this.setState({ 
+                      name:j[i].name,
+                      group_size:j[i].max_group_size,
+                  });
+                }
+            }
+            
+        })
+    }
+
+
     ToAddStudentPage()
     {
         var Id=this.props.match.params.id    
@@ -77,8 +110,8 @@ class AdminProject extends Component{
                         <button className={css.projectgraybutton} onClick={()=>this.ToSettingPage()}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 
-                    <text className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description:</text>
-                    <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Group Size:</text>
+                    <text className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description: {this.state.name}</text>
+                    <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.group_size}</text>
                     <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Interest:</text>
                     <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Skill:</text>
                     <br/><br/><br/>

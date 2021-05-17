@@ -26,9 +26,20 @@ class AdminMainMenu extends Component{
     }
     }
 
-    componentDidMount(){
-        this._getrandomcolor();
-    }
+        componentDidMount(){
+            this._getrandomcolor();
+    
+            fetch('http://localhost:6060/api/admin/projects', {
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(j => {
+                this.setState({ projects: j });
+                console.log(j)
+            })
+        }
+    
 
     _getrandomcolor(){
         var item = this.state.groupcolor[Math.floor(Math.random()*this.state.groupcolor.length)];
