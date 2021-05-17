@@ -7,32 +7,87 @@ import { signout } from './AuthenticationHelper'
 class StudentProfile extends Component {
 
     state = {
-        first_name: 'Bob',
-        last_name: 'Higgins',
+        preferencesObjects: [],
+        id:"",
+        name: [],
+        student: [],
+        skills: [],
         external_id: '12345678',
         preference_categories: [
-            { name: 'Skills', values: ['Maths', 'Skateboarding'] },
-            { name: 'Interests', vaues: ['Astronomy', 'Physics'] }
+            { name: 'Skills', values: [] },
+            { name: 'Interests', vaues: [] }
         ],
         interests: []
       };
 
-    async componentDidMount() {
+    componentDidMount() {
         fetch('http://localhost:6060/api/student/profile', {
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' }
         })
             .then(response => response.json())
             .then(j => {
-                console.log(j);
-                const { external_id, first_name, last_name, PreferenceSelections } = j;
-
-                this.setState({ 
-                    external_id: external_id,
-                    first_name: first_name,
-                    last_name: last_name
-                 })
+                this.loadUser(j.external_id, j.first_name + " " + j.last_name)
             })
+
+        fetch('http://localhost:6060/api/student/preference_selections', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'applications/json' }
+        })
+            .then(response => response.json())
+            .then(p => {
+                this.loadPreferences(p);
+            })
+    }
+
+    loadUser(id, full_name) {
+        this.setState({
+            name: full_name,
+            student: id
+        })
+    }
+
+    loadPreferences(p) {
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].preference_category_id == 1) {
+                this.setState({ skills: [...this.state.skills, p[i].name] });
+                console.log(this.state.skills);
+            }
+            else if (p[i].preference_category_id == 2) {
+                this.setState({ interests: [...this.state.interests, p[i].name] });
+                console.log(this.state.interests);
+            }
+        }
+    }
+
+    handleSkillAdd = (val) => {
+        const jsonString = JSON.stringify({ name: val, preference_category_id: 1 });
+
+        fetch('http://localhost:6060/api/student/preference_selections', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: jsonString
+        })
+        .then(response => response.json())
+        .then(j => {
+            console.log(j)
+        })
+    }
+
+    handleInterestAdd = (val) => {
+        const jsonString = JSON.stringify({ name: val, preference_category_id: 2 });
+
+        fetch('http://localhost:6060/api/student/preference_selections', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: jsonString
+        })
+        .then(response => response.json())
+        .then(j => {
+            console.log(j)
+        })
     }
 
     render() {
@@ -68,21 +123,21 @@ class StudentProfile extends Component {
                     {this.state.preference_categories.map((category, index) => (
                         <p key={index}>Hello!</p>
                     ))} */}
-                    <PreferenceCategories categories={this.state.preference_categories} />
+                    //<PreferenceCategories categories={this.state.preference_categories} />
 
-                    {/* <p className={css.subtitle}><strong>Preferences:</strong></p> */}
-                    {/* <div>
+                    { <p className={css.subtitle}><strong>Preferences:</strong></p> }
+                    { <div>
                         <br/><br/><p className={css.pcontent}> • Skills:</p>
                     </div>
                     <div style={{marginLeft:350}}>
-                        <InputTag existingTags={this.state.skills} />
+                        <InputTag existingTags={this.state.skills} addedTags={this.handleSkillAdd} />
                     </div>
                     <div>
                         <br/><br/><p className={css.pcontent}> • Interest:</p>
                     </div>
                     <div style={{marginLeft:350}}>
-                        <InputTag existingTags={this.state.interests} />
-                    </div> */}
+                        <InputTag existingTags={this.state.interests} addedTags={this.handleInterestAdd} />
+                    </div>
                 </div>   
             </>
         )
