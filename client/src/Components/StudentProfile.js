@@ -116,24 +116,24 @@ class StudentProfile extends Component {
                     <br/>
                     <p className={css.subtitle}>ID: {this.state.external_id}  </p>
                     <br/><br/>
-                    <p className={css.subtitle}>Name: {this.state.first_name} {this.state.last_name}</p>
+                    <p className={css.subtitle}>Name: {this.state.name}</p>
                     <br/><br/><br/>
 
                     {/* Display Preference Categories and preferences within each category
                     {this.state.preference_categories.map((category, index) => (
                         <p key={index}>Hello!</p>
                     ))} */}
-                    //<PreferenceCategories categories={this.state.preference_categories} />
+                    { /*<PreferenceCategories categories={this.state.preference_categories} /> */}
 
                     { <p className={css.subtitle}><strong>Preferences:</strong></p> }
-                    { <div>
-                        <br/><br/><p className={css.pcontent}> • Skills:</p>
+                    <div>
+                        <br/><br/><p className={css.pcontent}> Skills:</p>
                     </div>
                     <div style={{marginLeft:350}}>
                         <InputTag existingTags={this.state.skills} addedTags={this.handleSkillAdd} />
                     </div>
                     <div>
-                        <br/><br/><p className={css.pcontent}> • Interest:</p>
+                        <br/><br/><p className={css.pcontent}> Interest:</p>
                     </div>
                     <div style={{marginLeft:350}}>
                         <InputTag existingTags={this.state.interests} addedTags={this.handleInterestAdd} />
