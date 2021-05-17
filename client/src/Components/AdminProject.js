@@ -8,7 +8,7 @@ class AdminProject extends Component{
 
     constructor(props){
         super(props)
-        this.state={
+        this.state = {
             name:'',
             id:'',
             group_size:'',
@@ -75,7 +75,7 @@ class AdminProject extends Component{
     
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
@@ -95,13 +95,13 @@ class AdminProject extends Component{
                 </div>  
 
                 <div className={css.projectrightcontent}>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         <br/>
                         Student List:                 
                         <button className={css.addstudentbtn} onClick={()=>this.ToAddStudentPage()}>Add Student</button> 
                         <button className={css.projecttwobutton} onClick={()=>this.toCreateGroupPage()}>Create Groups</button>
                         <button className={css.projecttwobutton} onClick={()=>this.ToEditGroupPage()}>Edit Groups</button>
-                    </text>
+                    </p>
                 </div>
 
                 <div >
@@ -110,15 +110,15 @@ class AdminProject extends Component{
                         <button className={css.projectgraybutton} onClick={()=>this.ToSettingPage()}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 
-                    <text className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description: {this.state.name}</text>
-                    <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.group_size}</text>
-                    <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Interest:</text>
-                    <text className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Skill:</text>
+                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description: {this.state.name}</p>
+                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.group_size}</p>
+                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Interest:</p>
+                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Skill:</p>
                     <br/><br/><br/>
-                    <text className={css.textcontent} style={{fontSize: "35px"}}>&nbsp;&nbsp;Groups:</text>
+                    <p className={css.textcontent} style={{fontSize: "35px"}}>&nbsp;&nbsp;Groups:</p>
                 </div>   
                 
-            </body>
+            </>
         )
     }
 }

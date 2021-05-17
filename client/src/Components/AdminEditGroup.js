@@ -11,7 +11,7 @@ class AdminEditGroup extends Component{
 
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
@@ -31,12 +31,12 @@ class AdminEditGroup extends Component{
                 </div>  
 
                 <div className={css.projectrightcontent}>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         <br/><br/>
                         <br/>                
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}}>Save</button>
-                    </text>
+                    </p>
                 </div>
                 
                 <div >
@@ -45,7 +45,7 @@ class AdminEditGroup extends Component{
                 <DragNDrop />
 
                 
-            </body>
+            </>
         )
     }
 }

@@ -6,7 +6,7 @@ class StudentNotification extends Component{
     
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
@@ -27,11 +27,11 @@ class StudentNotification extends Component{
                 <div>
                     <h1 className={css.title}>Notification</h1>
                     <br/>
-                    <text className={css.subtitle}>• Project Notification:</text>
+                    <p className={css.subtitle}>• Project Notification:</p>
                     <br/><br/><br/>
-                    <text className={css.subtitle}>• Group Notification:</text>
+                    <p className={css.subtitle}>• Group Notification:</p>
                 </div>   
-            </body>
+            </>
         )
     }
 }

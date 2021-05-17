@@ -10,7 +10,7 @@ class AdminCreateGroup extends Component{
     
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
@@ -30,20 +30,20 @@ class AdminCreateGroup extends Component{
                 </div>  
 
                 <div className={css.projectrightcontent}>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         <br/><br/>Groups: 
                         <br/>                
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Create</button>
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
-                    </text>
+                    </p>
                 </div>
 
                 <div >
                     <h1 className={css.title}>Create Group</h1>
-                    <text className={css.subtitle}>Student to be Allocated</text>
+                    <p className={css.subtitle}>Student to be Allocated</p>
                 </div>   
                 
-            </body>
+            </>
         )
     }
 }

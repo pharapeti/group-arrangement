@@ -7,8 +7,7 @@ class AdminMainMenu extends Component{
     constructor(props){
         super(props)
 
-        //for test only 
-        this.state= {
+        this.state = {
             groupcolor: [
                 'lightcoral',
                 'lightsalmon',
@@ -48,7 +47,7 @@ class AdminMainMenu extends Component{
 
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <h1 className={css.head}>
                             Group Arrangement
@@ -75,7 +74,7 @@ class AdminMainMenu extends Component{
                     <br/>
                     <p className={css.subtitle}>Your Project(s):</p>
                     <br/><br/>
-                    {/* test only button, free to edit */}
+
                     {this.state.projects.map(project =>(
                         <button 
                             key={project.id} 
@@ -89,7 +88,7 @@ class AdminMainMenu extends Component{
                        </button>
                     ))}    
                 </div> 
-            </body>
+            </>
         )
     }
 }
