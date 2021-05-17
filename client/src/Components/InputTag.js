@@ -33,7 +33,7 @@ class InputTag extends Component {
     render() {
 
         return (
-            <body>
+            <>
                 <div className={css.input_tag}>
                     <ul className={css.input_tag__tags}>
                        { this.state.tags.map((tag, i) => (
@@ -47,7 +47,7 @@ class InputTag extends Component {
                         </li>
                     </ul>
                 </div>
-            </body>
+            </>
         );
     }
 }

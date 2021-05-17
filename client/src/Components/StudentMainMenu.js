@@ -1,28 +1,23 @@
 import React, {Component} from 'react';
 import css from './Student.module.css'
+import { signout } from './AuthenticationHelper'
 
-class StudentMainMenu extends Component{
+class StudentMainMenu extends Component {
 
     constructor(props){
         super(props)
 
-        //for test only 
-        this.state={
-        groupcolor: [
-            'lightcoral',
-            'lightsalmon',
-            'lightpink',
-            'lightgreen',
-            'violet'
-        ],
-        selectedcolor: '',
-        //for test only
-        projects :[    
-                {id:1, name: "first"},
-                {id:2, name: "second"},
-                {id:3, name: "third"},
-        ]
-    }
+        this.state = {
+            groupcolor: [
+                'lightcoral',
+                'lightsalmon',
+                'lightpink',
+                'lightgreen',
+                'violet'
+            ],
+            selectedcolor: '',
+            projects: []
+        }
     }
     
 
@@ -35,7 +30,7 @@ class StudentMainMenu extends Component{
         })
         .then(response => response.json())
         .then(j => {
-            console.log(j)
+            this.setState({ projects: j });
         })
     }
 
@@ -46,51 +41,47 @@ class StudentMainMenu extends Component{
         })
     }
 
-    ToProjectPage(itemid)
-    {
-        var ItemId=itemid;
+    handleProjectClick(project_id) {
         this.props.history.push(
-            '/student/project/'+ ItemId
-            )
+            '/student/project/'+ project_id
+        )
     }
     
     render() {
         return(
-            <body>
+            <React.Fragment>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                            Group Arrangement
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/student/home"}}>Menu</button>                   
                     <button className={css.sidebutton2} onClick={()=>{window.location.href="/student/profile"}}>Profile</button>                 
                     <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notification"}}>Notification</button>
-                    
-                    <line className={css.line1}/>   
-                    <line className={css.line2}/>  
-                    <line className={css.line3}/>                 
+                
+                    <div className={css.line1}/>   
+                    <div className={css.line2}/>  
+                    <div className={css.line3}/>                 
                     </nav>
                 </div>      
                 <div>
                     <h1 className={css.title}>Student Menu</h1>
                     <br/>
-                    <text className={css.subtitle}>Your Project(s):</text>
+                    <p className={css.subtitle}>Your Project(s):</p>
                     <br/><br/>
                     {/* //button for test only */}
-                    {this.state.projects.map(item =>(
-                        <button key={item.id} onClick={()=>this.ToProjectPage(item.id)} className={css.toprojectorgroupbtn}
+                    {this.state.projects.map(project =>(
+                        <button key={project.id} onClick={()=>this.handleProjectClick(project.id)} className={css.toprojectorgroupbtn}
                         style={{backgroundColor: this.state.selectedcolor}} >
-                            <text className={css.toprojectorgroupbtntext} key={item.id}><br/><br/><br/><br/><br/><br/>Project&nbsp;{item.id}</text>
+                            <p className={css.toprojectorgroupbtntext} key={project.id}><br/><br/><br/><br/><br/><br/>{project.name}</p>
                        </button>
                     ))}
                     
                 </div>   
-            </body>
+            </React.Fragment>
         )
     }
 }

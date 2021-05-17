@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import { signout } from './AuthenticationHelper'
 
 class AdminCreateProject extends Component{
     
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                         </h1>          
                     </headers>   
                 </div>
@@ -33,34 +34,34 @@ class AdminCreateProject extends Component{
                 <div>
                     <h1 className={css.title}>Create Project</h1>
                     <br/>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         Project Name: 
                         <input className={css.createprojectinput} style={{marginLeft: '50px'}}></input>
-                    </text>
+                    </p>
                     <br/><br/>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         Group Size: 
                         <input className={css.createprojectinput} style={{marginLeft: '80.5px'}}></input>
-                    </text>
+                    </p>
                     <br/><br/>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         Interest: 
                         <input className={css.createprojectinput} style={{marginLeft: '131px'}}></input>
-                    </text>
+                    </p>
                     <br/><br/>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         Skills: 
                         <input className={css.createprojectinput} style={{marginLeft: '160px'}}></input>
-                    </text>
+                    </p>
                     <br/><br/>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         Description: 
-                    </text>
+                    </p>
                     <br/><br/>
                     <textarea className={css.createprojectdescriptioninput}></textarea>
                     
                 </div>   
-            </body>
+            </>
         )
     }
 }

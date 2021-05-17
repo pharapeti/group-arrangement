@@ -1,36 +1,50 @@
 import React, {Component} from 'react';
 import css from './Student.module.css'
+import { signout } from './AuthenticationHelper'
 
 class StudentGroup extends Component{
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props)
-        this.state={
-            ableToLeaveGroup: true
+        this.state = {
+            can_leave_group: true,
+            group: {}
         }
     }
 
-    HandleLeaveGroup()
-    {
-        //var i=this.props.match.params.id;
-        this.setState({
-            ableToLeaveGroup:!this.state.ableToLeaveGroup
+    componentDidMount(){
+        const project_id = this.props.match.params.project_id;
+        const group_id = this.props.match.params.group_id;
+        const url = 'http://localhost:6060/api/student/projects/' + project_id + 'groups/' + group_id;
+
+        fetch(url, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
         })
-        this.props.history.goBack();
-        
+        .then(response => response.json())
+        .then(j => {
+            this.setState({ group: j });
+        })
+    }
+
+    handleGroupLeave() {
+        // Make request to leave group
+        this.setState({ can_leave_group: !this.state.can_leave_group })
+        //this.props.history.goBack();
+    }
+
+    canLeaveGroupCss() {
+        return this.state.can_leave_group ? css.leavegroupbtn_black : css.leavegroupbtn_white;
     }
     
     render() {
         return(
-            <body>
+            <>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                        Group Arrangement
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
@@ -44,15 +58,15 @@ class StudentGroup extends Component{
                     </nav>
                 </div>     
                 <div className={css.projectrightcontent}>
-                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.HandleLeaveGroup(this)}>Leave Group</button>
+                    <button className={this.canLeaveGroupCss()} onClick={()=>this.handleGroupLeave(this)}>Leave Group</button>
                 </div>
                 <div>
                     <h1 className={css.title}>Your Group {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                    <br/>
-                    <text className={css.subtitle}>Group Name:</text>
+                    <p className={css.subtitle}>Group Name:</p>
                     <br/><br/>
-                    <text className={css.subtitle}>Group Leader:</text>
+                    <p className={css.subtitle}>Group Leader:</p>
                     <br/><br/><br/>
                     <table className={css.grouptable} id="tgroup">
                         <tr className={css.grouptr}>
@@ -76,7 +90,7 @@ class StudentGroup extends Component{
                         </tr>
                     </table>
                 </div>   
-            </body>
+            </>
         )
     }
 }
