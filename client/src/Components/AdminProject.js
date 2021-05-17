@@ -39,55 +39,41 @@ class AdminProject extends Component{
     }
 
 
-    ToAddStudentPage()
-    {
-        var Id=this.props.match.params.id    
-        this.props.history.push(
-            '/admin/project/'+ Id +'/add'
-            )
+    ToAddStudentPage() {
+        const project_id = this.props.match.params.project_id;  
+        this.props.history.push('/admin/projects/' + project_id +'/add_student')
     }
 
-    toCreateGroupPage()
-    {
-        var Id=this.props.match.params.id    
-        this.props.history.push(
-            '/admin/project/'+ Id +'/group/create'
-            )
-
+    toCreateGroupPage() {
+        const project_id = this.props.match.params.project_id;  
+        this.props.history.push('/admin/projects/' + project_id + '/groups/create');
     }
 
-    ToEditGroupPage()
-    {
-        var Id=this.props.match.params.id    
-        this.props.history.push(
-            '/admin/project/'+ Id +'/group/edit'
-            )
+    ToEditGroupPage() {
+        const project_id = this.props.match.params.project_id;
 
+        //this.props.history.push('/admin/projects/' + project_id + '/groups');
+        alert('NOT IMPLEMENTED!!!!')
     }
 
-    ToSettingPage()
-    {
-        var Id=this.props.match.params.id    
-        this.props.history.push(
-            '/admin/project/'+ Id +'/edit'
-            )
+    ToSettingPage() {
+        const project_id = this.props.match.params.project_id; 
+        this.props.history.push('/admin/projects/'+ Id +'/edit')
     }
     
     render() {
         return(
             <>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                            Group Arrangement
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/admin/home"}}>Menu</button>                   
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notification"}}>Notification</button>                 
+                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notification</button>                 
                          
                     <line className={css.line1}/>   
                     <line className={css.line2}/>                   
@@ -117,7 +103,6 @@ class AdminProject extends Component{
                     <br/><br/><br/>
                     <p className={css.textcontent} style={{fontSize: "35px"}}>&nbsp;&nbsp;Groups:</p>
                 </div>   
-                
             </>
         )
     }

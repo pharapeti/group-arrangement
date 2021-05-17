@@ -40,6 +40,7 @@ require('./routes/admin/projects/groups/groups.routes')(app);
 require('./routes/admin/projects/group_allocations/group_allocations.routes')(app);
 require('./routes/admin/projects/project_allocations/project_allocations.routes')(app);
 require('./routes/admin/users/users.routes')(app);
+require('./routes/admin/notifications/notifications.routes')(app);
 
 // Student Routes
 require('./routes/student/groups/groups.routes')(app);

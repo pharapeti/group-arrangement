@@ -25,17 +25,17 @@ class UrlSet extends Component{
               <Route path="/" exact strict component={App}/>     
               <Route path="/student/home" exact strict component={StudentMainMenu}/>     
               <Route path="/student/profile" exact strict component={StudentProfile}/>
-              <Route path="/student/notification" exact strict component={StudentNotification}/> 
-              <Route path="/student/projects/:id" exact strict component={StudentProject}/>
-              <Route path="/student/project/:project_id/group/:group_id" exact strict component={StudentGroup}/>  
+              <Route path="/student/notifications" exact strict component={StudentNotification}/> 
+              <Route path="/student/projects/:project_id" exact strict component={StudentProject}/>
+              <Route path="/student/projects/:project_id/groups/:group_id" exact strict component={StudentGroup}/>  
               <Route path="/admin/home" exact strict component={AdminMainMenu}/>  
-              <Route path="/admin/notification" exact strict component={AdminNotification}/> 
-              <Route path="/admin/project/create/new" exact strict component={AdminCreateProject}/> 
-              <Route path="/admin/project/:id" exact strict component={AdminProject}/> 
-              <Route path="/admin/project/:id/group/create" exact strict component={AdminCreateGroup}/> 
-              <Route path="/admin/project/:id/add" exact strict component={AdminProjectAddStudents}/>
-              <Route path="/admin/project/:id/group/edit" exact strict component={AdminEditGroup}/>  
-              <Route path="/admin/project/:id/edit" exact strict component={AdminEditProject}/> 
+              <Route path="/admin/notifications" exact strict component={AdminNotification}/> 
+              <Route path="/admin/projects/new" exact strict component={AdminCreateProject}/> 
+              <Route path="/admin/projects/:project_id" exact strict component={AdminProject}/> 
+              <Route path="/admin/projects/:project_id/groups/create" exact strict component={AdminCreateGroup}/> 
+              <Route path="/admin/projects/:project_id/add_student" exact strict component={AdminProjectAddStudents}/>
+              <Route path="/admin/projects/:project_id/groups/:group_id/edit" exact strict component={AdminEditGroup}/>  
+              <Route path="/admin/projects/:project_id/edit" exact strict component={AdminEditProject}/> 
             </div>
           </Router>
         )

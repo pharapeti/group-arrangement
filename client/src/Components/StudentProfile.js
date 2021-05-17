@@ -104,7 +104,7 @@ class StudentProfile extends Component {
 
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/student/home"}}>Menu</button>                   
                     <button className={css.sidebutton2} onClick={()=>{window.location.href="/student/profile"}}>Profile</button>                 
-                    <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notification"}}>Notification</button>
+                    <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notifications"}}>Notification</button>
                     
                     <line className={css.line1}/>   
                     <line className={css.line2}/>  

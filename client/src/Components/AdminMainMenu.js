@@ -42,7 +42,7 @@ class AdminMainMenu extends Component{
     }
 
     goToProject(project_id) {
-        this.props.history.push('/admin/project/'+ project_id)
+        this.props.history.push('/admin/projects/'+ project_id)
     }
 
     render() {
@@ -58,14 +58,14 @@ class AdminMainMenu extends Component{
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/admin/home"}}>Menu</button>                   
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notification"}}>Notification</button>                 
+                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notification</button>                 
                          
                     <line className={css.line1}/>   
                     <line className={css.line2}/>                   
                     </nav>
                 </div> 
                 <div className={css.projectrightcontent}>
-                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/project/create/new"}}>Create Project</button>
+                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/projects/new"}}>Create Project</button>
                 </div>
                 <div>
                     <h1 className={css.title}>

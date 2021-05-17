@@ -2,7 +2,10 @@ const model = require('../../../../models/index')
 
 // Return all Project Allocations for this specific Project
 exports.findAll = (req, res) => {
-  model.ProjectAllocation.findAll({ where: { project_id: req.params.project_id } })
+  model.ProjectAllocation.findAll({ 
+    where: { project_id: req.params.project_id },
+    include: model.User
+  })
     .then(project_allocations => res.send(project_allocations))
     .catch(err => {
       res.status(500).send({

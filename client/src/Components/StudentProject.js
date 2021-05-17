@@ -17,7 +17,7 @@ class StudentProject extends Component{
             selected_color: '',
             //I just test it using 1 as param
             group_id: '1',
-            project_id: this.props.match.params.id,
+            project_id: this.props.match.params.project_id,
             project: {}
         }
     }
@@ -48,12 +48,12 @@ class StudentProject extends Component{
     }
     
     handleGroupClick() {
-        this.props.history.push('/student/project/'+ this.state.project_id  +'/group/'+ this.state.group_id)
+        this.props.history.push('/student/projects/'+ this.state.project_id  +'/groups/'+ this.state.group_id)
     }
     
     render() {
         return(
-            <React.Fragment>
+            <>
                 <div>
                     <h1 className={css.head}>
                             Group Arrangement
@@ -76,7 +76,7 @@ class StudentProject extends Component{
                     </button>                 
                     <button 
                         className={css.sidebutton3} 
-                        onClick={()=>{window.location.href="/student/notification"}}
+                        onClick={()=>{window.location.href="/student/notifications"}}
                     >
                         Notification
                     </button>
@@ -115,7 +115,7 @@ class StudentProject extends Component{
                         </p>
                     </button>
                 </div>   
-            </React.Fragment>
+            </>
         )
     }
 }

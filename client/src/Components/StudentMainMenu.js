@@ -43,7 +43,7 @@ class StudentMainMenu extends Component {
 
     handleProjectClick(project_id) {
         this.props.history.push(
-            '/student/project/'+ project_id
+            '/student/projects/'+ project_id
         )
     }
     
@@ -60,8 +60,8 @@ class StudentMainMenu extends Component {
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/student/home"}}>Menu</button>                   
                     <button className={css.sidebutton2} onClick={()=>{window.location.href="/student/profile"}}>Profile</button>                 
-                    <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notification"}}>Notification</button>
-                
+                    <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notifications"}}>Notification</button>
+
                     <div className={css.line1}/>   
                     <div className={css.line2}/>  
                     <div className={css.line3}/>                 
