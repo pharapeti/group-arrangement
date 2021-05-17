@@ -126,7 +126,7 @@ class StudentProfile extends Component {
                     //<PreferenceCategories categories={this.state.preference_categories} />
 
                     { <p className={css.subtitle}><strong>Preferences:</strong></p> }
-                    { <div>
+                    <div>
                         <br/><br/><p className={css.pcontent}> • Skills:</p>
                     </div>
                     <div style={{marginLeft:350}}>
