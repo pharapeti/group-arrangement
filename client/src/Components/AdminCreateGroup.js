@@ -4,9 +4,7 @@ import { signout } from './AuthenticationHelper'
 
 class AdminCreateGroup extends Component{
 
-    BackToLastPage()
-    {
-        //var i=this.props.match.params.id    
+    navigateBack() {
         this.props.history.goBack();
     }
     
@@ -35,8 +33,8 @@ class AdminCreateGroup extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>Groups: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Create</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Create</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
                     </text>
                 </div>
 
