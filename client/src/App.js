@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg'; // commented out because it's not being used
 import './App.css';
 import css from "./Login.module.css"
 
 class App extends Component {
   state = {
-    response: '',
-    post: '',
-    responseToPost: '',
-    userList: []
+    external_id: '',
+    password: ''
   };
 
   redirect(user_type) {
@@ -20,9 +17,16 @@ class App extends Component {
     }
   }
 
-  handleLogin() {
-    // external_id and password should be pulled from the input fields
-    const jsonString = JSON.stringify({ external_id: 'something', password: 'somePassword' });
+  handleKeyDown(event) {
+    // If Enter key is pressed, attempt to log in
+    if(event.keyCode === 13) { 
+      this.handleSubmit();
+    }
+  }
+
+  handleSubmit() {
+    const { external_id, password } = this.state;
+    const jsonString = JSON.stringify({ external_id: external_id, password: password });
 
     fetch('http://localhost:6060/api/users/auth', {
       method: 'post',
@@ -37,9 +41,17 @@ class App extends Component {
       })
   }
 
+  setExternalID(e) {
+    this.setState({ external_id: e.target.value });
+  }
+
+  setPassword(e) {
+    this.setState({ password: e.target.value });
+  }
+
 render() {
     return (
-      <React.Fragment>
+      <>
         <div>
           <h1 className={css.head}>Group Arrangement</h1>
         </div>
@@ -47,20 +59,28 @@ render() {
         <div>
           <p className={css.subtitle}>Sign in</p>
           <p className={css.usernameandpassword}><br/>Staff or Student number: </p>
-          <input className={css.input}></input>
+          <input
+            id='external_id'
+            className={css.input}
+            onChange={ this.setExternalID.bind(this) }
+            value={ this.state.external_id }
+          >
+          </input>
 
           <p className={css.usernameandpassword}><br/>Password: </p>
-          <input className={css.input} type="password"></input>
-          <button className={css.signinbtn} onClick={()=>this.handleLogin()}>Sign in</button>
+          <input
+            id='password' 
+            className={css.input} 
+            type="password"
+            onChange={ this.setPassword.bind(this) }
+            value={ this.state.password }
+            onKeyDown={ this.handleKeyDown.bind(this) }
+          >
+          </input>
+          <button className={css.signinbtn} onClick={() => this.handleSubmit()}>Sign in</button>
         </div>
-        {/*I just do not change your code so make it as commit
-         <div>
-          {this.state.userList.map((user, index) => (
-            <p key={index}>{user}</p>
-          ))}
-        </div>
-        <p>Number of users: {this.state.userList.length}</p>*/} 
-      </React.Fragment>
+
+      </>
     );
   }
 }
