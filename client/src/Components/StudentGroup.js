@@ -4,27 +4,42 @@ import { signout } from './AuthenticationHelper'
 
 class StudentGroup extends Component{
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props)
         this.state = {
-            can_leave_group: true
+            can_leave_group: true,
+            group: {}
         }
     }
 
-    HandleLeaveGroup()
-    {
-        //var i=this.props.match.params.id;
-        this.setState({
-            can_leave_group: !this.state.can_leave_group
+    componentDidMount(){
+        const project_id = this.props.match.params.project_id;
+        const group_id = this.props.match.params.group_id;
+        const url = 'http://localhost:6060/api/student/projects/' + project_id + 'groups/' + group_id;
+
+        fetch(url, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
         })
-        this.props.history.goBack();
-        
+        .then(response => response.json())
+        .then(j => {
+            this.setState({ group: j });
+        })
+    }
+
+    handleGroupLeave() {
+        // Make request to leave group
+        this.setState({ can_leave_group: !this.state.can_leave_group })
+        //this.props.history.goBack();
+    }
+
+    canLeaveGroupCss() {
+        return this.state.can_leave_group ? css.leavegroupbtn_black : css.leavegroupbtn_white;
     }
     
     render() {
         return(
-            <React.Fragment>
+            <>
                 <div>
                     <h1 className={css.head}>
                         Group Arrangement
@@ -43,7 +58,7 @@ class StudentGroup extends Component{
                     </nav>
                 </div>     
                 <div className={css.projectrightcontent}>
-                    <button className={this.state.can_leave_group?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.HandleLeaveGroup(this)}>Leave Group</button>
+                    <button className={this.canLeaveGroupCss()} onClick={()=>this.handleGroupLeave(this)}>Leave Group</button>
                 </div>
                 <div>
                     <h1 className={css.title}>Your Group {this.props.match.params.id}</h1>
@@ -75,7 +90,7 @@ class StudentGroup extends Component{
                         </tr>
                     </table>
                 </div>   
-            </React.Fragment>
+            </>
         )
     }
 }
