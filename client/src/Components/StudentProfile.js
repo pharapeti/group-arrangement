@@ -8,27 +8,82 @@ class StudentProfile extends Component{
         response: '',
         post: '',
         responseToPost: '',
+        preferencesObjects: [],
         id:"",
-        name:'Bob Higgins',
-        student:'12345678',
-        skills: [
-            "Java", "C++", "Python"
-        ],
-        interests: [
-            'AI'
-        ]
+        name: [],
+        student: [],
+        skills: [],
+        interests: []
       };
 
-    async componentDidMount() {
+    componentDidMount() {
         fetch('http://localhost:6060/api/student/profile', {
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' }
         })
             .then(response => response.json())
             .then(j => {
-                console.log(j)
-                // this.setState({student: data.users[1]});
+                this.loadUser(j.external_id, j.first_name + " " + j.last_name)
             })
+
+        fetch('http://localhost:6060/api/student/preference_selections', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'applications/json' }
+        })
+            .then(response => response.json())
+            .then(p => {
+                this.loadPreferences(p);
+            })
+    }
+
+    loadUser(id, full_name) {
+        this.setState({
+            name: full_name,
+            student: id
+        })
+    }
+
+    loadPreferences(p) {
+        for (var i = 0; i < p.length; i++) {
+            if (p[i].preference_category_id == 1) {
+                this.setState({ skills: [...this.state.skills, p[i].name] });
+                console.log(this.state.skills);
+            }
+            else if (p[i].preference_category_id == 2) {
+                this.setState({ interests: [...this.state.interests, p[i].name] });
+                console.log(this.state.interests);
+            }
+        }
+    }
+
+    handleSkillAdd = (val) => {
+        const jsonString = JSON.stringify({ name: val, preference_category_id: 1 });
+
+        fetch('http://localhost:6060/api/student/preference_selections', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: jsonString
+        })
+        .then(response => response.json())
+        .then(j => {
+            console.log(j)
+        })
+    }
+
+    handleInterestAdd = (val) => {
+        const jsonString = JSON.stringify({ name: val, preference_category_id: 2 });
+
+        fetch('http://localhost:6060/api/student/preference_selections', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: jsonString
+        })
+        .then(response => response.json())
+        .then(j => {
+            console.log(j)
+        })
     }
 
     render() {
@@ -66,13 +121,13 @@ class StudentProfile extends Component{
                         <br/><br/><text className={css.textcontent}> • Skills:</text>
                     </div>
                     <div style={{marginLeft:350}}>
-                        <InputTag existingTags={this.state.skills} />
+                        <InputTag existingTags={this.state.skills} addedTags={this.handleSkillAdd} />
                     </div>
                     <div>
                         <br/><br/><text className={css.textcontent}> • Interest:</text>
                     </div>
                     <div style={{marginLeft:350}}>
-                        <InputTag existingTags={this.state.interests} />
+                        <InputTag existingTags={this.state.interests} addedTags={this.handleInterestAdd} />
                     </div>
                 </div>   
             </body>
