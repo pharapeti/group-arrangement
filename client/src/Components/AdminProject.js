@@ -9,9 +9,9 @@ class AdminProject extends Component{
     constructor(props){
         super(props)
         this.state = {
-            name:'',
-            id:'',
-            group_size:'',
+            project_name:'',
+            project_id:'',
+            project_group_size:'',
 
         }
     }
@@ -25,12 +25,12 @@ class AdminProject extends Component{
         .then(j => {
             for(var i=0; i<j.length;i++)
             {
-                if(j[i].id==this.props.match.params.id)
+                if(j[i].id==this.props.match.params.project_id)
                 {
-                  console.log(j[i]);
+                  console.log(this.props.match.params.project_id);
                   this.setState({ 
-                      name:j[i].name,
-                      group_size:j[i].max_group_size,
+                      project_name:j[i].name,
+                      project_group_size:j[i].max_group_size,
                   });
                 }
             }
@@ -58,7 +58,27 @@ class AdminProject extends Component{
 
     ToSettingPage() {
         const project_id = this.props.match.params.project_id; 
-        this.props.history.push('/admin/projects/'+ Id +'/edit')
+        this.props.history.push('/admin/projects/'+ project_id +'/edit')
+    }
+    
+    //NEED TO FIX
+    handleDelete()
+    {
+        if(window.confirm("Are you sure?"))
+        {
+          window.location.href="/admin/home"
+          fetch('http://localhost:6060/api/admin/projects/5' , {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': "*",
+              'Access-Control-Allow-Methods': "DELETE"},
+              credentials: 'include',
+          })
+          .then(response => response.json())
+          .then(j => {
+            console.log(j)
+          })
+        }
     }
     
     render() {
@@ -92,15 +112,15 @@ class AdminProject extends Component{
 
                 <div >
                     <h1 className={css.title}>
-                        Project {this.props.match.params.id}
+                        Project {this.props.match.params.project_id}
                         <button className={css.projectgraybutton} onClick={()=>this.ToSettingPage()}>Edit Setting</button>
-                        <button className={css.projectgraybutton}>Delete</button>
+                        <button className={css.projectgraybutton} onClick={()=>this.handleDelete()}>Delete</button>
                     </h1> 
-                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description: {this.state.name}</p>
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.group_size}</p>
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Interest:</p>
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Skill:</p>
-                    <br/><br/><br/>
+                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description: {this.state.project_name}</p>
+                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.project_group_size}</p>
+                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Interest:</p>
+                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Skill:</p>
+                    <br/>
                     <p className={css.textcontent} style={{fontSize: "35px"}}>&nbsp;&nbsp;Groups:</p>
                 </div>   
             </>

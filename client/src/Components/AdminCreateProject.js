@@ -36,6 +36,7 @@ class AdminCreateProject extends Component {
     }
 
     setMaxGroupSize(e) {
+        if(e.target.value>=0)
         this.setState({ max_group_size: e.target.value });
     }
 
@@ -59,10 +60,10 @@ class AdminCreateProject extends Component {
                 </div>      
                 <div className={css.projectrightcontent}>
                     <button className={css.createprojectfirstbtn}   onClick={()=>this.handleSubmit()}>
-                        Create
-                    </button>
-                    <button className={css.createprojectsecondbtn} onClick={()=>window.location.href="/admin/home"}>
+                        Create    
+                       <button className={css.createprojectsecondbtn} onClick={()=>window.location.href="/admin/home"}>
                         Cancel
+                       </button>
                     </button>    
                 </div>
                 <div>
@@ -77,32 +78,27 @@ class AdminCreateProject extends Component {
                             value={ this.state.project_name }
                         ></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Max Group Size:
                         <input
                             type='number'
                             className={css.createprojectinput}
-                            style={{marginLeft: '80.5px'}}
+                            style={{marginLeft: '16px'}}
                             onChange={ this.setMaxGroupSize.bind(this) }
                             value={ this.state.max_group_size }
                         ></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Interest:
                         <input className={css.createprojectinput} style={{marginLeft: '131px'}}></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Skills:
                         <input className={css.createprojectinput} style={{marginLeft: '160px'}}></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Description:
                     </p>
-                    <br/><br/>
                     <textarea className={css.createprojectdescriptioninput}></textarea>
                 </div>
             </>
