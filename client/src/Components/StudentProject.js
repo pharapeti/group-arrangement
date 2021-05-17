@@ -3,31 +3,22 @@ import css from './Student.module.css'
 
 class StudentGroup extends Component{
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props)
-        this.state={
+        this.state= {
             btn_BackToStudentHome: true,
-            groupcolor: [
+            group_color: [
                 'lightcoral',
                 'lightsalmon',
                 'lightpink',
                 'lightgreen',
                 'violet'
             ],
-            selectedcolor: '',
+            selected_color: '',
             //I just test it using 1 as param
-            groupid: '1',
-            projectid: this.props.match.params.id,
+            group_id: '1',
+            project_id: this.props.match.params.id,
         }
-    }
-
-    HandleBackBtn(btn)
-    {
-        this.setState({
-            btn_BackToStudentHome:!this.state.btn_BackToStudentHome
-        })
-        window.location.href="/student/home"
     }
 
     componentDidMount(){
@@ -35,39 +26,49 @@ class StudentGroup extends Component{
     }
 
     _getrandomcolor(){
-        var item = this.state.groupcolor[Math.floor(Math.random()*this.state.groupcolor.length)];
-        this.setState({
-            selectedcolor: item,
-        })
+        var item = this.state.group_color[Math.floor(Math.random() * this.state.group_color.length)];
+        this.setState({ selected_color: item })
+    }
+
+    handleBackClick()
+    {
+        this.setState({ btn_BackToStudentHome: !this.state.btn_BackToStudentHome })
+        window.location.href="/student/home"
     }
     
-    ToGroupPage()
-    {
-        var GroupId=this.state.groupid;
-        var ProjectId=this.state.projectid;
-        this.props.history.push(
-            '/student/project/'+ProjectId+'/group/'+ GroupId
-            )
+    handleGroupClick() {
+        this.props.history.push('/student/project/'+ this.state.project_id  +'/group/'+ this.state.group_id)
     }
     
     render() {
-
-
         return(
-            <body>
+            <React.Fragment>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                            Group Arrangement
+                        <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
-                    <button className={css.sidebutton1} onClick={()=>{window.location.href="/student/home"}}>Menu</button>                   
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/student/profile"}}>Profile</button>                 
-                    <button className={css.sidebutton3} onClick={()=>{window.location.href="/student/notification"}}>Notification</button>
+                    <button 
+                        className={css.sidebutton1} 
+                        onClick={()=>{window.location.href="/student/home"}}
+                    >
+                        Menu
+                    </button>                   
+                    <button 
+                        className={css.sidebutton2} 
+                        onClick={()=>{window.location.href="/student/profile"}}
+                    >
+                        Profile
+                    </button>                 
+                    <button 
+                        className={css.sidebutton3} 
+                        onClick={()=>{window.location.href="/student/notification"}}
+                    >
+                        Notification
+                    </button>
                     
                     <line className={css.line1}/>   
                     <line className={css.line2}/>  
@@ -77,25 +78,33 @@ class StudentGroup extends Component{
                 <div className={css.projectrightcontent}>
                     <button className={css.leaveprojectbtn}>
                         Leave Project
-                        <button className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} onClick={()=>this.HandleBackBtn(this)}>Back</button> 
-                        </button>
+                    </button>
+                    <button 
+                        className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} 
+                        onClick={()=>this.handleBackClick()}
+                    >
+                        Back
+                    </button>
                     </div>  
                 <div>
                     <h1 className={css.title}>Project {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                     <br/>
-                    <text className={css.subtitle}>Tutor:</text>
+                    <p className={css.subtitle}>Tutor:</p>
                     <br/><br/>
-                    <text className={css.subtitle}>Description:</text>
+                    <p className={css.subtitle}>Description:</p>
                     <br/><br/><br/>
-                    <text className={css.subtitle}><strong>Your Group:</strong></text>
+                    <p className={css.subtitle}><strong>Your Group:</strong></p>
                     <br/><br/>
-                    <button onClick={()=>this.ToGroupPage()} className={css.toprojectorgroupbtn}
-                    style={{backgroundColor: this.state.selectedcolor}}>
-                        <text className={css.toprojectorgroupbtntext}><br/><br/><br/><br/><br/><br/>Group{this.state.groupid}</text>
+                    <button 
+                        onClick={()=>this.handleGroupClick()}
+                        className={css.toprojectorgroupbtn}
+                        style={{backgroundColor: this.state.selected_color}}
+                    >
+                        <p className={css.toprojectorgroupbtnp}><br/><br/><br/><br/><br/><br/>Group{this.state.group_id}</p>
                     </button>
                 </div>   
-            </body>
+            </React.Fragment>
         )
     }
 }

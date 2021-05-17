@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
 import css from './Student.module.css'
 import InputTag from './InputTag.js'
+import PreferenceCategories from './PreferenceCategories'
 
-class StudentProfile extends Component{
+class StudentProfile extends Component {
 
     state = {
-        response: '',
-        post: '',
-        responseToPost: '',
-        id:"",
-        name:'Bob Higgins',
-        student:'12345678',
-        skills: [
-            "Java", "C++", "Python"
+        first_name: 'Bob',
+        last_name: 'Higgins',
+        external_id: '12345678',
+        preference_categories: [
+            { name: 'Skills', values: ['Maths', 'Skateboarding'] },
+            { name: 'Interests', vaues: ['Astronomy', 'Physics'] }
         ],
-        interests: [
-            'AI'
-        ]
+        interests: []
       };
 
     async componentDidMount() {
@@ -26,21 +23,25 @@ class StudentProfile extends Component{
         })
             .then(response => response.json())
             .then(j => {
-                console.log(j)
-                // this.setState({student: data.users[1]});
+                console.log(j);
+                const { external_id, first_name, last_name, PreferenceSelections } = j;
+
+                this.setState({ 
+                    external_id: external_id,
+                    first_name: first_name,
+                    last_name: last_name
+                 })
             })
     }
 
     render() {
         return(
-            <body>
+            <>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                            Group Arrangement
+                        <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
@@ -57,25 +58,32 @@ class StudentProfile extends Component{
                 <div>
                     <h1 className={css.title}>Profile</h1>
                     <br/>
-                    <text className={css.subtitle}>Student id:  {this.state.student}  </text>
+                    <p className={css.subtitle}>ID: {this.state.external_id}  </p>
                     <br/><br/>
-                    <text className={css.subtitle}>Student name: {this.state.name}</text>
+                    <p className={css.subtitle}>Name: {this.state.first_name} {this.state.last_name}</p>
                     <br/><br/><br/>
-                    <text className={css.subtitle}><strong>Preference:</strong></text>
-                    <div>
-                        <br/><br/><text className={css.textcontent}> • Skills:</text>
+
+                    {/* Display Preference Categories and preferences within each category
+                    {this.state.preference_categories.map((category, index) => (
+                        <p key={index}>Hello!</p>
+                    ))} */}
+                    <PreferenceCategories categories={this.state.preference_categories} />
+
+                    {/* <p className={css.subtitle}><strong>Preferences:</strong></p> */}
+                    {/* <div>
+                        <br/><br/><p className={css.pcontent}> • Skills:</p>
                     </div>
                     <div style={{marginLeft:350}}>
                         <InputTag existingTags={this.state.skills} />
                     </div>
                     <div>
-                        <br/><br/><text className={css.textcontent}> • Interest:</text>
+                        <br/><br/><p className={css.pcontent}> • Interest:</p>
                     </div>
                     <div style={{marginLeft:350}}>
                         <InputTag existingTags={this.state.interests} />
-                    </div>
+                    </div> */}
                 </div>   
-            </body>
+            </>
         )
     }
 }

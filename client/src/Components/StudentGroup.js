@@ -6,8 +6,8 @@ class StudentGroup extends Component{
     constructor(props)
     {
         super(props)
-        this.state={
-            ableToLeaveGroup: true
+        this.state = {
+            can_leave_group: true
         }
     }
 
@@ -15,7 +15,7 @@ class StudentGroup extends Component{
     {
         //var i=this.props.match.params.id;
         this.setState({
-            ableToLeaveGroup:!this.state.ableToLeaveGroup
+            can_leave_group: !this.state.can_leave_group
         })
         this.props.history.goBack();
         
@@ -23,14 +23,12 @@ class StudentGroup extends Component{
     
     render() {
         return(
-            <body>
+            <React.Fragment>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                        Group Arrangement
+                        <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
@@ -44,15 +42,15 @@ class StudentGroup extends Component{
                     </nav>
                 </div>     
                 <div className={css.projectrightcontent}>
-                    <button className={this.state.ableToLeaveGroup?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.HandleLeaveGroup(this)}>Leave Group</button>
+                    <button className={this.state.can_leave_group?css.leavegroupbtn_black:css.leavegroupbtn_white} onClick={()=>this.HandleLeaveGroup(this)}>Leave Group</button>
                 </div>
                 <div>
                     <h1 className={css.title}>Your Group {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                    <br/>
-                    <text className={css.subtitle}>Group Name:</text>
+                    <p className={css.subtitle}>Group Name:</p>
                     <br/><br/>
-                    <text className={css.subtitle}>Group Leader:</text>
+                    <p className={css.subtitle}>Group Leader:</p>
                     <br/><br/><br/>
                     <table className={css.grouptable} id="tgroup">
                         <tr className={css.grouptr}>
@@ -76,7 +74,7 @@ class StudentGroup extends Component{
                         </tr>
                     </table>
                 </div>   
-            </body>
+            </React.Fragment>
         )
     }
 }
