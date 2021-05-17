@@ -31,8 +31,10 @@ class AdminMainMenu extends Component{
         .then(response => response.json())
         .then(j => {
             this.setState({ projects: j });
+            console.log(j)
         })
     }
+
     _getrandomcolor(){
         var item = this.state.groupcolor[Math.floor(Math.random() * this.state.groupcolor.length)];
         this.setState({
