@@ -1,59 +1,58 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import { signout } from './AuthenticationHelper'
 
 class AdminMainMenu extends Component{
     
     constructor(props){
         super(props)
 
-        //for test only 
-        this.state={
-        groupcolor: [
-            'lightcoral',
-            'lightsalmon',
-            'lightpink',
-            'lightgreen',
-            'violet'
-        ],
-        selectedcolor: '',
-        //for test only
-        projects :[    
-                {id:1, name: "first"},
-                {id:2, name: "second"},
-                {id:3, name: "third"},
-        ]
-    }
+        this.state = {
+            groupcolor: [
+                'lightcoral',
+                'lightsalmon',
+                'lightpink',
+                'lightgreen',
+                'violet'
+            ],
+            selectedcolor: '',
+            projects: []
+        }
     }
 
     componentDidMount(){
         this._getrandomcolor();
+
+        fetch('http://localhost:6060/api/admin/projects', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(j => {
+            this.setState({ projects: j });
+            console.log(j)
+        })
     }
 
     _getrandomcolor(){
-        var item = this.state.groupcolor[Math.floor(Math.random()*this.state.groupcolor.length)];
+        var item = this.state.groupcolor[Math.floor(Math.random() * this.state.groupcolor.length)];
         this.setState({
             selectedcolor: item,
         })
     }
 
-    ToProjectPage(itemid)
-    {
-        var Id=itemid;
-        this.props.history.push(
-            '/admin/project/'+ Id
-            )
+    goToProject(project_id) {
+        this.props.history.push('/admin/project/'+ project_id)
     }
 
     render() {
         return(
-            <body>
+            <>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                            Group Arrangement
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
+                    </h1>          
                 </div>
 
                 <div>
@@ -73,17 +72,23 @@ class AdminMainMenu extends Component{
                         Projects
                     </h1>
                     <br/>
-                    <text className={css.subtitle}>Your Project(s):</text>
+                    <p className={css.subtitle}>Your Project(s):</p>
                     <br/><br/>
-                    {/* test only button, free to edit */}
-                    {this.state.projects.map(item =>(
-                        <button key={item.id} onClick={()=>this.ToProjectPage(item.id)} className={css.toprojectorgroupbtn}
-                        style={{backgroundColor: this.state.selectedcolor}} >
-                            <text className={css.toprojectorgroupbtntext} key={item.id}><br/><br/><br/><br/><br/><br/>Project&nbsp;{item.id}</text>
+
+                    {this.state.projects.map(project =>(
+                        <button 
+                            key={project.id} 
+                            onClick={()=>this.goToProject(project.id)} 
+                            className={css.toprojectorgroupbtn}
+                            style={{backgroundColor: this.state.selectedcolor}}
+                        >
+                            <p className={css.toprojectorgroupbtnp} key={project.id}>
+                                {project.name}
+                            </p>
                        </button>
                     ))}    
                 </div> 
-            </body>
+            </>
         )
     }
 }

@@ -23,6 +23,9 @@
   },
   "devDependencies": {
     "concurrently": "^4.0.1",
+    "eslint": "^7.26.0",
+    "eslint-plugin-only-warn": "^1.0.2",
+    "eslint-plugin-react": "^7.23.2",
     "sequelize-cli": "^6.2.0"
   },
   "scripts": {

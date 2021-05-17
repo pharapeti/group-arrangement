@@ -1,21 +1,21 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import { signout } from './AuthenticationHelper'
+
 class AdminCreateGroup extends Component{
 
-    BackToLastPage()
-    {
-        //var i=this.props.match.params.id    
+    navigateBack() {
         this.props.history.goBack();
     }
     
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>
                         </h1>          
                     </headers>   
                 </div>
@@ -30,20 +30,20 @@ class AdminCreateGroup extends Component{
                 </div>  
 
                 <div className={css.projectrightcontent}>
-                    <text className={css.subtitle}>
+                    <p className={css.subtitle}>
                         <br/><br/>Groups: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Create</button>
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
-                    </text>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Create</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
+                    </p>
                 </div>
 
                 <div >
                     <h1 className={css.title}>Create Group</h1>
-                    <text className={css.subtitle}>Student to be Allocated</text>
+                    <p className={css.subtitle}>Student to be Allocated</p>
                 </div>   
                 
-            </body>
+            </>
         )
     }
 }

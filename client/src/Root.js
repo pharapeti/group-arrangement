@@ -17,17 +17,17 @@ import App from './App'
 
 //here to set all the urls 
 //free to add and change
-class UrlSet extends Component{   
+class UrlSet extends Component{
     render() {
         return(
-          <Router>    
+          <Router>
             <div>
               <Route path="/" exact strict component={App}/>     
               <Route path="/student/home" exact strict component={StudentMainMenu}/>     
-              <Route path="/student/profile" exact strict component={StudentProfile}/>   
+              <Route path="/student/profile" exact strict component={StudentProfile}/>
               <Route path="/student/notification" exact strict component={StudentNotification}/> 
-              <Route path="/student/project/:id" exact strict component={StudentProject}/>   
-              <Route path="/student/project/:id/group/:id" exact strict component={StudentGroup}/>  
+              <Route path="/student/projects/:id" exact strict component={StudentProject}/>
+              <Route path="/student/project/:project_id/group/:group_id" exact strict component={StudentGroup}/>  
               <Route path="/admin/home" exact strict component={AdminMainMenu}/>  
               <Route path="/admin/notification" exact strict component={AdminNotification}/> 
               <Route path="/admin/project/create/new" exact strict component={AdminCreateProject}/> 

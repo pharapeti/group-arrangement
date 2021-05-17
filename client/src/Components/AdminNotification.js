@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import { signout } from './AuthenticationHelper'
 
 class StudentNotification extends Component{
     
     render() {
         return(
-            <body>
+            <>
                 <div>
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                         </h1>          
                     </headers>   
                 </div>
@@ -26,11 +27,11 @@ class StudentNotification extends Component{
                 <div>
                     <h1 className={css.title}>Notification</h1>
                     <br/>
-                    <text className={css.subtitle}>• Project Notification:</text>
+                    <p className={css.subtitle}>• Project Notification:</p>
                     <br/><br/><br/>
-                    <text className={css.subtitle}>• Group Notification:</text>
+                    <p className={css.subtitle}>• Group Notification:</p>
                 </div>   
-            </body>
+            </>
         )
     }
 }
