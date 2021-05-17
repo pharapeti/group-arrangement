@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import { signout } from './AuthenticationHelper'
 
 class AdminCreateProject extends Component{
     
@@ -10,7 +11,7 @@ class AdminCreateProject extends Component{
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                         </h1>          
                     </headers>   
                 </div>

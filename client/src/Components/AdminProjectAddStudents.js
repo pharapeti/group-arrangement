@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
-class AdminProjectAddStudents extends Component{
+import { signout } from './AuthenticationHelper'
 
-    BackToLastPage()
-    {
-        //var i=this.props.match.params.id    
+class AdminProjectAddStudents extends Component {
+
+    navigateBack() {
         this.props.history.goBack();
     }
     
@@ -15,7 +15,7 @@ class AdminProjectAddStudents extends Component{
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                         </h1>          
                     </headers>   
                 </div>
@@ -33,7 +33,7 @@ class AdminProjectAddStudents extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>Student in the project: 
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}}>Save</button>
                     </text>
                 </div>

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import css from './Student.module.css'
+import { signout } from './AuthenticationHelper'
 
-class StudentMainMenu extends Component{
+class StudentMainMenu extends Component {
 
     constructor(props){
         super(props)
@@ -52,7 +53,7 @@ class StudentMainMenu extends Component{
                 <div>
                     <h1 className={css.head}>
                             Group Arrangement
-                        <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                     </h1>          
                 </div>
                 <div>

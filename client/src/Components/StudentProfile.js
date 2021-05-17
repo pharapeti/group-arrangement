@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import css from './Student.module.css'
 import InputTag from './InputTag.js'
 import PreferenceCategories from './PreferenceCategories'
+import { signout } from './AuthenticationHelper'
 
 class StudentProfile extends Component {
 
@@ -40,7 +41,7 @@ class StudentProfile extends Component {
                 <div>
                     <h1 className={css.head}>
                             Group Arrangement
-                        <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                     </h1>          
                 </div>
                 <div>

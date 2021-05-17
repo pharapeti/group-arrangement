@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
 import DragNDrop from './DNDComponents/DragNDrop.js';
+import { signout } from './AuthenticationHelper'
 
 class AdminEditGroup extends Component{
 
-    BackToLastPage()
-    {
-        //var i=this.props.match.params.id    
+    navigateBack() {
         this.props.history.goBack();
     }
 
@@ -17,8 +16,8 @@ class AdminEditGroup extends Component{
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
-                        </h1>          
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
+                        </h1>
                     </headers>   
                 </div>
                 <div>
@@ -35,7 +34,7 @@ class AdminEditGroup extends Component{
                     <text className={css.subtitle}>
                         <br/><br/>
                         <br/>                
-                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.BackToLastPage()}>Cancel</button>
+                        <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
                         <button className={css.projecttwobutton} style={{marginTop: "595px"}}>Save</button>
                     </text>
                 </div>

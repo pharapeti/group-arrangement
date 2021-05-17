@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
+import { signout } from './AuthenticationHelper'
+
 // this page is like a sample for all the admin project pageXOffset, each project
 // has one project page and also the url should change  e.g. /admin/home/project 1
 class AdminProject extends Component{
@@ -45,7 +47,7 @@ class AdminProject extends Component{
                     <headers>
                         <h1 className={css.head}>
                              Group Arrangement
-                            <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                         </h1>          
                     </headers>   
                 </div>

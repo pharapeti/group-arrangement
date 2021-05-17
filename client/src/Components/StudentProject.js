@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import css from './Student.module.css'
+import { signout } from './AuthenticationHelper'
 
-class StudentGroup extends Component{
-
+class StudentProject extends Component{
     constructor(props) {
         super(props)
         this.state= {
@@ -18,11 +18,22 @@ class StudentGroup extends Component{
             //I just test it using 1 as param
             group_id: '1',
             project_id: this.props.match.params.id,
+            project: {}
         }
     }
 
     componentDidMount(){
         this._getrandomcolor();
+
+        fetch('http://localhost:6060/api/student/projects/' + this.state.project_id, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(j => {
+            console.log(j)
+            this.setState({ project: j });
+        })
     }
 
     _getrandomcolor(){
@@ -46,7 +57,7 @@ class StudentGroup extends Component{
                 <div>
                     <h1 className={css.head}>
                             Group Arrangement
-                        <button className={css.signout} onClick={()=>window.location.href="/"}>Sign out</button>      
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
                     </h1>          
                 </div>
                 <div>
@@ -80,20 +91,18 @@ class StudentGroup extends Component{
                         Leave Project
                     </button>
                     <button 
-                        className={this.state.btn_BackToStudentHome? css.backbtn_black:css.backbtn_white} 
+                        className={this.state.btn_BackToStudentHome? css.backbtn_black : css.backbtn_white} 
                         onClick={()=>this.handleBackClick()}
                     >
                         Back
                     </button>
                     </div>  
                 <div>
-                    <h1 className={css.title}>Project {this.props.match.params.id}</h1>
+                    <h1 className={css.title}>{this.state.project.name}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                     <br/>
                     <p className={css.subtitle}>Tutor:</p>
                     <br/><br/>
-                    <p className={css.subtitle}>Description:</p>
-                    <br/><br/><br/>
                     <p className={css.subtitle}><strong>Your Group:</strong></p>
                     <br/><br/>
                     <button 
@@ -101,7 +110,9 @@ class StudentGroup extends Component{
                         className={css.toprojectorgroupbtn}
                         style={{backgroundColor: this.state.selected_color}}
                     >
-                        <p className={css.toprojectorgroupbtnp}><br/><br/><br/><br/><br/><br/>Group{this.state.group_id}</p>
+                        <p className={css.toprojectorgroupbtnp}>
+                            Group{this.state.group_id}
+                        </p>
                     </button>
                 </div>   
             </React.Fragment>
@@ -109,4 +120,4 @@ class StudentGroup extends Component{
     }
 }
 
-export default StudentGroup;
+export default StudentProject;
