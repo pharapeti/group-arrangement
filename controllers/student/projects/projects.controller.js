@@ -42,7 +42,7 @@ exports.findOne = (req, res) => {
               const projectIds = groups.map(group => { return group.project_id });
 
               if (projectIds && projectIds.find(id => { return id === parseInt(req.params.id)} )) {
-                model.Project.findOne({ where: { id: req.params.id }}).then(project => { res.send(project) });
+                model.Project.findOne({ where: { id: req.params.id }, include: [{model: model.User}, {model: model.Group}]}).then(project => { res.send(project) });
               } else {
                 res.status(404).send({ message: `You do not have access to Project with id: ${req.params.id}` });
               }

@@ -15,7 +15,7 @@ class StudentGroup extends Component{
     componentDidMount(){
         const project_id = this.props.match.params.project_id;
         const group_id = this.props.match.params.group_id;
-        const url = 'http://localhost:6060/api/student/projects/' + project_id + 'groups/' + group_id;
+        const url = 'http://localhost:6060/api/student/groups/' + group_id;
 
         fetch(url, {
             credentials: 'include',
@@ -24,6 +24,7 @@ class StudentGroup extends Component{
         .then(response => response.json())
         .then(j => {
             this.setState({ group: j });
+            console.log(j)
         })
     }
 
@@ -64,7 +65,7 @@ class StudentGroup extends Component{
                     <h1 className={css.title}>Your Group {this.props.match.params.id}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                    <br/>
-                    <p className={css.subtitle}>Group Name:</p>
+                    <p className={css.subtitle}>Group Number:</p>
                     <br/><br/>
                     <p className={css.subtitle}>Group Leader:</p>
                     <br/><br/><br/>

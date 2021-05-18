@@ -17,8 +17,13 @@ class StudentProject extends Component{
             selected_color: '',
             //I just test it using 1 as param
             group_id: '1',
+            group_number: '1',
             project_id: this.props.match.params.project_id,
-            project: {}
+            project: {
+                User: {
+                    first_name: "Something"
+                }
+            }
         }
     }
 
@@ -34,6 +39,19 @@ class StudentProject extends Component{
             console.log(j)
             this.setState({ project: j });
         })
+
+        fetch('http://localhost:6060/api/student/groups', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(j => {
+            for(var i = 0; i < j.length; i++){
+                if(j[i].project_id == this.state.project_id){
+                    this.state.group_id = j[i].id;
+                }
+            }
+        })
     }
 
     _getrandomcolor(){
@@ -48,7 +66,7 @@ class StudentProject extends Component{
     }
     
     handleGroupClick() {
-        this.props.history.push('/student/projects/'+ this.state.project_id  +'/groups/'+ this.state.group_id)
+        this.props.history.push('/student/groups/'+ this.state.group_id)
     }
     
     render() {
@@ -101,7 +119,7 @@ class StudentProject extends Component{
                     <h1 className={css.title}>{this.state.project.name}</h1>
                     {/* buttons' position is related to the title, which is fixed */}
                     <br/>
-                    <p className={css.subtitle}>Tutor:</p>
+                    <p className={css.subtitle}>Tutor: {this.state.project.User.first_name}</p>
                     <br/><br/>
                     <p className={css.subtitle}><strong>Your Group:</strong></p>
                     <br/><br/>

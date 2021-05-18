@@ -27,7 +27,7 @@ class UrlSet extends Component{
               <Route path="/student/profile" exact strict component={StudentProfile}/>
               <Route path="/student/notifications" exact strict component={StudentNotification}/> 
               <Route path="/student/projects/:project_id" exact strict component={StudentProject}/>
-              <Route path="/student/projects/:project_id/groups/:group_id" exact strict component={StudentGroup}/>  
+              <Route path="/student/groups/:group_id" exact strict component={StudentGroup}/>  
               <Route path="/admin/home" exact strict component={AdminMainMenu}/>  
               <Route path="/admin/notifications" exact strict component={AdminNotification}/> 
               <Route path="/admin/projects/new" exact strict component={AdminCreateProject}/> 
