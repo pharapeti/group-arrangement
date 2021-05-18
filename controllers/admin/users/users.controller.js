@@ -3,8 +3,6 @@ const Sequelize = require('sequelize');
 const { sequelize } = require('../../../models/index');
 
 exports.findAll = (req, res) => {
-  console.log(req.query);
-
   let queryObject = {};
 
   // Search for User by external_id if provided
@@ -42,6 +40,42 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving users."
       });
     });
+  }
+}
+
+// Find students that are in a project but aren't assigned to a group yet
+exports.findUnassigned = (req, res) => {
+  if(req.query['project_id']){
+    const project_id = req.query['project_id'];
+
+    let queryString = `
+      SELECT DISTINCT users.*
+      FROM users
+      JOIN project_allocations ON project_allocations.user_id = users.id
+      JOIN projects ON project_allocations.project_id = ${project_id}
+      WHERE users.id NOT IN (
+        SELECT DISTINCT users.id
+        FROM users
+        INNER JOIN group_allocations ON group_allocations.user_id = users.id
+        INNER JOIN groups ON group_allocations.group_id = groups.id
+        INNER JOIN projects ON projects.id = groups.project_id
+        WHERE projects.id = ${project_id}
+      )
+    `;
+
+    sequelize.query(queryString, {
+      model: model.User
+    }).then(users => {
+      res.send(users);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
+      });
+    });
+  } else {
+    res.status(500).send({ message: 'Project ID not provided as a URL parameter' })
   }
 }
 

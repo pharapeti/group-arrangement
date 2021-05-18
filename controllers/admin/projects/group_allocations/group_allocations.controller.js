@@ -6,7 +6,10 @@ exports.findAll = (req, res) => {
   .then(groups => {
     const group_ids = groups.map(group => group.id);
 
-    model.GroupAllocation.findAll({ where: { group_id: group_ids }})
+    model.GroupAllocation.findAll({ 
+      where: { group_id: group_ids },
+      include: model.User
+    })
       .then(group_allocations => {
         res.send(group_allocations);
       })
@@ -58,6 +61,8 @@ exports.createOne = (req, res) => {
 
 // Delete a single Group Allocation
 exports.deleteOne = (req, res) => {
+  console.log(req.body);
+  console.log('HERE')
   if (req.body.group_id && req.body.external_id) {
 
     model.User.findOne({ where: { external_id: req.body.external_id }})
