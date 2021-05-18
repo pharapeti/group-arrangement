@@ -49,7 +49,7 @@ exports.findUnassigned = (req, res) => {
     const project_id = req.query['project_id'];
 
     let queryString = `
-      SELECT DISTINCT users.* 
+      SELECT DISTINCT users.*
       FROM users
       JOIN project_allocations ON project_allocations.user_id = users.id
       JOIN projects ON project_allocations.project_id = ${project_id}

@@ -8,9 +8,18 @@ class AdminProjectGroups extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            assignedStudents: [],
+            unassignedStudents: [],
             groups: []
         }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+
+        console.log({ shouldUpdate: nextState.unassignedStudents.length != [] &&
+            nextState.groups.length != []});
+
+        return nextState.unassignedStudents.length != [] &&
+        nextState.groups.length != []
     }
 
     componentDidMount(){
@@ -46,7 +55,6 @@ class AdminProjectGroups extends Component{
         })
         .then(response => response.json())
         .then(j => {
-            console.log(j)
             this.setState({ groups: j })
         })
     }
@@ -104,14 +112,14 @@ class AdminProjectGroups extends Component{
                         </div>
                     ))}
 
-                    <p className={css.subtitle}>Groups:</p>
+                    {/* <p className={css.subtitle}>Groups:</p>
                     <div style={{ 'display': 'flex' }}>
                         { this.state.groups && this.state.groups.map((group, index) => (
                             <Group group={group} key={index} />
                         ))}
-                    </div>
+                    </div> */}
                 </div>
-                {/* <DragNDrop /> */}
+                <DragNDrop groups={this.state.groups} unassignedStudents={this.state.unassignedStudents}/>
             </>
         )
     }

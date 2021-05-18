@@ -6,11 +6,11 @@
     margin: 8px;
     border: 1px solid lightgrey;
     border-radius: 2px;
-    width: 600px;
+    width: 200px;
 
     display: flex;
     flex-direction: column;
-    margin-right: 300px;
+    margin-right: 100px;
 }
 
 .title{
