@@ -46,7 +46,7 @@ class AdminCreateProject extends Component{
     HandleEditBtn()
     {
         const jsonString = JSON.stringify({ name: this.state.project_name, max_group_size: this.state.max_group_size });
-        fetch('http://localhost:6060/api/admin/projects/4', {
+        fetch('http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id, {
             method:'PUT',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json',

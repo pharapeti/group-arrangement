@@ -12,6 +12,8 @@ class AdminProject extends Component{
             project_name:'',
             project_id:'',
             project_group_size:'',
+            project_groups:[],
+            students_in_projects:[]
 
         }
     }
@@ -36,6 +38,30 @@ class AdminProject extends Component{
             }
             
         })
+
+        
+        fetch('http://localhost:6060/api/admin/projects/'+ this.props.match.params.project_id +'/groups', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => response.json())
+        .then(j => {
+    
+            this.setState({ project_groups:j })
+            //console.log(this.state.project_groups)
+        })
+
+        fetch('http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id + '/project_allocations', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => response.json())
+        .then(j => {
+    
+            this.setState({ students_in_projects:j })
+            console.log(this.state.students_in_projects)
+        })
+        
     }
 
 
@@ -67,7 +93,7 @@ class AdminProject extends Component{
         if(window.confirm("Are you sure?"))
         {
           window.location.href="/admin/home"
-          fetch('http://localhost:6060/api/admin/projects/5' , {
+          fetch('http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id , {
               method: 'DELETE',
               headers: { 'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': "*",
@@ -103,7 +129,14 @@ class AdminProject extends Component{
                 <div className={css.projectrightcontent}>
                     <p className={css.subtitle}>
                         <br/>
-                        Student List:                 
+                        Student List:
+                        <br/>
+                        {this.state.students_in_projects.map(students_in_project =>( 
+                            <li className={css.textcontent} key={students_in_project.id}>
+                                {students_in_project.first_name} {students_in_project.last_name}
+                                <br/><br/>
+                            </li>
+                        ))}                 
                         <button className={css.addstudentbtn} onClick={()=>this.ToAddStudentPage()}>Add Student</button> 
                         <button className={css.projecttwobutton} onClick={()=>this.toCreateGroupPage()}>Create Groups</button>
                         <button className={css.projecttwobutton} onClick={()=>this.ToEditGroupPage()}>Edit Groups</button>
@@ -122,6 +155,14 @@ class AdminProject extends Component{
                     <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Skill:</p>
                     <br/>
                     <p className={css.textcontent} style={{fontSize: "35px"}}>&nbsp;&nbsp;Groups:</p>
+                      {this.state.project_groups.map(project_group =>( 
+                            <li className={css.textcontent} key={project_group.id}>
+                                Group Id: {project_group.id}&nbsp;
+                                Group Number: {project_group.group_number}
+                                <br/><br/>
+                            </li>
+                      ))}
+                    
                 </div>   
             </>
         )
