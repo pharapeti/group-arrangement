@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import css from './Admin.module.css'
 import { signout } from './AuthenticationHelper'
 
-// this page is like a sample for all the admin project pageXOffset, each project
-// has one project page and also the url should change  e.g. /admin/home/project 1
 class AdminProject extends Component{
 
     constructor(props){
@@ -27,24 +25,24 @@ class AdminProject extends Component{
     }
 
 
-    ToAddStudentPage() {
+    goToAddStudentPage() {
         const project_id = this.props.match.params.project_id;  
         this.props.history.push('/admin/projects/' + project_id +'/add_student')
     }
 
-    toCreateGroupPage() {
+    goToCreateGroupPage() {
         const project_id = this.props.match.params.project_id;  
         this.props.history.push('/admin/projects/' + project_id + '/groups/create');
     }
 
-    ToEditGroupPage() {
+    goToEditGroupPage() {
         const project_id = this.props.match.params.project_id;
 
         //this.props.history.push('/admin/projects/' + project_id + '/groups');
         alert('NOT IMPLEMENTED!!!!')
     }
 
-    ToSettingPage() {
+    goToSettingsPage() {
         const project_id = this.props.match.params.project_id; 
         this.props.history.push('/admin/projects/'+ project_id +'/edit')
     }
@@ -56,7 +54,7 @@ class AdminProject extends Component{
                     <h1 className={css.head}>
                             Group Arrangement
                         <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
-                    </h1>          
+                    </h1>
                 </div>
                 <div>
                     <nav className={css.sidebar}>
@@ -72,21 +70,21 @@ class AdminProject extends Component{
                     <p className={css.subtitle}>
                         <br/>
                         Student List:                 
-                        <button className={css.addstudentbtn} onClick={()=>this.ToAddStudentPage()}>Add Student</button> 
-                        <button className={css.projecttwobutton} onClick={()=>this.toCreateGroupPage()}>Create Groups</button>
-                        <button className={css.projecttwobutton} onClick={()=>this.ToEditGroupPage()}>Edit Groups</button>
+                        <button className={css.addstudentbtn} onClick={()=>this.goToAddStudentPage()}>Add Student</button> 
+                        <button className={css.projecttwobutton} onClick={()=>this.goToCreateGroupPage()}>Create Groups</button>
+                        <button className={css.projecttwobutton} onClick={()=>this.goToEditGroupPage()}>Edit Groups</button>
                     </p>
                 </div>
 
                 <div >
                     <h1 className={css.title}>
                         { this.state.name }
-                        <button className={css.projectgraybutton} onClick={()=>this.ToSettingPage()}>Edit Setting</button>
+                        <button className={css.projectgraybutton} onClick={()=>this.goToSettingsPage()}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.max_group_size}</p>
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Interest:</p>
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Skill:</p>
+                    <p className={css.textcontent}><br/><br/>Max Group Size: {this.state.max_group_size}</p>
+                    <p className={css.textcontent}><br/><br/>Interests:</p>
+                    <p className={css.textcontent}><br/><br/>Skills:</p>
                     <br/><br/><br/>
                     <p className={css.textcontent} style={{fontSize: "35px"}}>&nbsp;&nbsp;Groups:</p>
                 </div>   
