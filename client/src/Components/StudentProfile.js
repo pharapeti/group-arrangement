@@ -7,8 +7,10 @@ class StudentProfile extends Component {
 	state = {
 		name: '',
 		external_id: '',
+        internal_id: '',
 		skills: [],
-		interests: []
+		interests: [],
+        allPreferences: [],
 	};
 
 	componentDidMount() {
@@ -18,7 +20,9 @@ class StudentProfile extends Component {
 		})
 		.then(response => response.json())
 		.then(j => {
-			this.setState({ external_id: j.external_id, name: j.first_name + " " + j.last_name })
+            console.log("showing user")
+            console.log(j)
+			this.setState({ internal_id: j.id, external_id: j.external_id, name: j.first_name + " " + j.last_name })
 		})
 
 		fetch('http://localhost:6060/api/student/preference_selections', {
@@ -30,6 +34,9 @@ class StudentProfile extends Component {
 	}
 
 	loadPreferences(p) {
+        console.log("show all preferences")
+        console.log(p);
+        this.setState({allPreferences: p});
 		for (var i = 0; i < p.length; i++) {
 			if (p[i].preference_category_id == 1) {
 				this.setState({ skills: [...this.state.skills, p[i].name] });
@@ -40,7 +47,19 @@ class StudentProfile extends Component {
 				// console.log(this.state.interests);
 			}
 		}
+        console.log(this.state.skills);
+        console.log(this.state.interests);
 	}
+
+    reloadPreferences() {
+        fetch('http://localhost:6060/api/student/preference_selections', {
+			credentials: 'include',
+			headers: { 'Content-Type': 'applications/json' }
+		})
+		.then(response => response.json())
+		.then(p => this.setState({allPreferences: p}))
+
+    }
 
 	handleSkillAdd = (val) => {
 		const jsonString = JSON.stringify({ name: val, preference_category_id: 1 });
@@ -54,6 +73,7 @@ class StudentProfile extends Component {
 		.then(response => response.json())
 		.then(j => {
 			console.log(j)
+            this.reloadPreferences()
 		})
 	}
 
@@ -69,8 +89,46 @@ class StudentProfile extends Component {
 		.then(response => response.json())
 		.then(j => {
 			console.log(j)
+            this.reloadPreferences();
 		})
 	}
+
+    handleSkillRemove = (val) => {
+        for (var i=0; i<this.state.allPreferences.length; i++) {
+            if(this.state.allPreferences[i].name == val) {
+                const id = this.state.allPreferences[i].id;
+
+                fetch('http://localhost:6060/api/student/preference_selections/' + id, {
+                    method: 'delete',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                })
+                .then(response => response.json())
+                .then(j => {
+                    console.log(j)
+                })
+            }
+        }
+    }
+
+    handleInterestRemove = (val) => {
+        for (var i=0; i<this.state.allPreferences.length; i++) {
+            if(this.state.allPreferences[i].name == val) {
+                const id = this.state.allPreferences[i].id;
+
+                fetch('http://localhost:6060/api/student/preference_selections/' + id, {
+                    method: 'delete',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                })
+                .then(response => response.json())
+                .then(j => {
+                    console.log(j)
+                })
+            }
+        }
+    }
+
 
 	render() {
 		return(
@@ -106,13 +164,13 @@ class StudentProfile extends Component {
 						<br/><br/><p className={css.pcontent}> • Skills:</p>
 					</div>
 					<div style={{marginLeft:350}}>
-						<InputTag existingTags={this.state.skills} addedTags={this.handleSkillAdd} />
+						<InputTag existingTags={this.state.skills} addedTags={this.handleSkillAdd} removedTags={this.handleSkillRemove} />
 					</div>
 					<div>
 						<br/><br/><p className={css.pcontent}> • Interest:</p>
 					</div>
 					<div style={{marginLeft:350}}>
-						<InputTag existingTags={this.state.interests} addedTags={this.handleInterestAdd} />
+						<InputTag existingTags={this.state.interests} addedTags={this.handleInterestAdd} removedTags={this.handleInterestRemove} />
 					</div>
 				</div>   
 			</>

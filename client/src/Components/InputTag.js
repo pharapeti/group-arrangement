@@ -10,15 +10,20 @@ class InputTag extends Component {
         };
     }
 
-    componentWillReceiveProps(props) {
-        this.setState({ tags: this.props.existingTags });
-        console.log("INSIDE INPUT TAG " + this.state.tags)
+    componentDidUpdate(prevProps) {
+        if(this.props.existingTags !== prevProps.existingTags) {
+            this.setState({ tags: this.props.existingTags }); 
+        }
+        console.log(this.state.tags);
+        
     }
+
 
     inputKeyDown = (e) => {
         const val = e.target.value;
         if (e.key === 'Enter' && val) {
-            if (this.state.tags.find(tag => tag.toString().toLowerCase === val.toLowerCase())) {
+            if (this.state.tags.find(tag => tag.toString().toLowerCase() == val.toLowerCase())) {
+                this.tagInput.value = null;
                 return;
             }
             this.setState({tags: [...this.state.tags, val]});
@@ -32,6 +37,7 @@ class InputTag extends Component {
 
     removeTag = (i) => {
         const newTags = [ ...this.state.tags ];
+        this.props.removedTags(this.state.tags[i]);
         newTags.splice(i, 1);
         this.setState({ tags: newTags });
       }

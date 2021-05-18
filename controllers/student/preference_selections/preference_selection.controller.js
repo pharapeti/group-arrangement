@@ -83,7 +83,7 @@ exports.findOne = (req, res) => {
 exports.deleteOne = (req, res) => {
   model.User.findOne({ where: { external_id: req.session.external_id } })
   .then(user => {
-    model.PreferenceSelection.findOne({ where: { user_id: user.id, id: req.params.id } })
+    model.PreferenceSelection.findOne({ where: { user_id: user.id, preference_id: req.params.id } })
       .then(preference_selection => {
         preference_selection.destroy();
         res.status(200).send('Deleted!');
