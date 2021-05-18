@@ -81,9 +81,9 @@ class StudentProject extends Component{
                         Notification
                     </button>
                     
-                    <line className={css.line1}/>   
-                    <line className={css.line2}/>  
-                    <line className={css.line3}/>                 
+                    <div className={css.line1}/>   
+                    <div className={css.line2}/>  
+                    <div className={css.line3}/>                 
                     </nav>
                 </div>      
                 <div className={css.projectrightcontent}>

@@ -6,22 +6,20 @@ class AdminProjectAddStudents extends Component {
     constructor(props){
         super(props);
         this.state = {
-            studentsInProject: [
-                { id: '', first_name: '', last_name: '' }
-            ],
-            studentsInSystem: [
-                { id: '', first_name: '', last_name: '' }
-            ]
+            studentsInProject: [],
+            studentsInSystem: [],
         }
     }
 
     componentDidMount(){
-        this.queryAllStudents();
-        this.queryAllStudentsInProject();
+        this.fetchUnallocatedStudents();
+        this.fetchAllocatedStudents();
     }
 
-    queryAllStudents() {
-        fetch('http://localhost:6060/api/admin/users', {
+    fetchUnallocatedStudents() {
+        const project_id = this.props.match.params.project_id;
+
+        fetch('http://localhost:6060/api/admin/users?project_id=' + project_id, {
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -29,16 +27,16 @@ class AdminProjectAddStudents extends Component {
         .then(j => {
 
             const students = j.map(student => {
-                const { id, first_name, last_name } = student;
+                const { id, first_name, last_name, external_id } = student;
 
-                return { id, first_name, last_name };
+                return { id, first_name, last_name, external_id };
             })
 
             this.setState({ studentsInSystem: students })
         })
     }
 
-    queryAllStudentsInProject() {
+    fetchAllocatedStudents() {
         const url = 'http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id + '/project_allocations';
         fetch(url, {
             credentials: 'include',
@@ -58,6 +56,22 @@ class AdminProjectAddStudents extends Component {
         })
     }
 
+    handleAddStudentToProject(external_id) {
+        const url = 'http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id + '/project_allocations';
+        const jsonString = JSON.stringify({ external_id: external_id });
+
+        fetch(url, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: jsonString
+        })
+        .then(response => response.json())
+        .then(_j => {
+            location.reload();
+        })
+    }
+
     navigateBack() {
         this.props.history.goBack();
     }
@@ -74,15 +88,15 @@ class AdminProjectAddStudents extends Component {
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/admin/home"}}>Menu</button>                   
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notification</button>                 
+                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notifications</button>                 
                          
-                    <line className={css.line1}/>   
-                    <line className={css.line2}/>                   
+                    <div className={css.line1}/>   
+                    <div className={css.line2}/>                   
                     </nav>
                 </div>  
 
                  <div className={css.projectrightcontent}>
-                    <p className={css.subtitle}> Student in the project: </p>
+                    <p className={css.subtitle}> Currently in project: </p>
                     { this.state.studentsInProject.map((student, index) => (
                         <li key={index}>{student.first_name} {student.last_name}</li>
                     ))}
@@ -93,9 +107,12 @@ class AdminProjectAddStudents extends Component {
 
                 <div >
                     <h1 className={css.title}>Project {this.props.match.params.id}</h1>
-                    <p className={css.subtitle}>All students:</p>
-                    { this.state.studentsInSystem.map((student, index) => (
-                        <li key={index}>{student.first_name} {student.last_name}</li>
+                    <p className={css.subtitle}>Unassigned:</p>
+                    { this.state.studentsInSystem && this.state.studentsInSystem.map((student, index) => (
+                        <div style={{ 'display': 'flex' }} key={index} >
+                            <li>{student.first_name} {student.last_name}</li>
+                            <button href="#" onClick={() => this.handleAddStudentToProject(student.external_id)}>Add</button>
+                        </div>
                     ))}
                 </div>
                 
