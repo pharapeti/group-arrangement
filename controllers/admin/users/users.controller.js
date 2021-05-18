@@ -49,11 +49,18 @@ exports.findUnassigned = (req, res) => {
     const project_id = req.query['project_id'];
 
     let queryString = `
-      SELECT DISTINCT users.*
-      FROM   users
-      INNER JOIN project_allocations ON project_allocations.user_id = users.id AND project_allocations.project_id = ${project_id}
-      LEFT JOIN groups ON groups.project_id = ${project_id}
-      LEFT JOIN group_allocations ON group_allocations.group_id = groups.id;
+      SELECT DISTINCT users.* 
+      FROM users
+      JOIN project_allocations ON project_allocations.user_id = users.id
+      JOIN projects ON project_allocations.project_id = ${project_id}
+      WHERE users.id NOT IN (
+        SELECT DISTINCT users.id
+        FROM users
+        INNER JOIN group_allocations ON group_allocations.user_id = users.id
+        INNER JOIN groups ON group_allocations.group_id = groups.id
+        INNER JOIN projects ON projects.id = groups.project_id
+        WHERE projects.id = ${project_id}
+      )
     `;
 
     sequelize.query(queryString, {
