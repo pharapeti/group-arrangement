@@ -105,7 +105,7 @@ exports.arrange = (req, res) => {
             })
           })
         });
-        res.status(200).send('Arranged!');
+        res.status(200).send({ message: 'Arranged!' });
       }).catch(err => {
         res.status(500).send({ message: err.message || 'Cannot find Project Allocations' });
       })

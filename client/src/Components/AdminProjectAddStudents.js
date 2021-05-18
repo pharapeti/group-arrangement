@@ -6,8 +6,8 @@ class AdminProjectAddStudents extends Component {
     constructor(props){
         super(props);
         this.state = {
-            studentsInProject: [],
-            studentsInSystem: [],
+            assignedStudents: [],
+            unassignedStudents: []
         }
     }
 
@@ -32,7 +32,7 @@ class AdminProjectAddStudents extends Component {
                 return { id, first_name, last_name, external_id };
             })
 
-            this.setState({ studentsInSystem: students })
+            this.setState({ unassignedStudents: students })
         })
     }
 
@@ -52,7 +52,7 @@ class AdminProjectAddStudents extends Component {
                 return { id, first_name, last_name };
             })
 
-            this.setState({ studentsInProject: students })
+            this.setState({ assignedStudents: students })
         })
     }
 
@@ -97,7 +97,7 @@ class AdminProjectAddStudents extends Component {
 
                  <div className={css.projectrightcontent}>
                     <p className={css.subtitle}> Currently in project: </p>
-                    { this.state.studentsInProject.map((student, index) => (
+                    { this.state.assignedStudents.map((student, index) => (
                         <li key={index}>{student.first_name} {student.last_name}</li>
                     ))}
 
@@ -108,7 +108,7 @@ class AdminProjectAddStudents extends Component {
                 <div >
                     <h1 className={css.title}>Project {this.props.match.params.id}</h1>
                     <p className={css.subtitle}>Unassigned:</p>
-                    { this.state.studentsInSystem && this.state.studentsInSystem.map((student, index) => (
+                    { this.state.unassignedStudents && this.state.unassignedStudents.map((student, index) => (
                         <div style={{ 'display': 'flex' }} key={index} >
                             <li>{student.first_name} {student.last_name}</li>
                             <button href="#" onClick={() => this.handleAddStudentToProject(student.external_id)}>Add</button>
