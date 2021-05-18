@@ -30,16 +30,9 @@ class AdminProject extends Component{
         this.props.history.push('/admin/projects/' + project_id +'/add_student')
     }
 
-    goToCreateGroupPage() {
+    goToProjectGroups() {
         const project_id = this.props.match.params.project_id;  
-        this.props.history.push('/admin/projects/' + project_id + '/groups/create');
-    }
-
-    goToEditGroupPage() {
-        const project_id = this.props.match.params.project_id;
-
-        //this.props.history.push('/admin/projects/' + project_id + '/groups');
-        alert('NOT IMPLEMENTED!!!!')
+        this.props.history.push('/admin/projects/' + project_id + '/groups');
     }
 
     goToSettingsPage() {
@@ -71,8 +64,7 @@ class AdminProject extends Component{
                         <br/>
                         Student List:                 
                         <button className={css.addstudentbtn} onClick={()=>this.goToAddStudentPage()}>Add Student</button> 
-                        <button className={css.projecttwobutton} onClick={()=>this.goToCreateGroupPage()}>Create Groups</button>
-                        <button className={css.projecttwobutton} onClick={()=>this.goToEditGroupPage()}>Edit Groups</button>
+                        <button className={css.projecttwobutton} onClick={()=>this.goToProjectGroups()}>Create Groups</button>
                     </p>
                 </div>
 
