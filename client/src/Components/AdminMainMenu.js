@@ -65,7 +65,7 @@ class AdminMainMenu extends Component{
                     </nav>
                 </div> 
                 <div className={css.projectrightcontent}>
-                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/projects/new"}}>Create Project</button>
+                    <button className={css.createprojectbtn} onClick={()=>{window.location.href="/admin/projects/create/new"}}>Create Project</button>
                 </div>
                 <div>
                     <h1 className={css.title}>
@@ -82,7 +82,7 @@ class AdminMainMenu extends Component{
                             className={css.toprojectorgroupbtn}
                             style={{backgroundColor: this.state.selectedcolor}}
                         >
-                            <p className={css.toprojectorgroupbtnp} key={project.id}>
+                            <p className={css.toprojectorgroupbtntext} key={project.id}>
                                 {project.name}
                             </p>
                        </button>

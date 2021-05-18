@@ -4,8 +4,63 @@ import { signout } from './AuthenticationHelper'
 
 class AdminCreateProject extends Component{
 
-    handleCancelButton(){
+    state={
+        project_name:'',
+        project_max_size:'',
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:6060/api/admin/projects', {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => response.json())
+        .then(j => {
+            for(var i=0; i<j.length;i++)
+            {
+                if(j[i].id==this.props.match.params.project_id)
+                {
+                  console.log(this.props.match.params.project_id);
+                  this.setState({ 
+                      project_name:j[i].name,
+                      project_max_size:j[i].max_group_size,
+                  });
+                }
+            }
+            
+        })
+    }
+
+
+    setMaxGroupSize(e) {
+        if(e.target.value>=0)
+        this.setState({ project_max_size: e.target.value });
+    }
+
+    HandleCencelBtn()
+    {
         this.props.history.goBack();
+    }
+
+    //NEED TO FIX
+    HandleEditBtn()
+    {
+        const jsonString = JSON.stringify({ name: this.state.project_name, max_group_size: this.state.max_group_size });
+        fetch('http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id, {
+            method:'PUT',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json',
+            'Accept': 'application/json', 
+            'Access-Control-Allow-Origin': "*",
+            'Access-Control-Allow-Methods': "PUT"},
+            body: jsonString
+        })
+        .then(response => response.json())
+        .then(j => {
+            console.log(j)
+            this.props.history.goBack()
+            return j;
+        })
     }
     
     render() {
@@ -27,39 +82,39 @@ class AdminCreateProject extends Component{
                     </nav>
                 </div>      
                 <div className={css.projectrightcontent}>
-                    <button className={css.createprojectfirstbtn}>
+                    <button className={css.createprojectfirstbtn} onClick={()=>this.HandleEditBtn()}>
                         Edit
                         <br/>
-                    <button className={css.createprojectsecondbtn}   onClick={()=>this.handleCancelButton()}>Cancel</button>
+                    <button className={css.createprojectsecondbtn} onClick={()=>this.HandleCencelBtn()}>Cancel</button>
                     </button>    
                 </div>
                 <div>
-                    <h1 className={css.title}>Edit Project {this.props.match.params.id}</h1>
+                    <h1 className={css.title}>Edit Project {this.props.match.params.project_id}</h1>
                     <br/>
                     <p className={css.subtitle}>
                         Project Name: 
-                        <input className={css.createprojectinput} style={{marginLeft: '50px'}}></input>
+                        <input className={css.createprojectinput} style={{marginLeft: '50px'}} defaultValue={this.state.project_name}></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
-                        Group Size: 
-                        <input className={css.createprojectinput} style={{marginLeft: '80.5px'}}></input>
+                        Max Group Size: 
+                        <input className={css.createprojectinput} 
+                          style={{marginLeft: '16px'}} 
+                          type='number'
+                          value={this.state.project_max_size}
+                          onChange={ this.setMaxGroupSize.bind(this) }
+                        ></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Interest: 
                         <input className={css.createprojectinput} style={{marginLeft: '131px'}}></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Skills: 
                         <input className={css.createprojectinput} style={{marginLeft: '160px'}}></input>
                     </p>
-                    <br/><br/>
                     <p className={css.subtitle}>
                         Description: 
                     </p>
-                    <br/><br/>
                     <textarea className={css.createprojectdescriptioninput}></textarea>
                     
                 </div>   
