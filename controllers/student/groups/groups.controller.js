@@ -38,7 +38,18 @@ exports.findOne = (req, res) => {
           const groupIds = group_allocations.map(group_alloc => { return group_alloc.group_id; })
 
           if (groupIds && groupIds.find(id => { return id === parseInt(req.params.id)} )) {
-            model.Group.findOne({ where: { id: req.params.id }}).then(group => { res.send(group) });
+            model.Group.findOne({ where: { id: req.params.id }})
+            .then(group => 
+              { 
+                model.GroupAllocation.findAll({ where: { group_id: group.id } })
+                .then(group_alloc_for_users => 
+                  {
+                    const uesrIds = group_alloc_for_users.map(group_alloc => { return group_alloc.user_id; })
+
+                    model.User.findAll({where: {id: uesrIds}})
+                    .then(users => res.send(users))
+                  }) 
+              });
           } else {
             res.status(404).send({ message: `You do not have access to Group with id: ${req.params.id}` });
           }
