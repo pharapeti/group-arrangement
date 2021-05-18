@@ -4,8 +4,7 @@ import { signout } from './AuthenticationHelper'
 
 class AdminCreateProject extends Component{
 
-    HandleCencelBtn()
-    {
+    handleCancelButton(){
         this.props.history.goBack();
     }
     
@@ -13,17 +12,15 @@ class AdminCreateProject extends Component{
         return(
             <>
                 <div>
-                    <headers>
-                        <h1 className={css.head}>
-                             Group Arrangement
-                            <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
-                        </h1>          
-                    </headers>   
+                    <h1 className={css.head}>
+                            Group Arrangement
+                        <button className={css.signout} onClick={()=>signout()()}>Sign out</button>      
+                    </h1>          
                 </div>
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/admin/home"}}>Menu</button>                   
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notification</button>                 
+                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notifications</button>                 
                          
                     <div className={css.line1}/>   
                     <div className={css.line2}/>                   
@@ -33,7 +30,7 @@ class AdminCreateProject extends Component{
                     <button className={css.createprojectfirstbtn}>
                         Edit
                         <br/>
-                    <button className={css.createprojectsecondbtn}   onClick={()=>this.HandleCencelBtn()}>Cancel</button>
+                    <button className={css.createprojectsecondbtn}   onClick={()=>this.handleCancelButton()}>Cancel</button>
                     </button>    
                 </div>
                 <div>

@@ -9,32 +9,20 @@ class AdminProject extends Component{
     constructor(props){
         super(props)
         this.state = {
-            name:'',
-            id:'',
-            group_size:'',
+            name: 'Project',
+            max_group_size: '',
 
         }
     }
 
     componentDidMount(){
-        fetch('http://localhost:6060/api/admin/projects', {
+        fetch('http://localhost:6060/api/admin/projects/' + this.props.match.params.project_id, {
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(j => {
-            for(var i=0; i<j.length;i++)
-            {
-                if(j[i].id==this.props.match.params.id)
-                {
-                  console.log(j[i]);
-                  this.setState({ 
-                      name:j[i].name,
-                      group_size:j[i].max_group_size,
-                  });
-                }
-            }
-            
+            this.setState({ name: j.name, max_group_size: j.max_group_size });
         })
     }
 
@@ -58,7 +46,7 @@ class AdminProject extends Component{
 
     ToSettingPage() {
         const project_id = this.props.match.params.project_id; 
-        this.props.history.push('/admin/projects/'+ Id +'/edit')
+        this.props.history.push('/admin/projects/'+ project_id +'/edit')
     }
     
     render() {
@@ -73,7 +61,7 @@ class AdminProject extends Component{
                 <div>
                     <nav className={css.sidebar}>
                     <button className={css.sidebutton1} onClick={()=>{window.location.href="/admin/home"}}>Menu</button>                   
-                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notification</button>                 
+                    <button className={css.sidebutton2} onClick={()=>{window.location.href="/admin/notifications"}}>Notifications</button>                 
                          
                     <div className={css.line1}/>   
                     <div className={css.line2}/>                   
@@ -92,12 +80,11 @@ class AdminProject extends Component{
 
                 <div >
                     <h1 className={css.title}>
-                        Project {this.props.match.params.id}
+                        { this.state.name }
                         <button className={css.projectgraybutton} onClick={()=>this.ToSettingPage()}>Edit Setting</button>
                         <button className={css.projectgraybutton}>Delete</button>
                     </h1> 
-                    <p className={css.textcontent}><br/>&nbsp;&nbsp;&nbsp;Description: {this.state.name}</p>
-                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.group_size}</p>
+                    <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Max Group Size: {this.state.max_group_size}</p>
                     <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Interest:</p>
                     <p className={css.textcontent}><br/><br/>&nbsp;&nbsp;&nbsp;Skill:</p>
                     <br/><br/><br/>
