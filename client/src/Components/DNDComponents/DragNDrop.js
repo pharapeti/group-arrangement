@@ -9,14 +9,10 @@ class DragNDrop extends React.Component {
         this.state = this.buildState();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.groups != this.props.groups || 
-            nextProps.unassignedStudents != this.props.unassignedStudents;
-    }
-
     componentDidUpdate(prevProps) {
-        this.setState(this.buildState());
-        this.forceUpdate();
+        if(this.props !== prevProps) {
+            this.setState(this.buildState());
+        }
     }
 
     unassignedStudentIds() {

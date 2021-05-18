@@ -13,14 +13,14 @@ class AdminProjectGroups extends Component{
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    // shouldComponentUpdate(nextProps, nextState) {
 
-        console.log({ shouldUpdate: nextState.unassignedStudents.length != [] &&
-            nextState.groups.length != []});
+    //     console.log({ shouldUpdate: nextState.unassignedStudents.length != [] &&
+    //         nextState.groups.length != []});
 
-        return nextState.unassignedStudents.length != [] &&
-        nextState.groups.length != []
-    }
+    //     return nextState.unassignedStudents.length != [] &&
+    //     nextState.groups.length != []
+    // }
 
     componentDidMount(){
         this.fetchUnassignedStudents();
