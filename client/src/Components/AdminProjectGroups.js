@@ -38,7 +38,6 @@ class AdminProjectGroups extends Component{
         })
         .then(response => response.json())
         .then(j => {
-
             const students = j.map(student => {
                 const { id, first_name, last_name, external_id } = student;
 

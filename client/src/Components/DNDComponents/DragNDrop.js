@@ -16,7 +16,9 @@ class DragNDrop extends React.Component {
     }
 
     unassignedStudentIds() {
-        return this.props.unassignedStudents.map(student => student.external_id);
+        const studentIds = this.props.unassignedStudents.map(student => student.external_id);
+
+        return studentIds;
     }
 
     buildState() {
@@ -36,10 +38,13 @@ class DragNDrop extends React.Component {
         const usersGroups = this.props.groups.map(group => {
             return group.GroupAllocations.map(group_alloc => group_alloc.User);
         })
-        const users = [].concat.apply([], usersGroups);
+        let users = [].concat.apply([], usersGroups);
+
+        const unassignedStudents = this.props.unassignedStudents;
+        const allStudentsInThisProject = [...users, ...unassignedStudents];
 
         let hash = {};
-        users.forEach(user => {
+        allStudentsInThisProject.forEach(user => {
             hash[user.external_id] = {
                 id: user.external_id,
                 content: user.first_name + ' ' + user.last_name
