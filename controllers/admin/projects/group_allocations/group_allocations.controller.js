@@ -61,8 +61,6 @@ exports.createOne = (req, res) => {
 
 // Delete a single Group Allocation
 exports.deleteOne = (req, res) => {
-  console.log(req.body);
-  console.log('HERE')
   if (req.body.group_id && req.body.external_id) {
 
     model.User.findOne({ where: { external_id: req.body.external_id }})

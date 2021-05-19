@@ -87,6 +87,20 @@ class DragNDrop extends React.Component {
         return columnOrder;
     }
 
+    // handleRemoveStudentFromGroup(external_id) {
+	// 	const jsonString = JSON.stringify({ external_id: external_id, group_id: this.props.group.id });
+
+	// 	fetch('http://localhost:6060/api/admin/projects/' + this.props.group.project_id + '/group_allocations', {
+    //     method: 'delete',
+    //     credentials: 'include',
+    //     headers: { 'Content-Type': 'application/json' },
+	// 			body: jsonString
+    // })
+    // .then(_response => {
+    //   location.reload()
+    // })
+	// }
+
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
 
@@ -153,7 +167,6 @@ class DragNDrop extends React.Component {
     };
 
     render() {
-        console.log('RENDERING!');
         return(
             <div className={css.mainContainer}>
                 <DragDropContext onDragEnd={this.onDragEnd}>

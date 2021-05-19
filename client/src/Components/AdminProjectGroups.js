@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import css from './Admin.module.css'
 import DragNDrop from './DNDComponents/DragNDrop.js';
-import Group from './Group';
 import { signout } from './AuthenticationHelper'
 
 class AdminProjectGroups extends Component{
@@ -12,15 +11,6 @@ class AdminProjectGroups extends Component{
             groups: []
         }
     }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-
-    //     console.log({ shouldUpdate: nextState.unassignedStudents.length != [] &&
-    //         nextState.groups.length != []});
-
-    //     return nextState.unassignedStudents.length != [] &&
-    //     nextState.groups.length != []
-    // }
 
     componentDidMount(){
         this.fetchUnassignedStudents();
@@ -111,13 +101,6 @@ class AdminProjectGroups extends Component{
                             <li>{student.first_name} {student.last_name}</li>
                         </div>
                     ))}
-
-                    {/* <p className={css.subtitle}>Groups:</p>
-                    <div style={{ 'display': 'flex' }}>
-                        { this.state.groups && this.state.groups.map((group, index) => (
-                            <Group group={group} key={index} />
-                        ))}
-                    </div> */}
                 </div>
                 <DragNDrop groups={this.state.groups} unassignedStudents={this.state.unassignedStudents}/>
             </>
