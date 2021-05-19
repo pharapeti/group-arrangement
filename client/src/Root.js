@@ -10,9 +10,8 @@ import AdminNotification from './Components/AdminNotification.js'
 import AdminCreateProject from './Components/AdminCreateProject.js'
 import AdminEditProject from './Components/AdminEditProject.js'
 import AdminProject from './Components/AdminProject.js'
-import AdminCreateGroup from './Components/AdminCreateGroup.js'
+import AdminProjectGroups from './Components/AdminProjectGroups.js'
 import AdminProjectAddStudents from './Components/AdminProjectAddStudents.js'
-import AdminEditGroup from './Components/AdminEditGroup.js'
 import App from './App'
 
 //here to set all the urls 
@@ -32,9 +31,8 @@ class UrlSet extends Component{
               <Route path="/admin/notifications" exact strict component={AdminNotification}/> 
               <Route path="/admin/projects/new" exact strict component={AdminCreateProject}/> 
               <Route path="/admin/projects/:project_id" exact strict component={AdminProject}/> 
-              <Route path="/admin/projects/:project_id/groups/create" exact strict component={AdminCreateGroup}/> 
+              <Route path="/admin/projects/:project_id/groups" exact strict component={AdminProjectGroups}/> 
               <Route path="/admin/projects/:project_id/add_student" exact strict component={AdminProjectAddStudents}/>
-              <Route path="/admin/projects/:project_id/groups/:group_id/edit" exact strict component={AdminEditGroup}/>  
               <Route path="/admin/projects/:project_id/edit" exact strict component={AdminEditProject}/> 
             </div>
           </Router>

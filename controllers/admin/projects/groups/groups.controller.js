@@ -2,7 +2,12 @@ const model = require('../../../../models/index')
 
 // Return all Groups associated to this Project
 exports.findAll = (req, res) => {
-  model.Group.findAll({ where: { project_id: req.params.project_id }})
+  model.Group.findAll({ 
+    where: { project_id: req.params.project_id },
+    include: [
+      { model: model.GroupAllocation, include: [model.User] }
+    ]
+  })
     .then(groups => {
       res.send(groups);
     })
