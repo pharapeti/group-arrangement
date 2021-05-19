@@ -92,20 +92,6 @@ class DragNDrop extends React.Component {
         return columnOrder;
     }
 
-    // handleRemoveStudentFromGroup(external_id) {
-	// 	const jsonString = JSON.stringify({ external_id: external_id, group_id: this.props.group.id });
-
-	// 	fetch('http://localhost:6060/api/admin/projects/' + this.props.group.project_id + '/group_allocations', {
-    //     method: 'delete',
-    //     credentials: 'include',
-    //     headers: { 'Content-Type': 'application/json' },
-	// 			body: jsonString
-    // })
-    // .then(_response => {
-    //   location.reload()
-    // })
-	// }
-
     onDragEnd = result => {
         const { destination, source, draggableId } = result;
 
@@ -123,7 +109,70 @@ class DragNDrop extends React.Component {
         const start = this.state.columns[source.droppableId];
         const finish = this.state.columns[destination.droppableId];
 
-        if(start === finish) {
+        if (finish.title === 'Unassigned') {
+            // delete group allocation with group_id source.droppableId
+            // const jsonString = JSON.stringify({ external_id: external_id, group_id: source.droppableId });
+
+            // fetch('http://localhost:6060/api/admin/projects/' + this.props.group.project_id + '/group_allocations', {
+            //     method: 'delete',
+            //     credentials: 'include',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: jsonString
+            // })
+            // .then(_response => {
+            //     location.reload()
+            // })
+        }
+
+        if(start.title === 'Unassigned' && finish.title !== 'Unassigned') {
+            // only create group allocation with group_id destination.droppableId
+
+            // const jsonString = JSON.stringify({ external_id: external_id, group_id: destination.droppableId });
+
+            // fetch('http://localhost:6060/api/admin/projects/' + this.props.group.project_id + '/group_allocations', {
+            //     method: 'POST',
+            //     credentials: 'include',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: jsonString
+            // })
+            // .then(_response => {
+            //     location.reload()
+            // })
+        }
+
+        if(start.title !== 'Unassigned' && finish.title !== 'Unassigned') {
+            // delete old group allocation with group_id source.droppableId
+            // create new group allocation with group_id destination.droppableId
+
+            // console.log(source.droppableId);
+            // console.log(this.state.students)
+
+            //let jsonString = JSON.stringify({ external_id: external_id, group_id: source.droppableId });
+            //console.log({source})
+            // fetch('http://localhost:6060/api/admin/projects/' + this.props.group.project_id + '/group_allocations', {
+            //     method: 'delete',
+            //     credentials: 'include',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: jsonString
+            // })
+            // .then(_response => {
+            //     location.reload()
+            // })
+
+            // jsonString = JSON.stringify({ external_id: external_id, group_id: destination.droppableId });
+
+            // fetch('http://localhost:6060/api/admin/projects/' + this.props.group.project_id + '/group_allocations', {
+            //     method: 'POST',
+            //     credentials: 'include',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: jsonString
+            // })
+            // .then(_response => {
+            //     location.reload()
+            // })
+        }
+
+        if (start === finish) {
             const newStudentIds = Array.from(start.studentIds);
             newStudentIds.splice(source.index, 1);
             newStudentIds.splice(destination.index, 0, draggableId);
