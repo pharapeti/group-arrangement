@@ -6,7 +6,10 @@ exports.findAll = (req, res) => {
   .then(groups => {
     const group_ids = groups.map(group => group.id);
 
-    model.GroupAllocation.findAll({ where: { group_id: group_ids }})
+    model.GroupAllocation.findAll({ 
+      where: { group_id: group_ids },
+      include: model.User
+    })
       .then(group_allocations => {
         res.send(group_allocations);
       })
