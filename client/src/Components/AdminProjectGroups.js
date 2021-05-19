@@ -8,13 +8,25 @@ class AdminProjectGroups extends Component{
         super(props);
         this.state = {
             unassignedStudents: [],
-            groups: []
+            groups: [],
+            project: { name: '' }
         }
     }
 
     componentDidMount(){
+        const project_id = this.props.match.params.project_id;
+
         this.fetchUnassignedStudents();
         this.fetchGroups();
+
+        fetch('http://localhost:6060/api/admin/projects/' + project_id, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(j => {
+            this.setState({ project: j })
+        })
     }
 
     fetchUnassignedStudents() {
@@ -94,13 +106,7 @@ class AdminProjectGroups extends Component{
                 </div>
                 
                 <div >
-                    <h1 className={css.title}>Group Allocation</h1>
-                    <p className={css.subtitle}>Unassigned:</p>
-                    { this.state.unassignedStudents && this.state.unassignedStudents.map((student, index) => (
-                        <div style={{ 'display': 'flex' }} key={index} >
-                            <li>{student.first_name} {student.last_name}</li>
-                        </div>
-                    ))}
+                    <h1 className={css.title}>{this.state.project.name}</h1>
                 </div>
                 <DragNDrop groups={this.state.groups} unassignedStudents={this.state.unassignedStudents}/>
             </>
