@@ -101,8 +101,7 @@ class AdminProjectAddStudents extends Component {
                         <li key={index}>{student.first_name} {student.last_name}</li>
                     ))}
 
-                    <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Cancel</button>
-                    <button className={css.projecttwobutton} style={{marginTop: "595px"}}>Save</button>
+                    <button className={css.projecttwobutton} style={{marginTop: "595px"}} onClick={()=>this.navigateBack()}>Back</button>
                 </div>
 
                 <div >

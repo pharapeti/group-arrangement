@@ -84,7 +84,8 @@ exports.arrange = (req, res) => {
 
           For example, if we have 11 students and the max group size is 4, then we can have groups of 3.
           */
-          return Math.min(Math.ceil(student_ids.length / project.max_group_size), project.max_group_size);
+          // return Math.min(Math.ceil(student_ids.length / project.max_group_size), project.max_group_size);
+          return project.max_group_size;
         }
 
         // Creates groups of student ids

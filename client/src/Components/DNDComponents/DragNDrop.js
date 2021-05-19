@@ -174,9 +174,6 @@ class DragNDrop extends React.Component {
                         const column = this.state.columns[columnId];
                         const students = column.studentIds.map(studentId => {
 
-                            console.log({ column })
-                            console.log({ studentId })
-
                             return this.state.students[studentId]
                         });
 
